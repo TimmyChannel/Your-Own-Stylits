@@ -8,33 +8,43 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0" Background="NavajoWhite">
             <Label Content="Верхняя панель" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
+        
         <Grid Grid.Row="1">
+            
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" MinWidth="200"/>
                 <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
+            
             <Grid Grid.Column="0" Background="#FF202020">
                 <Label Content="Левая панель" Foreground="AliceBlue" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
-            <GridSplitter Grid.Column="1" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                <GridSplitter  Grid.Column="3" ShowsPreview="False" Width="3" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                <Grid Grid.Column="4" Background="#FF202020">
+            
+            <GridSplitter Grid.Column="1" Background="#FF202020" ShowsPreview="False" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <GridSplitter  Grid.Column="3" Background="#FF202020" ShowsPreview="False" Width="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            
+            <Grid Grid.Column="4" Background="#FF202020">
                 <Label Content="Правая панель" Foreground="AliceBlue" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
+            
             <Grid Grid.Column="2" Background="AntiqueWhite">
                 <Label Content="Основной контент" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
+        
         </Grid>
 
     </Grid>
+    
 </Window>
