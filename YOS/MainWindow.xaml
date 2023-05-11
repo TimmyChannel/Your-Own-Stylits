@@ -17,11 +17,6 @@
         <Grid Grid.Row="0" 
               Background="NavajoWhite">
             
-            <Label Content="Верхняя панель" 
-                   FontSize="12" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center"/>
-        
         </Grid>
         
         <Grid Grid.Row="1">
@@ -34,13 +29,9 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             
-            <Grid Grid.Column="0" Background="#FF202020">
+            <Grid Grid.Column="0" Background="#FF202020" MinWidth="30">
             
-                <Label Content="Левая панель" 
-                       Foreground="AliceBlue" 
-                       FontSize="16" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
+
             
             </Grid>
             
@@ -58,23 +49,17 @@
                            HorizontalAlignment="Stretch" 
                            VerticalAlignment="Stretch"/>
             
-            <Grid Grid.Column="4" Background="#FF202020">
+            <Grid x:Name="RightColumn" Grid.Column="4" Background="#FF202020" MinWidth="50">
                 
-                <Label Content="Правая панель" 
-                       Foreground="AliceBlue" 
-                       FontSize="16" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
+
             
             </Grid>
             
             <Grid Grid.Column="2" Background="AntiqueWhite">
-                
-                <Label Content="Основной контент" 
-                       FontSize="16" 
-                       HorizontalAlignment="Center" 
-                       VerticalAlignment="Center"/>
-            
+
+                <Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}">
+                    
+                </Label>
             </Grid>
         
         </Grid>
