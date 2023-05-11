@@ -56,7 +56,9 @@
             </Grid>
             
             <Grid Grid.Column="2" Background="AntiqueWhite">
-
+                <local:ViewPortControl>
+                    
+                </local:ViewPortControl>
                 <Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}">
                     
                 </Label>
