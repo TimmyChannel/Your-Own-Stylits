@@ -4,24 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:YOS"
+             xmlns:local="clr-namespace:YOS" 
+             xmlns:ViewModels="clr-namespace:YOS.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <ViewModels:ViewPortControlViewModel/>
+    </UserControl.DataContext>
     <Grid>
-        <hx:Viewport3DX ShowViewCube="True"
-                        Camera="{Binding Camera, ElementName=Cam}">
+        <hx:Viewport3DX 
+                        Camera="{Binding Camera}">
+            <hx:Viewport3DX.EffectsManager>
+                <hx:DefaultEffectsManager/>
+            </hx:Viewport3DX.EffectsManager>
             <hx:Viewport3DX.InputBindings>
                 <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
                 <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
-            <hx:DirectionalLight3D Color="White" Direction="{Binding cam.LookDirection}"/>
-            <hx:CameraModel3D x:Name="Cam">
-                <hx:CameraModel3D.Camera>
-                    <hx:PerspectiveCamera/>
-                </hx:CameraModel3D.Camera>
-            </hx:CameraModel3D>
-            <hx:MeshGeometryModel3D>
-               
+            <hx:DirectionalLight3D Color="White" Direction="{Binding Camera.LookDirection}"/>
+          
+            <hx:MeshGeometryModel3D Geometry="{Binding Geometry}">
+                
             </hx:MeshGeometryModel3D>
         </hx:Viewport3DX>
 
