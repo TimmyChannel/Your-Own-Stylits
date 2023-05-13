@@ -30,7 +30,10 @@ namespace YOS.ViewModels
 
             // Задаем кисть цвета ткани     
             //Создаем материал
-            var material = new PhongMaterial();
+            var material = new PhongMaterial { 
+                DiffuseColor= Colors.AliceBlue.ToColor4(),
+                AmbientColor= Colors.Gray.ToColor4(),
+        };
 
             //Задаем кисть цвета ткани
             material.DiffuseColor = Colors.AliceBlue.ToColor4();
