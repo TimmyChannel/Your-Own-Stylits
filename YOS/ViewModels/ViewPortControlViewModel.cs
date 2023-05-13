@@ -67,6 +67,7 @@ namespace YOS.ViewModels
             }
         }
         public Geometry3D Geometry { private set; get; }
+        public Material Material { private set; get; }
 
         public ViewPortControlViewModel()
         {
@@ -98,10 +99,18 @@ namespace YOS.ViewModels
 
             // default camera model
             CameraModel = Perspective;
+            Camera = new PerspectiveCamera()
+            {
+                Position = new System.Windows.Media.Media3D.Point3D(0, 0, 10),
+                LookDirection = new System.Windows.Media.Media3D.Vector3D(0, 0, -10),
+                UpDirection = new System.Windows.Media.Media3D.Vector3D(0, 1, 0)
+            };
             var reader = new ObjReader();
             //TODO
-            var models = reader.Read();
+            var models = reader.Read("C:\\Users\\Аська\\Desktop\\Cursed_Work\\team-1131\\YOS\\Resources\\Tshirt.obj");
             Geometry = models[0].Geometry;
+            Material = PhongMaterials.White;
+
         }
     }
 }

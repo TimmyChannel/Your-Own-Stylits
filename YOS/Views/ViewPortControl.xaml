@@ -13,7 +13,9 @@
     </UserControl.DataContext>
     <Grid>
         <hx:Viewport3DX 
-                        Camera="{Binding Camera}">
+            ShowCameraInfo="True"
+            ShowViewCube="False"
+            Camera="{Binding Camera}">
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager/>
             </hx:Viewport3DX.EffectsManager>
@@ -22,10 +24,12 @@
                 <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
             <hx:DirectionalLight3D Color="White" Direction="{Binding Camera.LookDirection}"/>
-          
-            <hx:MeshGeometryModel3D Geometry="{Binding Geometry}">
-                
-            </hx:MeshGeometryModel3D>
+
+                <hx:MeshGeometryModel3D Geometry="{Binding Geometry}"
+                                        Material="{Binding Material}">
+                </hx:MeshGeometryModel3D>
+       
+
         </hx:Viewport3DX>
 
     </Grid>

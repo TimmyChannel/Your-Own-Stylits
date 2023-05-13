@@ -9,15 +9,20 @@
 
   <ItemGroup>
     <None Remove="Resources\horse.FBX" />
+    <None Remove="Resources\Tshirt.obj" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\horse.FBX">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Tshirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HelixToolkit" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.24.0" />
   </ItemGroup>
