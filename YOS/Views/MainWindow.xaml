@@ -102,7 +102,6 @@
                             </Setter>
                         </Style>
                     </TabControl.Resources>
-                    <UniformGrid Columns="2" Rows="1">
                         
                     <TabItem Header="Tab 1" Foreground="AliceBlue" VerticalAlignment="Top" AutomationProperties.IsOffscreenBehavior="Default" >
 
@@ -129,18 +128,17 @@
 
                         </Grid>
                     </TabItem>
-                    </UniformGrid>
                 
                 </TabControl>
 
-                <!--ПУСТЫШКА (КОСТЫЛЬ) ДЛЯ КОРЕКТНОЙ РАБОТЫ ВКЛАДОК--><!--
-                    <Grid Height="0" VerticalAlignment="Bottom" Width="{Binding ActualWidth, ElementName = TabControl, Mode=OneWay}">
+                <!--ПУСТЫШКА (КОСТЫЛЬ) ДЛЯ КОРЕКТНОЙ РАБОТЫ ВКЛАДОК-->
+                <Grid Height="0" VerticalAlignment="Bottom" Width="{Binding ActualWidth, ElementName = TabControl, Mode=OneWay}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="1" FontSize="22" x:Name="Tabris" Margin="1"></TextBlock>
-                </Grid>-->
+            </Grid> 
             </Grid>
 
             <Grid Grid.Column="2" Background="AntiqueWhite">
