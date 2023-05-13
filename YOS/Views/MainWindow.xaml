@@ -148,6 +148,9 @@
                 <local:ViewPortControl>
 
                 </local:ViewPortControl>
+                <Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}" Margin="0,0,562,638">
+
+                </Label>
             </Grid>
 
         </Grid>
