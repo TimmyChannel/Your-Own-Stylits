@@ -106,7 +106,7 @@ namespace YOS.ViewModels
                 UpDirection = new System.Windows.Media.Media3D.Vector3D(0, 1, 0)
             };
             var reader = new ObjReader();
-            //TODO
+            TODO
             var models = reader.Read("C:\\Users\\Аська\\Desktop\\Cursed_Work\\team-1131\\YOS\\Resources\\Tshirt.obj");
             Geometry = models[0].Geometry;
             Material = PhongMaterials.White;
