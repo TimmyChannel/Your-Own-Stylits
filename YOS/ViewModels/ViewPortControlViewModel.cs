@@ -24,7 +24,7 @@ namespace YOS.ViewModels
         public ViewPortControlViewModel()
         {
             var reader = new ObjReader();
-            //TODO
+            TODO
             var models = reader.Read("C:\\Users\\Аська\\Desktop\\Cursed_Work\\team-1131\\YOS\\Resources\\Tshirt.obj");
             Geometry = models[0].Geometry;
 
