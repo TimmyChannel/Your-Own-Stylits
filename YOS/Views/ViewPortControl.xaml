@@ -14,9 +14,9 @@
     <Grid>
         <hx:Viewport3DX
             x:Name="view1"
-            Camera="{Binding Camera}"
             ShowViewCube="False"
             ShowCameraInfo="True">
+           
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager/>
             </hx:Viewport3DX.EffectsManager>
@@ -24,12 +24,18 @@
                 <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
                 <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
-            <hx:DirectionalLight3D Direction="{Binding Camera.LookDirection}" Color="White" />
+            <!-- Свет, идущий сверху -->
+            <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
+
+            <!-- Свет, падающий сбоку -->
+            <hx:DirectionalLight3D Direction="1,0,0" Color="LightGray"/>
 
             <hx:MeshGeometryModel3D Geometry="{Binding Geometry}"
                                         Material="{Binding Material}">
                 </hx:MeshGeometryModel3D>
-       
+            <hx:Viewport3DX.Camera >
+                <hx:PerspectiveCamera/>
+            </hx:Viewport3DX.Camera>
 
         </hx:Viewport3DX>
 
