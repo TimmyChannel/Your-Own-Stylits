@@ -25,7 +25,7 @@ namespace YOS.ViewModels
         {
             var reader = new ObjReader();
 //            TODO
-            var models = reader.Read(@"../Resources/Tshirt.obj");
+            var models = reader.Read(@"Resources/Tshirt.obj");
             Geometry = models[0].Geometry;
 
             // Задаем кисть цвета ткани     
