@@ -40,7 +40,7 @@
             <GridSplitter Grid.Column="1" 
                           BorderThickness="0"
                           Background="#FF202020" 
-                          ShowsPreview="False" 
+                          ShowsPreview="True" 
                           Width="5" 
                           HorizontalAlignment="Stretch" 
                           VerticalAlignment="Stretch"/>
@@ -48,7 +48,7 @@
             <GridSplitter  Grid.Column="3" 
                            BorderThickness="0"
                            Background="#FF202020" 
-                           ShowsPreview="False" 
+                           ShowsPreview="True" 
                            Width="5" 
                            HorizontalAlignment="Stretch" 
                            VerticalAlignment="Stretch"/>

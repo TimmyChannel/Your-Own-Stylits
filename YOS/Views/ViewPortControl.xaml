@@ -14,8 +14,12 @@
     <Grid>
         <hx:Viewport3DX
             x:Name="view1"
-            ShowViewCube="False"
-            ShowCameraInfo="True">
+            ShowViewCube="False" 
+            FXAALevel="Ultra" 
+            MSAA="Two" 
+            ShowFrameRate="True" 
+            Camera="{Binding Camera}" 
+            PinchZoomAtCenter="True" >
            
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager/>
@@ -30,12 +34,12 @@
             <!-- Свет, падающий сбоку -->
             <hx:DirectionalLight3D Direction="1,0,0" Color="LightGray"/>
 
-            <hx:MeshGeometryModel3D Geometry="{Binding Geometry}"
+            <hx:MeshGeometryModel3D x:Name="Tshirt"
+                Geometry="{Binding Geometry}"
                                         Material="{Binding Material}">
+                
                 </hx:MeshGeometryModel3D>
-            <hx:Viewport3DX.Camera >
-                <hx:PerspectiveCamera/>
-            </hx:Viewport3DX.Camera>
+         
 
         </hx:Viewport3DX>
 

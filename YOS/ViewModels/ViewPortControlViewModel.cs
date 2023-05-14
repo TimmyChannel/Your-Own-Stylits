@@ -11,6 +11,7 @@ using System.Windows.Media;
 using SharpDX.Direct3D9;
 using SharpDX;
 using System.Windows.Media.Imaging;
+using System.Drawing;
 
 namespace YOS.ViewModels
 {
@@ -20,47 +21,38 @@ namespace YOS.ViewModels
         private void OnPropertyChanged([CallerMemberName] string propertyName = "", bool allProperties = false) =>
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(allProperties ? null : propertyName));
         public Geometry3D Geometry { private set; get; }
-        public PhongMaterial Material { private set; get; }
-
+        public PBRMaterial Material { private set; get; }
+        public Camera Camera { private set; get; }
         public ViewPortControlViewModel()
         {
-
+            Camera = new PerspectiveCamera
+            {
+                LookDirection = new Media3D.Vector3D(0, 0, -320),
+                UpDirection = new Media3D.Vector3D(0, 1, 0),
+                Position = new Media3D.Point3D(0, 0, 320)
+            };
             var reader = new ObjReader();
             var models = reader.Read($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Tshirt.obj");
             Geometry = models[0].Geometry;
+            for (int i = 0; i < Geometry.Positions.Count; i++)
+            {
+                Geometry.Positions[i] += new Vector3(0, -40, 0);
+            }
 
-            //    // Задаем кисть цвета ткани     
-            //    //Создаем материал
-            //    var material = new PhongMaterial { 
-            //        DiffuseColor= Colors.AliceBlue.ToColor4(),
-            //        AmbientColor= Colors.Gray.ToColor4(),
-            //};
-
-            //    //Задаем кисть цвета ткани
-            //    material.DiffuseColor = Colors.AliceBlue.ToColor4();
-
-            //    //Задаем коэффициенты спекулярных отражений
-            //    //Ткань не очень хорошо отражает 
-            //    material.SpecularShininess = 0.1F;
-            //    Material = material;
-            var material = new PhongMaterial();
-
-            // Задаем текстуру футболки
-            //var brush = new ImageBrush(new BitmapImage());
-            material.DiffuseMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\temp_tex.jpg");
-            material.RenderDiffuseMap = true;
-            // Задаем цвет освещения
-            material.DiffuseColor = Colors.Gray.ToColor4();
-
-            // Задаем свойства отражения света
-            material.SpecularColor = Colors.White.ToColor4();
-            material.SpecularShininess = 10F;
-            //material.AmbientColor = PhongMaterials.ToColor(0.02, 0.02, 0.02, 1.0);
-            //material.DiffuseColor = PhongMaterials.ToColor(0.01, 0.01, 0.01, 1.0);
-            //material.SpecularColor = PhongMaterials.ToColor(0.4, 0.4, 0.4, 1.0);
-            //material.EmissiveColor = PhongMaterials.ToColor(0.0, 0.0, 0.0, 0.0);
-
-            //Material = PhongMaterials.BlackRubber ;
+            var tshirtuv = new UVTransform();
+            tshirtuv.Scaling = new Vector2(10F, 10F);
+            var material = new PBRMaterial
+            {
+                RenderAlbedoMap = true,
+                RenderAmbientOcclusionMap = true,
+                RenderNormalMap = true,
+                UVTransform = tshirtuv,
+                AmbientOcculsionMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\ambientocclusion.png"),
+                NormalMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\normal.png"),
+                RoughnessMetallicMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\roughness.png"),
+                AlbedoMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\albedo.png"),
+                RoughnessFactor = 0.2f
+            };
             Material = material;
         }
     }
