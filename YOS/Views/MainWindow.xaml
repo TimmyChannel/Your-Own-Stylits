@@ -16,6 +16,8 @@
 
         <Grid Grid.Row="0" 
               Background="NavajoWhite">
+            
+            <Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}" HorizontalAlignment="Center"/>
 
         </Grid>
 
@@ -142,13 +144,9 @@
             </Grid>
 
             <Grid Grid.Column="2" Background="AntiqueWhite">
-                <!--Временный счетчик для настройки ширины выдвигающейся боковой панели-->
                 <local:ViewPortControl>
-
+                    
                 </local:ViewPortControl>
-                <Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}" Margin="0,0,562,638">
-
-                </Label>
             </Grid>
 
         </Grid>
