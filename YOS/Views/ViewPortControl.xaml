@@ -32,7 +32,8 @@
             <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
 
             <!-- Свет, падающий сбоку -->
-            <hx:DirectionalLight3D Direction="1,0,0" Color="LightGray"/>
+            <hx:DirectionalLight3D Direction="1,0,-1" Color="LightGray"/>
+            <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>
 
             <hx:MeshGeometryModel3D x:Name="Tshirt"
                 Geometry="{Binding Geometry}"
