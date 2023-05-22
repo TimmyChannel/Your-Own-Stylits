@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace YOS.Models.EnumParams
 {
-    [Flags]
-    public enum Weather
+    public enum GenderTypes
     {
-        Sunny, Cloudy, Indoor
+        Male,
+        Female,
+        Unisex
     }
 }

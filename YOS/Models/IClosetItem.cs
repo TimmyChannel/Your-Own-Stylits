@@ -9,14 +9,14 @@ namespace YOS.Models
 {
     public interface IClosetItem
     {
-        public string Name { get; set; }
-        Styles Style { get; set; }
-        Weather Weather { get; set; }
-        Poses Pose { get; set; }
-        Somatotypes Somatotype { get; set; }
-        PBRMaterial DefaultMaterial { get; set; }
-        Geometry3D Geometry { get; set; }
+        string Name { get; }
+        
+        Poses Pose { get; }
+        Somatotypes Somatotype { get; }
+        PBRMaterial DefaultMaterial { get; }
+        Geometry3D Geometry { get; }
         bool SomatotypeChangeModel { get; }
-        List<PBRMaterial> AvaliableMaterials { get; }
+        GenderTypes Gender { get; }
+        Type Type { get; }
     }
 }

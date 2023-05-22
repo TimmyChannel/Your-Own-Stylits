@@ -8,7 +8,7 @@ namespace YOS.Models.EnumParams
 {
     public enum Styles
     {
-        Casual, Summer
+        Casual, Summer, Formal
     }
    
 }

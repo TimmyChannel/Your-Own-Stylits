@@ -12,7 +12,8 @@ using SharpDX.Direct3D9;
 using SharpDX;
 using System.Windows.Media.Imaging;
 using System.Drawing;
-
+using YOS.Models;
+using YOS.Models.EnumParams;
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : INotifyPropertyChanged
@@ -38,7 +39,7 @@ namespace YOS.ViewModels
             {
                 Geometry.Positions[i] += new Vector3(0, -40, 0);
             }
-
+            var tshirt = ClosetItemList.GetItem("Tshirt");
             var tshirtuv = new UVTransform();
             tshirtuv.Scaling = new Vector2(10F, 10F);
             var material = new PBRMaterial

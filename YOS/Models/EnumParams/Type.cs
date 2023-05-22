@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YOS.Models.EnumParams
+namespace YOS.Models
 {
-    [Flags]
-    public enum Weather
+    public enum Type
     {
-        Sunny, Cloudy, Indoor
+        Top,
+        Bottom,
+        Accessories,
+        Shoes,
+        Headwear
     }
 }
