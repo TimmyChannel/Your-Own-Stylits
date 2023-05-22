@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace YOS.Models
 {
-    //public class TopCreator : CloseItemCreator
-    //{
-    //    public override IClosetItem CreateClosetItem(string name)
-    //    {
-           
-
-    //    }
-    //}
+    public class TopCreator : CloseItemCreator
+    {
+        public override IClosetItem CreateClosetItem(string name)
+        {
+            return null;
+        }
+    }
 }
