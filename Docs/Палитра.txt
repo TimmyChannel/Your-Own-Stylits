@@ -1,0 +1,5 @@
+BackGround -- 			#FFFFFF
+ForeGround
+	Header -- 		#6D6058
+	UI-navigation -- 	#000000
+	UI-naviagtion Hover -- 	#CA9B52

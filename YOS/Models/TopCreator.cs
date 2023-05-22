@@ -10,7 +10,7 @@ namespace YOS.Models
     {
         public override IClosetItem CreateClosetItem(string name)
         {
-            
+            return null;
         }
     }
 }

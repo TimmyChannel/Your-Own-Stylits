@@ -22,9 +22,9 @@ namespace YOS.Models
         public bool SomatotypeChangeModel => throw new NotImplementedException();
 
         public List<PBRMaterial> AvaliableMaterials => throw new NotImplementedException();
-        public TopItem(string name, Sty)
-        {
+ //       public TopItem(string name, Sty)
+//        {
             
-        }
+ //       }
     }
 }
