@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace YOS.Models.EnumParams
 {
+    [Flags]
     public enum Styles
     {
-        Casual, Summer, Formal
+        Casual = 1,
+        Summer = 2,
+        Formal = 4
     }
-   
+
 }

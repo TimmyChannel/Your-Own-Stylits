@@ -9,6 +9,8 @@ namespace YOS.Models.EnumParams
     [Flags]
     public enum Weather
     {
-        Sunny, Cloudy, Indoor
+        Sunny = 1,
+        Cloudy = 2,
+        Indoor = 4
     }
 }

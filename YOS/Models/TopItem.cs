@@ -10,10 +10,11 @@ namespace YOS.Models
 {
     public class TopItem : IClosetItem
     {
-        public TopItem(string name, Styles style = Styles.Casual,
-            Weather weather = Weather.Indoor,
+        public TopItem(string name,
             Somatotypes somatotype = Somatotypes.Mesomorphic,
-            Poses pose = Poses.Idle)
+            Poses pose = Poses.Idle,
+            Styles style = Styles.Casual,
+            Weather weather = Weather.Indoor)
         {
             var i = ClosetItemList.GetItem(name);
             _name = i.Name;

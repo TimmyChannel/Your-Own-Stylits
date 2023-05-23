@@ -10,7 +10,6 @@ namespace YOS.Models
     public interface IClosetItem
     {
         string Name { get; }
-        
         Poses Pose { get; }
         Somatotypes Somatotype { get; }
         PBRMaterial DefaultMaterial { get; }
