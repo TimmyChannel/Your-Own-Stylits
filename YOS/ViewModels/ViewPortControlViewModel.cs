@@ -15,6 +15,7 @@ using System.Drawing;
 using YOS.Models;
 using YOS.Models.EnumParams;
 using System.Diagnostics;
+using HelixToolkit.Wpf.SharpDX.Model;
 
 namespace YOS.ViewModels
 {
@@ -34,8 +35,10 @@ namespace YOS.ViewModels
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
                 Position = new Media3D.Point3D(0, 0, 320)
             };
+            var resourcePath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\";
             var reader = new ObjReader();
-            var models = reader.Read($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Tshirt.obj");
+            
+            var models = reader.Read($"{resourcePath}Tshirt.obj");
             Geometry = models[0].Geometry;
             for (int i = 0; i < Geometry.Positions.Count; i++)
             {
@@ -48,12 +51,12 @@ namespace YOS.ViewModels
                 RenderAlbedoMap = true,
                 RenderAmbientOcclusionMap = true,
                 RenderNormalMap = true,
-                UVTransform = tshirtuv,
-                AmbientOcculsionMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\ambientocclusion.png"),
-                NormalMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\normal.png"),
-                RoughnessMetallicMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\roughness.png"),
-                AlbedoMap = TextureModel.Create($"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Textures\\GrayFabricTex\\albedo.png"),
-                RoughnessFactor = 0.2f
+                AmbientOcculsionMap = TextureModel.Create($"{resourcePath}Textures\\GrayFabricTex\\ambientocclusion.png"),
+                NormalMap = TextureModel.Create($"{resourcePath}Textures\\GrayFabricTex\\normal.png"),
+                RoughnessMetallicMap = TextureModel.Create($"{resourcePath}Textures\\GrayFabricTex\\roughness.png"),
+                AlbedoMap = TextureModel.Create($"{resourcePath}Textures\\GrayFabricTex\\Tshirt.png"),
+                RoughnessFactor = 0.2f,
+                AlbedoColor = new Color4(1, 0.1f, 0.2f, 1)
             };
             Material = material;
         }

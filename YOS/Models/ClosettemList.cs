@@ -14,14 +14,20 @@ namespace YOS.Models
 {
     { "Tshirt", new Item("Tshirt", GenderTypes.Unisex, Type.Top, Styles.Casual | Styles.Summer, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "Blouse", new Item("Blouse", GenderTypes.Female, Type.Top, Styles.Casual | Styles.Summer | Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
-    { "Shirt", new Item("Shirt", GenderTypes.Unisex, Type.Top, Styles.Casual, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "Shirt", new Item("Shirt", GenderTypes.Male, Type.Top, Styles.Casual, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "RoundGlasses", new Item("RoundGlasses", GenderTypes.Unisex, Type.Accessories, Styles.Casual | Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "WomenGlasses", new Item("WomenGlasses", GenderTypes.Female, Type.Accessories, Styles.Casual | Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "AviatorGlasses", new Item("AviatorGlasses", GenderTypes.Male, Type.Accessories, Styles.Casual | Styles.Summer, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "OxfordShoes", new Item("OxfordShoes", GenderTypes.Male, Type.Shoes, Styles.Formal | Styles.Casual, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "Sneakers", new Item("Sneakers", GenderTypes.Unisex, Type.Shoes, Styles.Casual | Styles.Summer, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
     { "HeeledShoes", new Item("HeeledShoes", GenderTypes.Female, Type.Shoes, Styles.Formal | Styles.Summer | Styles.Casual, Weather.Sunny | Weather.Cloudy |Weather.Indoor) },
-    { "Shorts", new Item("Shorts", GenderTypes.Unisex, Type.Bottom, Styles.Casual | Styles.Summer, Weather.Sunny | Weather.Cloudy | Weather.Indoor) }
+    { "Shorts", new Item("Shorts", GenderTypes.Male, Type.Bottom, Styles.Casual | Styles.Summer, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "Dress", new Item("Dress", GenderTypes.Female, Type.Bottom, Styles.Summer | Styles.Formal | Styles.Casual, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "Trousers", new Item("Trousers", GenderTypes.Unisex, Type.Bottom, Styles.Casual | Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "Beret", new Item("Beret", GenderTypes.Female, Type.Headwear, Styles.Casual | Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "Kippah", new Item("Kippah", GenderTypes.Male, Type.Headwear, Styles.Formal, Weather.Sunny | Weather.Cloudy | Weather.Indoor) },
+    { "KnitHat", new Item("KnitHat", GenderTypes.Unisex, Type.Headwear, Styles.Casual, Weather.Cloudy)},
+    { "BeanieHat", new Item("BeanieHat", GenderTypes.Unisex, Type.Headwear, Styles.Casual, Weather.Cloudy) }
 };
 
         public static Item GetItem(string name)
