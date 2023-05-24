@@ -7,7 +7,7 @@ namespace YOS.Models
         string Name { get; }
         bool IsVisible { get; }
         Poses Pose { get; }
-        Somatotypes Somatotype { get; }
+        GenderTypes Gender { get; }
         PBRMaterial DefaultMaterial { get; }
         Geometry3D Geometry { get; }
     }

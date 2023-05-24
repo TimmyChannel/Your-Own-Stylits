@@ -8,7 +8,7 @@ namespace YOS.Models.EnumParams
 {
     public enum Poses
     {
-        Idle, LadiesPose, HandOnBelt
+        Idle, Run, APose
     }
    
 }
