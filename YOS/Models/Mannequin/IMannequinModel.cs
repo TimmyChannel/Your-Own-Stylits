@@ -1,13 +1,14 @@
 ﻿using YOS.Models.EnumParams;
 using HelixToolkit.Wpf.SharpDX;
-namespace YOS.Models
+
+namespace YOS.Models.Mannequin
 {
     public interface IMannequinModel
     {
         string Name { get; }
-        bool IsVisible { get; }
-        Poses Pose { get; }
-        GenderTypes Gender { get; }
+        bool IsVisible { get; set; }
+        Poses Pose { get; set; }
+        GenderTypes Gender { get; set; }
         PBRMaterial DefaultMaterial { get; }
         Geometry3D Geometry { get; }
     }

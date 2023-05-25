@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using YOS.Models.EnumParams;
 using HelixToolkit.Wpf.SharpDX;
-namespace YOS.Models
+
+namespace YOS.Models.Items
 {
     public interface IClosetItem
     {
         string Name { get; }
         Poses Pose { get; }
-        Somatotypes Somatotype { get; }
         PBRMaterial DefaultMaterial { get; }
         Geometry3D Geometry { get; }
-        bool SomatotypeChangeModel { get; }
+        bool GenderChangeModel { get; }
         GenderTypes Gender { get; }
         Type Type { get; }
     }
