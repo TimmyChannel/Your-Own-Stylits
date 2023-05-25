@@ -5,19 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using YOS.Models.EnumParams;
 
-namespace YOS.Models
+namespace YOS.Models.Algorithm
 {
     static class SelectClozzes
     {
-        public static List<Item> Algorithm()
-        {
-            
-            var list = new List<Item>();
-            
 
-            
-            return list;
-
-        }
     }
 }
