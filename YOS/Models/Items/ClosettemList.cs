@@ -40,7 +40,6 @@ namespace YOS.Models.Items
             {
                 throw new ArgumentException($"Item with name {name} not found. Before creating the item, add it to the ClosetItemList");
             }
-
         }
     }
 
