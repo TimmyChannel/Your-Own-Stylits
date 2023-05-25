@@ -15,6 +15,7 @@ namespace YOS.Models.Settings
         {
             get => _lightPresets[_indexOfCurrentLightPreset];            
         }
+        public Viewport3DX Viewport { get; init; }
 
     }
 }

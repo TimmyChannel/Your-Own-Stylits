@@ -20,9 +20,12 @@ namespace YOS.Models.Mannequin
         IClosetItem _shoes;
         IClosetItem _top;
         IClosetItem _bottom;
-        public MannequinSettings()
-        {
 
+        public MannequinSettings(GenderTypes gender)
+        {
+            _mannequin = new RealisticModel("Joe", true, gender);
+            _pose = _mannequin.Pose;
+            _gender = gender;
         }
         public GenderTypes Gender
         {
@@ -74,5 +77,6 @@ namespace YOS.Models.Mannequin
                     break;
             }
         }
+
     }
 }
