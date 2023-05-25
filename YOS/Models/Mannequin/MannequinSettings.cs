@@ -77,6 +77,36 @@ namespace YOS.Models.Mannequin
                     break;
             }
         }
-
+        public void AddClosetItem(Item item)
+        {
+            switch (item.Type)
+            {
+                case Type.Top:
+                    var topCreator = new TopCreator();
+                    topCreator.SetParams(_pose, _gender);
+                    _top = topCreator.CreateClosetItem(item.Name);
+                    break;
+                case Type.Bottom:
+                    var bottomCreator = new BottomCreator();
+                    bottomCreator.SetParams(_pose, _gender);
+                    _bottom = bottomCreator.CreateClosetItem(item.Name);
+                    break;
+                case Type.Accessories:
+                    var accCreator = new BottomCreator();
+                    accCreator.SetParams(_pose);
+                    _accessory = accCreator.CreateClosetItem(item.Name);
+                    break;
+                case Type.Shoes:
+                    var shoeCreator = new BottomCreator();
+                    shoeCreator.SetParams(_pose);
+                    _shoes = shoeCreator.CreateClosetItem(item.Name);
+                    break;
+                case Type.Headwear:
+                    var headCreator = new HeadwearCreator();
+                    headCreator.SetParams(_pose);
+                    _headwear = headCreator.CreateClosetItem(item.Name);
+                    break;
+            }
+        }
     }
 }
