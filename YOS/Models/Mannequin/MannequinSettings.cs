@@ -15,17 +15,30 @@ namespace YOS.Models.Mannequin
         IMannequinModel _mannequin;
         GenderTypes _gender;
         Poses _pose;
-        IClosetItem _accessory;
-        IClosetItem _headwear;
-        IClosetItem _shoes;
-        IClosetItem _top;
-        IClosetItem _bottom;
+        IClosetItem? _accessory;
+        IClosetItem? _headwear;
+        IClosetItem? _shoes;
+        IClosetItem? _top;
+        IClosetItem? _bottom;
+        List<IClosetItem> _closetItemList;
+        public List<IClosetItem> ClosetItems => _closetItemList;
 
-        public MannequinSettings(GenderTypes gender)
+        private static readonly Lazy<MannequinSettings> lazy =
+       new Lazy<MannequinSettings>(() => new MannequinSettings());
+        public static MannequinSettings Instance { get { return lazy.Value; } }
+        public MannequinSettings()
         {
-            _mannequin = new RealisticModel("Joe", true, gender);
+            _mannequin = new RealisticModel("Joe", true);
             _pose = _mannequin.Pose;
-            _gender = gender;
+            _gender = _mannequin.Gender;
+            _closetItemList = new List<IClosetItem>()
+            {
+                _accessory,
+                _headwear,
+                _shoes,
+                _top,
+                _bottom,
+            };
         }
         public GenderTypes Gender
         {
@@ -34,6 +47,7 @@ namespace YOS.Models.Mannequin
             {
                 _mannequin.Gender = value;
                 _gender = value;
+                UpdateItems();
             }
         }
         public Poses Pose
@@ -43,7 +57,13 @@ namespace YOS.Models.Mannequin
             {
                 _mannequin.Pose = value;
                 _pose = value;
+                UpdateItems();
             }
+        }
+        private void UpdateItems()
+        {
+            foreach (var item in _closetItemList)
+                AddClosetItem(ClosetItemList.GetItem(item.Name));
         }
         public void ChangeVisibility(bool visible) => _mannequin.IsVisible = visible;
         public void AddClosetItem(string name, Type type)
@@ -108,5 +128,14 @@ namespace YOS.Models.Mannequin
                     break;
             }
         }
+        public void ResetItems()
+        {
+            _accessory = null;
+            _shoes = null;
+            _headwear = null;
+            _top = null;
+            _bottom = null;
+        }
+
     }
 }
