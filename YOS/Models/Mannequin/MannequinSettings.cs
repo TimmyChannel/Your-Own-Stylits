@@ -26,7 +26,7 @@ namespace YOS.Models.Mannequin
         private static readonly Lazy<MannequinSettings> lazy =
        new Lazy<MannequinSettings>(() => new MannequinSettings());
         public static MannequinSettings Instance { get { return lazy.Value; } }
-        public MannequinSettings()
+        private MannequinSettings()
         {
             _mannequin = new RealisticModel("Joe", true);
             _pose = _mannequin.Pose;
