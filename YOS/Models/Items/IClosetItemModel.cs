@@ -8,7 +8,7 @@ using HelixToolkit.Wpf.SharpDX;
 
 namespace YOS.Models.Items
 {
-    public interface IClosetItem
+    public interface IClosetItemModel
     {
         string Name { get; }
         Poses Pose { get; }

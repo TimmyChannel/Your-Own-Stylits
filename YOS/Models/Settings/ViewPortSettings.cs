@@ -35,6 +35,7 @@ namespace YOS.Models.Settings
         }
         public ViewPortSettings()
         {
+            _mannequinSettings = MannequinSettings.Instance;
             InitLightPresets();
             InitViewport();
         }
@@ -59,7 +60,7 @@ namespace YOS.Models.Settings
             Viewport.InputBindings.Clear();
             Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Rotate, new MouseGesture(MouseAction.RightClick)));
             Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Pan, new MouseGesture(MouseAction.MiddleClick)));
-
+            Viewport.Items.Add(CurrentLightPreset);
         }
         private void InitLightPresets()
         {

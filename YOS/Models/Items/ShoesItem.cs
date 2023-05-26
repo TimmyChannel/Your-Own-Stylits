@@ -8,7 +8,7 @@ using YOS.Models.EnumParams;
 
 namespace YOS.Models.Items
 {
-    public class ShoesItem : IClosetItem
+    public class ShoesItem : IClosetItemModel
     {
         public ShoesItem(string name,
             Poses pose = Poses.Idle,

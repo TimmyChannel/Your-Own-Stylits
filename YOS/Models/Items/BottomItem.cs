@@ -8,7 +8,7 @@ using YOS.Models.EnumParams;
 
 namespace YOS.Models.Items
 {
-    public class BottomItem : IClosetItem
+    public class BottomItem : IClosetItemModel
     {
         public BottomItem(string name,
             GenderTypes gender = GenderTypes.Male,

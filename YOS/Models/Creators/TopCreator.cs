@@ -10,6 +10,6 @@ namespace YOS.Models.Creators
 {
     public class TopCreator : CloseItemCreator
     {
-        public override IClosetItem CreateClosetItem(string name) => new TopItem(name, Gender, Pose);
+        public override IClosetItemModel CreateClosetItem(string name) => new TopItem(name, Gender, Pose);
     }
 }

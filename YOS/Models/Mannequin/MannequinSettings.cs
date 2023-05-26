@@ -7,31 +7,35 @@ using System.Threading.Tasks;
 using YOS.Models.EnumParams;
 using YOS.Models.Items;
 using YOS.Models.Creators;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace YOS.Models.Mannequin
 {
-    public class MannequinSettings
+    public class MannequinSettings : OnPropertyChangedClass
     {
+
         IMannequinModel _mannequin;
         GenderTypes _gender;
         Poses _pose;
-        IClosetItem? _accessory;
-        IClosetItem? _headwear;
-        IClosetItem? _shoes;
-        IClosetItem? _top;
-        IClosetItem? _bottom;
-        List<IClosetItem> _closetItemList;
-        public List<IClosetItem> ClosetItems => _closetItemList;
+        IClosetItemModel? _accessory;
+        IClosetItemModel? _headwear;
+        IClosetItemModel? _shoes;
+        IClosetItemModel? _top;
+        IClosetItemModel? _bottom;
 
-        private static readonly Lazy<MannequinSettings> lazy =
-       new Lazy<MannequinSettings>(() => new MannequinSettings());
+        readonly ObservableCollection<IClosetItemModel> _closetItemList;
+        public ObservableCollection<IClosetItemModel> ClosetItems => _closetItemList;
+
+        private static readonly Lazy<MannequinSettings> lazy = new(() => new MannequinSettings());
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
         {
             _mannequin = new RealisticModel("Joe", true);
             _pose = _mannequin.Pose;
             _gender = _mannequin.Gender;
-            _closetItemList = new List<IClosetItem>()
+            _closetItemList = new ObservableCollection<IClosetItemModel>()
             {
                 _accessory,
                 _headwear,
@@ -48,6 +52,7 @@ namespace YOS.Models.Mannequin
                 _mannequin.Gender = value;
                 _gender = value;
                 UpdateItems();
+                SetProperty<GenderTypes>(ref _gender, value);
             }
         }
         public Poses Pose
@@ -58,6 +63,7 @@ namespace YOS.Models.Mannequin
                 _mannequin.Pose = value;
                 _pose = value;
                 UpdateItems();
+                SetProperty<Poses>(ref _pose, value);
             }
         }
         private void UpdateItems()
@@ -95,6 +101,7 @@ namespace YOS.Models.Mannequin
                     headCreator.SetParams(_pose);
                     _headwear = headCreator.CreateClosetItem(name);
                     break;
+
             }
         }
         public void AddClosetItem(Item item)

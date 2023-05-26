@@ -7,7 +7,7 @@ namespace YOS.Models.Creators
     {
         public Poses Pose { get; protected set; }
         public GenderTypes Gender { get; protected set; }
-        public abstract IClosetItem CreateClosetItem(string name);
+        public abstract IClosetItemModel CreateClosetItem(string name);
         public void SetParams(Poses pose = Poses.Idle, 
             GenderTypes gender=GenderTypes.Male)
         {
