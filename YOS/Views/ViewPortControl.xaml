@@ -8,13 +8,12 @@
              xmlns:ViewModels="clr-namespace:YOS.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>c:\users\аська\desktop\cursed_work\team-1131\yos\views\viewportcontrol.xaml.cs
-c:\users\аська\desktop\cursed_work\team-1131\yos\views\viewportcontrol.xaml
-
+    <UserControl.DataContext>
         <ViewModels:ViewPortControlViewModel/>
     </UserControl.DataContext>
-    <Grid>
-        <hx:Viewport3DX
+    <Grid x:Name="MainGrid">
+        <Grid x:Name="ViewPortGrid">
+            <hx:Viewport3DX
             x:Name="view1"
             ShowViewCube="False" 
             FXAALevel="Ultra" 
@@ -22,29 +21,36 @@ c:\users\аська\desktop\cursed_work\team-1131\yos\views\viewportcontrol.xaml
             ShowFrameRate="True" 
             Camera="{Binding Camera}" 
             PinchZoomAtCenter="True" >
-           
-            <hx:Viewport3DX.EffectsManager>
-                <hx:DefaultEffectsManager/>
-            </hx:Viewport3DX.EffectsManager>
-            <hx:Viewport3DX.InputBindings>
-                <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
-                <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
-            </hx:Viewport3DX.InputBindings>
-            <!-- Свет, идущий сверху -->
-            <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
 
-            <!-- Свет, падающий сбоку -->
-            <hx:DirectionalLight3D Direction="1,0,-1" Color="LightGray"/>
-            <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>
+                <hx:Viewport3DX.EffectsManager>
+                    <hx:DefaultEffectsManager/>
+                </hx:Viewport3DX.EffectsManager>
+                <hx:Viewport3DX.InputBindings>
+                    <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
+                    <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
+                </hx:Viewport3DX.InputBindings>
+                <!-- Свет, идущий сверху -->
+                <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
 
-            <hx:MeshGeometryModel3D x:Name="Tshirt"
+                <!-- Свет, падающий сбоку -->
+                <hx:DirectionalLight3D Direction="1,0,-1" Color="LightGray"/>
+                <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>
+
+                <hx:MeshGeometryModel3D x:Name="Tshirt"
                 Geometry="{Binding Geometry}"
                                         Material="{Binding Material}">
-                
-                </hx:MeshGeometryModel3D>
-         
 
-        </hx:Viewport3DX>
+                </hx:MeshGeometryModel3D>
+
+
+            </hx:Viewport3DX>
+        </Grid>
+        <Button HorizontalAlignment="Right" 
+                VerticalAlignment="Top" 
+                MinWidth="60"
+                MinHeight="60" Margin="0,10,10,0">
+
+        </Button>
 
     </Grid>
 </UserControl>
