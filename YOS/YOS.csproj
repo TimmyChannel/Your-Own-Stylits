@@ -8,38 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Avatars\Female\Models\APose.mtl" />
-    <None Remove="Resources\Avatars\Female\Models\APose.obj" />
-    <None Remove="Resources\Avatars\Female\Models\arm.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\arm_35013.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\body.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\body_Covered_Beige.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\eye.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\eyelash.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\eyelash_35037.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\eyes_fix_new.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\face.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\face_35005.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\FV2_Open_Toe_Pump.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\hair_01.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\hair_alpha_2K.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\hair_diffuse_grey_2K.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\hair_normal_2K.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\hair_normal_2K_NRM_30.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\leg.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\leg_35017.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1001_eyebrows.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1001_eyebrows_NRM_20.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1002.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1002_NRM_20.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1003.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1003_NRM_20.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1004.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\normal.1004_NRM_20.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\tooth.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\tooth_35050.jpg" />
-    <None Remove="Resources\Avatars\Female\Models\transparency.png" />
     <None Remove="Resources\horse.FBX" />
+    <None Remove="Resources\Mannequins\Male\APose.mtl" />
+    <None Remove="Resources\Mannequins\Male\APose.obj" />
+    <None Remove="Resources\Mannequins\Male\arm_39499.jpg" />
+    <None Remove="Resources\Mannequins\Male\body_Covered.jpg" />
+    <None Remove="Resources\Mannequins\Male\eyelash_39523.jpg" />
+    <None Remove="Resources\Mannequins\Male\eye_39510.jpg" />
+    <None Remove="Resources\Mannequins\Male\face_39491.jpg" />
+    <None Remove="Resources\Mannequins\Male\hair.jpg" />
+    <None Remove="Resources\Mannequins\Male\IdlePose.mtl" />
+    <None Remove="Resources\Mannequins\Male\IdlePose.obj" />
+    <None Remove="Resources\Mannequins\Male\leg_39503.jpg" />
+    <None Remove="Resources\Mannequins\Male\RunningPose.mtl" />
+    <None Remove="Resources\Mannequins\Male\RunningPose.obj" />
+    <None Remove="Resources\Mannequins\Male\tooth_39536.jpg" />
     <None Remove="Resources\temp_tex.jpg" />
     <None Remove="Resources\Textures\GrayFabricTex\albedo.png" />
     <None Remove="Resources\Textures\GrayFabricTex\ambientocclusion.png" />
@@ -51,37 +34,91 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Avatars\Female\Models\APose.mtl">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Avatars\Female\Models\APose.obj">
+    <Content Include="Resources\Mannequins\Female\APose.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\arm_35013.jpg">
+    <Content Include="Resources\Mannequins\Female\APose.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\body_Covered_Beige.jpg">
+    <Content Include="Resources\Mannequins\Female\arm_35013.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\eye.jpg">
+    <Content Include="Resources\Mannequins\Female\body_Covered_Beige.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\eyelash_35037.jpg">
+    <Content Include="Resources\Mannequins\Female\eye.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\face_35005.jpg">
+    <Content Include="Resources\Mannequins\Female\eyelash_35037.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\hair_01.jpg">
+    <Content Include="Resources\Mannequins\Female\face_35005.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\leg_35017.jpg">
+    <Content Include="Resources\Mannequins\Female\hair_01.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Avatars\Female\Models\tooth_35050.jpg">
+    <Content Include="Resources\Mannequins\Female\IdlePose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Female\IdlePose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Female\leg_35017.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Female\RunningPose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Female\RunningPose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Female\tooth_35050.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\horse.FBX">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\APose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\APose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\arm_39499.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\body_Covered.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\eyelash_39523.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\eye_39510.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\face_39491.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\hair.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\IdlePose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\IdlePose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\leg_39503.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\RunningPose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\RunningPose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Mannequins\Male\tooth_39536.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\temp_tex.jpg">

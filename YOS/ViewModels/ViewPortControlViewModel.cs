@@ -37,7 +37,7 @@ namespace YOS.ViewModels
         public ViewPortControlViewModel()
         {
             var vps = new ViewPortSettings();
-            Light = vps.LightPresetList[0];
+            Light = vps.LightPresetList[2];
             Camera = new PerspectiveCamera
             {
                 LookDirection = new Media3D.Vector3D(0, 0, -320),
@@ -47,7 +47,7 @@ namespace YOS.ViewModels
             var resourcePath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\";
             var reader = new ObjReader();
             //var models = reader.Read($"{resourcePath}Avatars\\Female\\Models\\APose.obj");
-            LoadObj($"{resourcePath}Avatars\\Female\\Models\\APose.obj");
+            LoadObj($"{resourcePath}Mannequins\\Male\\RunningPose.obj");
         }
         public void LoadObj(string path)
         {

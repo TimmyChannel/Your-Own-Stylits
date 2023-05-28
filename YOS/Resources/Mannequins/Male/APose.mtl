@@ -1,0 +1,91 @@
+# MTL Exporter v1.0 by Seungwoo Oh at CLO - Virtual Fashion Inc.
+newmtl face
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.165000 0.165000 0.165000
+Ns 37.550732
+illum 2
+d 1.000000
+map_Ka face_39491.jpg
+map_Kd face_39491.jpg
+newmtl defaultMat1
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.075000 0.075000 0.075000
+Ns 28.763239
+illum 2
+d 1.000000
+map_Ka hair.jpg
+map_Kd hair.jpg
+newmtl body2
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.165000 0.165000 0.165000
+Ns 37.550732
+illum 2
+d 1.000000
+map_Ka body_Covered.jpg
+map_Kd body_Covered.jpg
+newmtl eyelash
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.075000 0.075000 0.075000
+Ns 28.763239
+illum 2
+d 1.000000
+map_Ka eyelash_39523.jpg
+map_Kd eyelash_39523.jpg
+newmtl eye
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.560000 0.560000 0.560000
+Ns 128.000000
+illum 2
+d 1.000000
+map_Ka eye_39510.jpg
+map_Kd eye_39510.jpg
+newmtl eye
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.560000 0.560000 0.560000
+Ns 128.000000
+illum 2
+d 1.000000
+map_Ka eye_39510.jpg
+map_Kd eye_39510.jpg
+newmtl eyelash
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.075000 0.075000 0.075000
+Ns 28.763239
+illum 2
+d 1.000000
+map_Ka eyelash_39523.jpg
+map_Kd eyelash_39523.jpg
+newmtl toothSG1
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.075000 0.075000 0.075000
+Ns 28.763239
+illum 2
+d 1.000000
+map_Ka tooth_39536.jpg
+map_Kd tooth_39536.jpg
+newmtl arm
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.165000 0.165000 0.165000
+Ns 37.550732
+illum 2
+d 1.000000
+map_Ka arm_39499.jpg
+map_Kd arm_39499.jpg
+newmtl leg
+Ka 0.257132 0.257132 0.257132
+Kd 1.000000 1.000000 1.000000
+Ks 0.165000 0.165000 0.165000
+Ns 37.550732
+illum 2
+d 1.000000
+map_Ka leg_39503.jpg
+map_Kd leg_39503.jpg
