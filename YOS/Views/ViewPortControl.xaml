@@ -20,7 +20,8 @@
             MSAA="Two" 
             ShowFrameRate="True" 
             Camera="{Binding Camera}" 
-            PinchZoomAtCenter="True" >
+            PinchZoomAtCenter="True" 
+                >
 
                 <hx:Viewport3DX.EffectsManager>
                     <hx:DefaultEffectsManager/>
@@ -29,19 +30,17 @@
                     <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
                     <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
                 </hx:Viewport3DX.InputBindings>
-                <!-- Свет, идущий сверху -->
+                <!-- Свет, идущий сверху --><!--
                 <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
 
-                <!-- Свет, падающий сбоку -->
+                --><!-- Свет, падающий сбоку --><!--
                 <hx:DirectionalLight3D Direction="1,0,-1" Color="LightGray"/>
-                <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>
+                <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>-->
+                <hx:Element3DPresenter Content="{Binding Light}"></hx:Element3DPresenter>
+                <hx:GroupModel3D
+                x:Name="Mannequin"
+                ItemsSource="{Binding MannequinModel}"/>
 
-                <hx:MeshGeometryModel3D x:Name="Tshirt"
-                Geometry="{Binding Geometry}"
-                                        Material="{Binding Material}">
-                
-                </hx:MeshGeometryModel3D>-->
-            
 
             </hx:Viewport3DX>
         </Grid>

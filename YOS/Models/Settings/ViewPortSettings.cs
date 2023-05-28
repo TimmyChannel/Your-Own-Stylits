@@ -72,7 +72,6 @@ namespace YOS.Models.Settings
             DayLightPreset.Children.Add(light1);
             DayLightPreset.Children.Add(light2);
             DayLightPreset.Children.Add(light3);
-            DayLightPreset.Name = "Дневной свет";
             DayLightPreset.Tag = "preset_daylight";
 
             var light4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.DarkBlue, Name = "Directional1" };
@@ -82,7 +81,6 @@ namespace YOS.Models.Settings
             NightLightPreset.Children.Add(light4);
             NightLightPreset.Children.Add(light5);
             NightLightPreset.Children.Add(light6);
-            NightLightPreset.Name = "Ночной свет";
             NightLightPreset.Tag = "preset_nightlight";
 
             var light7 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
@@ -92,7 +90,6 @@ namespace YOS.Models.Settings
             collection.Children.Add(light7);
             collection.Children.Add(light8);
             collection.Children.Add(light9);
-            collection.Name = "Классический 3-точечный свет";
             collection.Tag = "preset_classic3pointlight";
 
             _lightPresets = new List<Light3DCollection>

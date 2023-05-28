@@ -37,7 +37,7 @@ namespace YOS.ViewModels
         public ViewPortControlViewModel()
         {
             var vps = new ViewPortSettings();
-            Light = vps.CurrentLightPreset;
+            Light = vps.LightPresetList[0];
             Camera = new PerspectiveCamera
             {
                 LookDirection = new Media3D.Vector3D(0, 0, -320),
@@ -79,15 +79,19 @@ namespace YOS.ViewModels
 
                     var diffuseMaterial = new DiffuseMaterial();
                     PBRMaterial pbrMaterial = null;
+                    PhongMaterial phong = null;
                     if (ob.Material is PhongMaterialCore p)
                     {
-                        var phong = p.ConvertToPhongMaterial();
+                        phong = p.ConvertToPhongMaterial();
                         phong.RenderEnvironmentMap = true;
                         phong.RenderShadowMap = true;
                         phong.RenderSpecularColorMap = false;
+                        phong.RenderDiffuseAlphaMap = false;
+                        phong.EnableAutoTangent = true;
                         s.Material = phong;
                         diffuseMaterial.DiffuseColor = p.DiffuseColor;
                         diffuseMaterial.DiffuseMap = p.DiffuseMap;
+                        
                         pbrMaterial = new PBRMaterial()
                         {
                             AlbedoColor = p.DiffuseColor,
@@ -97,8 +101,12 @@ namespace YOS.ViewModels
                             AmbientOcculsionMap = p.SpecularColorMap,
                             RenderShadowMap = true,
                             RenderEnvironmentMap = true,
-                            MetallicFactor = 1, // Set to 1 if using RMA Map
-                            RoughnessFactor = 1 // Set to 1 if using RMA Map
+                            RenderAlbedoMap = true,
+                            RenderDisplacementMap = true,
+                            RenderNormalMap = true,
+                            RenderAmbientOcclusionMap = true,
+                            EnableTessellation=false
+                            
                         };
                     }
 
@@ -112,9 +120,9 @@ namespace YOS.ViewModels
                         CullMode = SharpDX.Direct3D11.CullMode.Back,
                         IsThrowingShadow = true,
                         Transform = scaleTransform,
-                        Material = pbrMaterial
+                        Material = pbrMaterial,
                     }); ;
-                    
+
 
                 }, null);
             }
