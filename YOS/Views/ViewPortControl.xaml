@@ -40,8 +40,8 @@
                 Geometry="{Binding Geometry}"
                                         Material="{Binding Material}">
                 
-                </hx:MeshGeometryModel3D>
-         
+                </hx:MeshGeometryModel3D>-->
+            
 
             </hx:Viewport3DX>
         </Grid>

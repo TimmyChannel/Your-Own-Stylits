@@ -19,7 +19,7 @@ using HelixToolkit.Wpf.SharpDX.Model;
 using SharpDX.Toolkit.Graphics;
 using SharpDX.Direct3D11;
 using System.Threading;
-
+using YOS.Models.Settings;
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : INotifyPropertyChanged
@@ -33,8 +33,11 @@ namespace YOS.ViewModels
         public Geometry3D Geometry { private set; get; }
         public PBRMaterial Material { private set; get; }
         public Camera Camera { private set; get; }
+        public Light3DCollection Light { private set; get; }
         public ViewPortControlViewModel()
         {
+            var vps = new ViewPortSettings();
+            Light = vps.CurrentLightPreset;
             Camera = new PerspectiveCamera
             {
                 LookDirection = new Media3D.Vector3D(0, 0, -320),
