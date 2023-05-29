@@ -9,6 +9,23 @@
 
   <ItemGroup>
     <None Remove="Resources\horse.FBX" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.mtl" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.obj" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.mtl" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.obj" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\RunningPose_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\RunningPose_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts.mtl" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts.obj" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts_normal_1001.png" />
     <None Remove="Resources\Mannequins\Male\APose.mtl" />
     <None Remove="Resources\Mannequins\Male\APose.obj" />
     <None Remove="Resources\Mannequins\Male\arm_39499.jpg" />
@@ -34,6 +51,51 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Mannequins\Female\APose.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -145,6 +207,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Haley.MVVM" Version="6.3.4" />
+    <PackageReference Include="Haley.WPF" Version="5.3.3" />
     <PackageReference Include="HelixToolkit" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.24.0" />
@@ -175,7 +239,11 @@
 
   <ItemGroup>
     <Folder Include="Resources\HDRIs\" />
-    <Folder Include="Resources\Items\" />
+    <Folder Include="Resources\Items\Bottom\Shorts\Male\Textures\" />
+    <Folder Include="Resources\Items\Top\" />
+    <Folder Include="Resources\Items\Accessories\" />
+    <Folder Include="Resources\Items\Headwear\" />
+    <Folder Include="Resources\Items\Shoes\" />
   </ItemGroup>
 
 </Project>

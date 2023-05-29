@@ -40,7 +40,10 @@
                 <hx:GroupModel3D
                 x:Name="Mannequin"
                 ItemsSource="{Binding MannequinModel}"/>
-
+                <hx:GroupModel3D
+                    ItemsSource="{Binding BottomModel}">
+                    
+                </hx:GroupModel3D>
 
             </hx:Viewport3DX>
         </Grid>

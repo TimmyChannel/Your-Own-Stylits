@@ -20,6 +20,7 @@ using SharpDX.Toolkit.Graphics;
 using SharpDX.Direct3D11;
 using System.Threading;
 using YOS.Models.Settings;
+using YOS.Models.EnumParams;
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : INotifyPropertyChanged
@@ -29,34 +30,82 @@ namespace YOS.ViewModels
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(allProperties ? null : propertyName));
         public ObservableElement3DCollection MannequinModel { get; } = new ObservableElement3DCollection();
         private SynchronizationContext context = SynchronizationContext.Current;
-
-        public Geometry3D Geometry { private set; get; }
-        public PBRMaterial Material { private set; get; }
+        public ObservableElement3DCollection BottomModel { get; } = new ObservableElement3DCollection();
         public Camera Camera { private set; get; }
         public Light3DCollection Light { private set; get; }
+
         public ViewPortControlViewModel()
         {
             var vps = new ViewPortSettings();
-            Light = vps.LightPresetList[2];
+            Light = vps.LightPresetList[0];
             Camera = new PerspectiveCamera
             {
                 LookDirection = new Media3D.Vector3D(0, 0, -320),
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
                 Position = new Media3D.Point3D(0, 0, 320)
             };
+
+
             var resourcePath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\";
             var reader = new ObjReader();
             //var models = reader.Read($"{resourcePath}Avatars\\Female\\Models\\APose.obj");
-            LoadObj($"{resourcePath}Mannequins\\Male\\RunningPose.obj");
+            var strPose = Poses.Idle.ToString();
+            LoadObj($"{resourcePath}Mannequins\\Male\\{strPose}Pose.obj", MannequinModel);
+            //LoadObj($"{resourcePath}Items\\Shorts\\{strPose}\\Shorts.obj", BottomModel);
+            var curPath = $"{resourcePath}Items\\Bottom\\Shorts\\{strPose}\\";
+            BottomModel.Add(CreateMesh($"{curPath}Shorts.obj",
+                $"{curPath}Shorts_diffuse_1001.png",
+                $"{curPath}Shorts_normal_1001.png"
+                ));
         }
-        public void LoadObj(string path)
+        private MeshGeometryModel3D CreateMesh(string meshPath,
+            string diffusePath,
+            string normalPath
+            //string displacementPath,
+            //string metallicRoughnessPath
+            )
+        {
+            var reader = new ObjReader();
+            var objCol = reader.Read(meshPath);
+            var meshArray = new MeshGeometry3D[objCol.Count];
+            for (int i = 0; i < meshArray.Length; i++)
+            {
+                meshArray[i] = new MeshGeometry3D();
+            }
+            var result = new MeshGeometryModel3D();
+            for (int i = 0; i < objCol.Count; i++)
+            {
+                objCol[i].Geometry.AssignTo(meshArray[i]);
+            }
+            var m = MeshGeometry3D.Merge(meshArray);
+            result.Geometry = m;
+            result.Material = new PBRMaterial
+            {
+                AlbedoColor = new Color4(0.3f, 0.3f, 0.8f, 1f),
+                AlbedoMap = TextureModel.Create(diffusePath),
+                NormalMap = TextureModel.Create(normalPath),
+                //RoughnessMetallicMap = TextureModel.Create(metallicRoughnessPath),
+                //AmbientOcculsionMap = TextureModel.Create(metallicRoughnessPath),
+                //DisplacementMap = TextureModel.Create(displacementPath),
+                RenderShadowMap = true,
+                RenderEnvironmentMap = true,
+                RenderAlbedoMap = true,
+                RenderDisplacementMap = true,
+                RenderNormalMap = true,
+                RenderAmbientOcclusionMap = true,
+                EnableTessellation = false
+            };
+            return result;
+        }
+        public void LoadObj(string path, ObservableElement3DCollection elements)
         {
             var reader = new ObjReader();
             var objCol = reader.Read(path);
-            AttachModelList(objCol);
+            AttachModelList(objCol, elements);
+
         }
 
-        public void AttachModelList(List<Object3D> objs)
+        public void AttachModelList(List<Object3D> objs, ObservableElement3DCollection elements)
         {
             for (int i = 0; i < objs.Count; ++i)
             {
@@ -91,7 +140,7 @@ namespace YOS.ViewModels
                         s.Material = phong;
                         diffuseMaterial.DiffuseColor = p.DiffuseColor;
                         diffuseMaterial.DiffuseMap = p.DiffuseMap;
-                        
+
                         pbrMaterial = new PBRMaterial()
                         {
                             AlbedoColor = p.DiffuseColor,
@@ -105,8 +154,8 @@ namespace YOS.ViewModels
                             RenderDisplacementMap = true,
                             RenderNormalMap = true,
                             RenderAmbientOcclusionMap = true,
-                            EnableTessellation=false
-                            
+                            EnableTessellation = false
+
                         };
                     }
 
@@ -114,7 +163,7 @@ namespace YOS.ViewModels
                     //{
                     //    s.Instances = ob.Transform;
                     //}
-                    this.MannequinModel.Add(new MeshGeometryModel3D
+                    elements.Add(new MeshGeometryModel3D
                     {
                         Geometry = ob.Geometry,
                         CullMode = SharpDX.Direct3D11.CullMode.Back,

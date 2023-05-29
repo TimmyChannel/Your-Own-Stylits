@@ -23,7 +23,6 @@ namespace YOS
         public ViewPortControl()
         {
             InitializeComponent();
-            var a = this.DataContext;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace YOS.Models.Mannequin
             get => _geometry;
             set => _geometry = value;
         }
-        public RealisticModel(string name, bool visible, GenderTypes gender = GenderTypes.Male, Poses pose = Poses.APose)
+        public RealisticModel(string name, bool visible, GenderTypes gender = GenderTypes.Male, Poses pose = Poses.A)
         {
             Name = name;
             Gender = gender;

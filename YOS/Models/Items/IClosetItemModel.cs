@@ -12,7 +12,7 @@ namespace YOS.Models.Items
     {
         string Name { get; }
         Poses Pose { get; }
-        PBRMaterial DefaultMaterial { get; }
+        PBRMaterial Material { get; }
         Geometry3D Geometry { get; }
         bool GenderChangeModel { get; }
         GenderTypes Gender { get; }
