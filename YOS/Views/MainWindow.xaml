@@ -62,7 +62,7 @@
                         </Grid>
 
                         <Separator Background="#262626"/>
-                        <hw:ColorPickerButton CornerRadius="0,0,0,0" Mode="Full"/>
+                        <hw:ColorPickerButton CornerRadius="0,0,0,0" Mode="Full" Content="Выбрать цвет материала" Foreground="Black"/>
                         <Grid Height="Auto">
                             <Button x:Name="BTN_applyMaterial"  Height="23" Margin="5" Content="Применить" FontFamily="ubuntu"/>
                         </Grid>
@@ -187,9 +187,9 @@
             </Grid>
 
             <Grid Grid.Column="2" Background="AntiqueWhite">
-                <!--<local:ViewPortControl>
+                <local:ViewPortControl>
 
-                </local:ViewPortControl>-->
+                </local:ViewPortControl>
             </Grid>
 
         </Grid>

@@ -51,10 +51,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png">
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Textures\Linen\Linen_diffuse_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png">
+    <Content Include="Resources\Items\Bottom\Shorts\Male\Textures\Linen\Linen_normal_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx">
@@ -239,7 +239,6 @@
 
   <ItemGroup>
     <Folder Include="Resources\HDRIs\" />
-    <Folder Include="Resources\Items\Bottom\Shorts\Male\Textures\" />
     <Folder Include="Resources\Items\Top\" />
     <Folder Include="Resources\Items\Accessories\" />
     <Folder Include="Resources\Items\Headwear\" />

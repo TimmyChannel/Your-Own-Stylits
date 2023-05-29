@@ -36,6 +36,7 @@ namespace YOS.Models.Settings
         public ViewPortSettings()
         {
             _mannequinSettings = MannequinSettings.Instance;
+            _mannequinSettings.AddClosetItem("Shorts", Type.Bottom);
             InitLightPresets();
             InitViewport();
         }

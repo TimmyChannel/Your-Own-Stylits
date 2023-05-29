@@ -20,7 +20,7 @@ using SharpDX.Toolkit.Graphics;
 using SharpDX.Direct3D11;
 using System.Threading;
 using YOS.Models.Settings;
-using YOS.Models.EnumParams;
+using YOS.Models.Mannequin;
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : INotifyPropertyChanged
@@ -51,12 +51,17 @@ namespace YOS.ViewModels
             //var models = reader.Read($"{resourcePath}Avatars\\Female\\Models\\APose.obj");
             var strPose = Poses.Idle.ToString();
             LoadObj($"{resourcePath}Mannequins\\Male\\{strPose}Pose.obj", MannequinModel);
-            //LoadObj($"{resourcePath}Items\\Shorts\\{strPose}\\Shorts.obj", BottomModel);
-            var curPath = $"{resourcePath}Items\\Bottom\\Shorts\\{strPose}\\";
-            BottomModel.Add(CreateMesh($"{curPath}Shorts.obj",
-                $"{curPath}Shorts_diffuse_1001.png",
-                $"{curPath}Shorts_normal_1001.png"
-                ));
+            var man = MannequinSettings.Instance;
+            var item = man.Bottom;
+            var mesh = new MeshGeometryModel3D();
+            mesh.Geometry = item.Geometry;
+            mesh.Material = item.Material;
+            BottomModel.Add(mesh);
+            //var curPath = $"{resourcePath}Items\\Bottom\\Shorts\\{strPose}\\";
+            //BottomModel.Add(CreateMesh($"{curPath}Shorts.obj",
+            //    $"{curPath}Shorts_diffuse_1001.png",
+            //    $"{curPath}Shorts_normal_1001.png"
+            //    ));
         }
         private MeshGeometryModel3D CreateMesh(string meshPath,
             string diffusePath,

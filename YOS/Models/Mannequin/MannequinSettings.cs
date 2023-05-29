@@ -24,7 +24,12 @@ namespace YOS.Models.Mannequin
         IClosetItemModel? _shoes;
         IClosetItemModel? _top;
         IClosetItemModel? _bottom;
-
+        public IClosetItemModel Bottom => _bottom;
+        public IClosetItemModel Top => _top;
+        public IClosetItemModel Headwear => _headwear;
+        public IClosetItemModel Shoes => _shoes;
+        public IClosetItemModel Accessory => _accessory;
+        public IMannequinModel Mannequin => _mannequin;
         readonly ObservableCollection<IClosetItemModel> _closetItemList;
         public ObservableCollection<IClosetItemModel> ClosetItems => _closetItemList;
 
@@ -37,11 +42,11 @@ namespace YOS.Models.Mannequin
             _gender = _mannequin.Gender;
             _closetItemList = new ObservableCollection<IClosetItemModel>()
             {
-                _accessory,
-                _headwear,
-                _shoes,
                 _top,
                 _bottom,
+                _accessory,
+                _shoes,
+                _headwear,
             };
         }
         public GenderTypes Gender

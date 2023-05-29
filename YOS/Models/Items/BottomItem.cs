@@ -1,7 +1,9 @@
 ﻿using HelixToolkit.Wpf.SharpDX;
 using SharpDX;
+using SharpDX.Direct2D1.Effects;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ namespace YOS.Models.Items
         private string _mainPath;
         private string _texPath;
         private string _modelPath;
+        private List<Materials> _materials;
         public BottomItem(string name,
             GenderTypes gender = GenderTypes.Male,
             Poses pose = Poses.Idle,
@@ -30,14 +33,25 @@ namespace YOS.Models.Items
             _genderChangeModel = true;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
             _texPath = $"{_mainPath}\\Textures";
-            _texPath = $"{_mainPath}\\{_pose}";
-            //InitGeometryAndMaterials();
+            _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
+            InitAvaliableMaterials();
+            InitGeometryAndMaterials();
         }
+        private void InitAvaliableMaterials()
+        {
+            _materials = new List<Materials>();
+            foreach (var mat in (Materials[])Enum.GetValues(typeof(Materials)))
+                if (Directory.Exists($"{_texPath}\\{mat}"))
+                    _materials.Add(mat);
+        }
+        public void SetColor(Color color) => _material.AlbedoColor = color;
+
         private void InitGeometryAndMaterials()
         {
             var reader = new ObjReader();
-            var objCol = reader.Read(_mainPath);
-            var meshArray = new MeshGeometry3D[objCol.Count];         
+
+            var objCol = reader.Read(_modelPath);
+            var meshArray = new MeshGeometry3D[objCol.Count];
             for (int i = 0; i < objCol.Count; i++)
             {
                 meshArray[i] = new MeshGeometry3D();
@@ -47,12 +61,7 @@ namespace YOS.Models.Items
             _geometry = m;
             _material = new PBRMaterial
             {
-                AlbedoColor = new Color4(0.3f, 0.3f, 0.8f, 1f),
-                //AlbedoMap = TextureModel.Create(diffusePath),
-                //NormalMap = TextureModel.Create(normalPath),
-                //RoughnessMetallicMap = TextureModel.Create(metallicRoughnessPath),
-                //AmbientOcculsionMap = TextureModel.Create(metallicRoughnessPath),
-                //DisplacementMap = TextureModel.Create(displacementPath),
+                AlbedoColor = new Color(255,128,0),
                 RenderShadowMap = true,
                 RenderEnvironmentMap = true,
                 RenderAlbedoMap = true,
@@ -61,8 +70,49 @@ namespace YOS.Models.Items
                 RenderAmbientOcclusionMap = true,
                 EnableTessellation = false
             };
+            SetMaterialMaps();
             GC.Collect();
         }
+        private void SetMaterialMaps()
+        {
+            string diffuseFileName = "diffuse";
+            string normalFileName = "normal";
+            string metallicRoughnessFileName = "metallicroughness";
+            string ambientOcculsionFileName = "ambientocculsion";
+            string displacementFileName = "displacement";
+            _texPath += "\\"+_materials[0].ToString();
+            string[] diffuseFiles = Directory.GetFiles(_texPath, "*" + diffuseFileName + "*.*");
+            string[] normalFiles = Directory.GetFiles(_texPath, "*" + normalFileName + "*.*");
+            string[] metallicRoughnessFiles = Directory.GetFiles(_texPath, "*" + metallicRoughnessFileName + "*.*");
+            string[] ambientOcculsionFiles = Directory.GetFiles(_texPath, "*" + ambientOcculsionFileName + "*.*");
+            string[] displacementFiles = Directory.GetFiles(_texPath, "*" + displacementFileName + "*.*");
+
+            if (diffuseFiles.Length > 0)
+            {
+                _material.AlbedoMap = TextureModel.Create(diffuseFiles[0]);
+            }
+
+            if (normalFiles.Length > 0)
+            {
+                _material.NormalMap = TextureModel.Create(normalFiles[0]);
+            }
+
+            if (metallicRoughnessFiles.Length > 0)
+            {
+                _material.RoughnessMetallicMap = TextureModel.Create(metallicRoughnessFiles[0]);
+            }
+
+            if (ambientOcculsionFiles.Length > 0)
+            {
+                _material.AmbientOcculsionMap = TextureModel.Create(ambientOcculsionFiles[0]);
+            }
+
+            if (displacementFiles.Length > 0)
+            {
+                _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
+            }
+        }
+
         private string _name;
         private Styles _style;
         private Weather _weather;
