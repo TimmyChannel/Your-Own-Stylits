@@ -16,11 +16,16 @@
             <hx:Viewport3DX
             x:Name="view1"
             ShowViewCube="False" 
-            FXAALevel="Ultra" 
-            MSAA="Two" 
+            MSAA="Maximum" 
             ShowFrameRate="True" 
             Camera="{Binding Camera}" 
             PinchZoomAtCenter="True" 
+                SSAOQuality="High" 
+                EnableSSAO="True" 
+                EnableDeferredRendering="True" 
+                EnableRenderFrustum="False"
+                EnableRenderOrder="True" FXAALevel="Ultra" 
+                OITRenderMode="None" SSAOSamplingRadius="0.1"
                 >
 
                 <hx:Viewport3DX.EffectsManager>
@@ -30,10 +35,13 @@
                     <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
                     <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
                 </hx:Viewport3DX.InputBindings>
-                <!-- Свет, идущий сверху --><!--
+                <!-- Свет, идущий сверху -->
+                <!--
                 <hx:DirectionalLight3D Direction="0,-1,0" Color="White"/>
 
-                --><!-- Свет, падающий сбоку --><!--
+                -->
+                <!-- Свет, падающий сбоку -->
+                <!--
                 <hx:DirectionalLight3D Direction="1,0,-1" Color="LightGray"/>
                 <hx:DirectionalLight3D Direction="0,0,1" Color="LightGray"/>-->
                 <hx:Element3DPresenter Content="{Binding Light}"></hx:Element3DPresenter>
@@ -42,7 +50,7 @@
                 ItemsSource="{Binding MannequinModel}"/>
                 <hx:GroupModel3D
                     ItemsSource="{Binding BottomModel}">
-                    
+
                 </hx:GroupModel3D>
 
             </hx:Viewport3DX>

@@ -9,7 +9,6 @@ namespace YOS.Models.Mannequin
         bool IsVisible { get; set; }
         Poses Pose { get; set; }
         GenderTypes Gender { get; set; }
-        PBRMaterial DefaultMaterial { get; }
-        Geometry3D Geometry { get; }
+        ObservableElement3DCollection Mannequin { get; }
     }
 }

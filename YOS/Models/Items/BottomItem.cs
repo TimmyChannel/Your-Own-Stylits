@@ -32,6 +32,8 @@ namespace YOS.Models.Items
             _pose = pose;
             _genderChangeModel = true;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
+            if (!Directory.Exists(_mainPath))
+                return;
             _texPath = $"{_mainPath}\\Textures";
             _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
             InitAvaliableMaterials();

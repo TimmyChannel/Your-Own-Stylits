@@ -37,7 +37,7 @@ namespace YOS.Models.Mannequin
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
         {
-            _mannequin = new RealisticModel("Joe", true);
+            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Idle);
             _pose = _mannequin.Pose;
             _gender = _mannequin.Gender;
             _closetItemList = new ObservableCollection<IClosetItemModel>()
@@ -57,6 +57,7 @@ namespace YOS.Models.Mannequin
                 _mannequin.Gender = value;
                 _gender = value;
                 UpdateItems();
+                _mannequin = new RealisticModel("noob", true, _gender, _pose);
                 SetProperty<GenderTypes>(ref _gender, value);
             }
         }
@@ -68,6 +69,7 @@ namespace YOS.Models.Mannequin
                 _mannequin.Pose = value;
                 _pose = value;
                 UpdateItems();
+                _mannequin = new RealisticModel("noob", true, _gender, _pose);
                 SetProperty<Poses>(ref _pose, value);
             }
         }
@@ -76,7 +78,6 @@ namespace YOS.Models.Mannequin
             foreach (var item in _closetItemList)
                 AddClosetItem(ClosetItemList.GetItem(item.Name));
         }
-        public void ChangeVisibility(bool visible) => _mannequin.IsVisible = visible;
         public void AddClosetItem(string name, Type type)
         {
             switch (type)
