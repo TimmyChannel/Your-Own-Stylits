@@ -30,7 +30,6 @@ namespace YOS.Models.Items
             _style = style;
             _weather = weather;
             _pose = pose;
-            _genderChangeModel = true;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
             if (!Directory.Exists(_mainPath))
                 return;
@@ -47,7 +46,6 @@ namespace YOS.Models.Items
                     _materials.Add(mat);
         }
         public void SetColor(Color color) => _material.AlbedoColor = color;
-
         private void InitGeometryAndMaterials()
         {
             var reader = new ObjReader();
@@ -123,14 +121,12 @@ namespace YOS.Models.Items
         private Type _type;
         private PBRMaterial _material;
         private Geometry3D _geometry;
-        private bool _genderChangeModel;
         public string Name { get => _name; private set => _name = value; }
         public Styles Style { get => _style; private set => _style = value; }
         public Weather Weather { get => _weather; private set => _weather = value; }
         public Poses Pose { get => _pose; private set => _pose = value; }
         public PBRMaterial Material { get => _material; private set => _material = value; }
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
-        public bool GenderChangeModel { get => _genderChangeModel; private set => _genderChangeModel = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }
     }

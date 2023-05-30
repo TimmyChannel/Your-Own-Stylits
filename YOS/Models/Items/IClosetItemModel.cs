@@ -14,7 +14,6 @@ namespace YOS.Models.Items
         Poses Pose { get; }
         PBRMaterial Material { get; }
         Geometry3D Geometry { get; }
-        bool GenderChangeModel { get; }
         GenderTypes Gender { get; }
         Type Type { get; }
     }
