@@ -24,5 +24,10 @@ namespace YOS
         {
             InitializeComponent();
         }
+
+        private void ImageButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

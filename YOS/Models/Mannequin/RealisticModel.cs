@@ -23,13 +23,26 @@ namespace YOS.Models.Mannequin
         bool _isVisible;
         Poses _pose;
         GenderTypes _gender;
-        private SynchronizationContext context = SynchronizationContext.Current;
         private string _mainPath;
         private string _modelPath;
+        private ObservableElement3DCollection _mannequin;
         public bool IsVisible
         {
             get => _isVisible;
-            set => _isVisible = value;
+            set
+            {
+                if (_isVisible)
+                    foreach (var item in _mannequin)
+                    {
+                        item.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                else
+                    foreach (var item in _mannequin)
+                    {
+                        item.Visibility = System.Windows.Visibility.Visible;
+                    }
+                _isVisible = value;
+            }
         }
         public Poses Pose
         {
@@ -52,7 +65,6 @@ namespace YOS.Models.Mannequin
             }
         }
 
-        private ObservableElement3DCollection _mannequin;
         public ObservableElement3DCollection Mannequin => _mannequin;
 
         public RealisticModel(string name, bool visible, GenderTypes gender = GenderTypes.Male, Poses pose = Poses.A)
@@ -60,7 +72,7 @@ namespace YOS.Models.Mannequin
             Name = name;
             _gender = gender;
             _pose = pose;
-            IsVisible = visible;
+            _isVisible = visible;
             _mannequin = new ObservableElement3DCollection();
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Mannequins\\{_gender}";
             _modelPath = Directory.GetFiles(_mainPath, "*" + Pose + "*.obj")[0];

@@ -209,6 +209,7 @@
   <ItemGroup>
     <PackageReference Include="Haley.MVVM" Version="6.3.4" />
     <PackageReference Include="Haley.WPF" Version="5.3.3" />
+    <PackageReference Include="Haley.WPF.IconsPack" Version="1.0.7" />
     <PackageReference Include="HelixToolkit" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.24.0" />

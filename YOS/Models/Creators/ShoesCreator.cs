@@ -10,6 +10,6 @@ namespace YOS.Models.Creators
 {
     public class ShoesCreator : CloseItemCreator
     {
-        public override IClosetItemModel CreateClosetItem(string name) => new ShoesItem(name, Pose);
+        public override IClosetItemModel CreateClosetItem(string name) => new ShoesItem(name, Gender, Pose);
     }
 }

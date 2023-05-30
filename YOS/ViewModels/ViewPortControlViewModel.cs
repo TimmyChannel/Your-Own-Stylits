@@ -21,18 +21,34 @@ using SharpDX.Direct3D11;
 using System.Threading;
 using YOS.Models.Settings;
 using YOS.Models.Mannequin;
+using System.Windows;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
+using System.Windows.Controls.Primitives;
+
 namespace YOS.ViewModels
 {
-    public class ViewPortControlViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler? PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "", bool allProperties = false) =>
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(allProperties ? null : propertyName));
+    public class ViewPortControlViewModel : OnPropertyChangedClass
+    {        
         public ObservableElement3DCollection MannequinModel { get; } = new ObservableElement3DCollection();
         public ObservableElement3DCollection BottomModel { get; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection TopModel { get; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection AccessoryModel { get; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection ShoesModel { get; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection HeadwearModel { get; } = new ObservableElement3DCollection();
         public Camera Camera { private set; get; }
         public Light3DCollection Light { private set; get; }
-
+        public bool MannequinIsVisible
+        {
+            get => MannequinSettings.Instance.MannequinIsVisible;
+            set
+            {
+                MannequinSettings.Instance.MannequinIsVisible = value;
+                OnPropertyChanged();
+                Debug.WriteLine($"MannequinIsVisible changed to {value}");
+                
+            }
+        }
         public ViewPortControlViewModel()
         {
             var vps = new ViewPortSettings();
@@ -43,10 +59,8 @@ namespace YOS.ViewModels
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
                 Position = new Media3D.Point3D(0, 0, 320)
             };
-
-
             var man = MannequinSettings.Instance;
-            MannequinModel = man.Mannequin.Mannequin;
+            MannequinModel = man.MannequinModel;
             var item = man.Bottom;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
@@ -54,5 +68,16 @@ namespace YOS.ViewModels
             BottomModel.Add(mesh);
             ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
         }
+        public void OnVisibilityChange()
+        {
+            if (MannequinIsVisible)
+                MannequinIsVisible = false;
+            else
+                MannequinIsVisible = true;
+            Debug.WriteLine($"Mannequin visibility changed to {MannequinIsVisible}");
+        }
+        private ICommand _changeMannequinVisibilityComm;
+        public ICommand ChangeMannequinVisibilityComm => _changeMannequinVisibilityComm ??= new RelayCommand(OnVisibilityChange);
+
     }
 }

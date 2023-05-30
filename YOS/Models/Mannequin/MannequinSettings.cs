@@ -10,6 +10,7 @@ using YOS.Models.Creators;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
+using HelixToolkit.Wpf.SharpDX;
 
 namespace YOS.Models.Mannequin
 {
@@ -32,7 +33,16 @@ namespace YOS.Models.Mannequin
         public IMannequinModel Mannequin => _mannequin;
         readonly ObservableCollection<IClosetItemModel> _closetItemList;
         public ObservableCollection<IClosetItemModel> ClosetItems => _closetItemList;
-
+        public ObservableElement3DCollection MannequinModel => _mannequin.Mannequin;
+        public bool MannequinIsVisible
+        {
+            get => _mannequin.IsVisible;
+            set
+            {
+                _mannequin.IsVisible = value;
+                OnPropertyChanged();
+            }
+        }
         private static readonly Lazy<MannequinSettings> lazy = new(() => new MannequinSettings());
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
@@ -141,6 +151,7 @@ namespace YOS.Models.Mannequin
                     break;
             }
         }
+     
         public void ResetItems()
         {
             _accessory = null;
