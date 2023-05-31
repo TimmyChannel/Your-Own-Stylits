@@ -59,16 +59,15 @@ namespace YOS.Models.Mannequin
                 _headwear,
             };
         }
+
         public GenderTypes Gender
         {
             get => _gender;
             set
             {
-                _mannequin.Gender = value;
-                _gender = value;
+                SetProperty<GenderTypes>(ref _gender, value);
                 UpdateItems();
                 _mannequin = new RealisticModel("noob", true, _gender, _pose);
-                SetProperty<GenderTypes>(ref _gender, value);
             }
         }
         public Poses Pose
@@ -77,16 +76,18 @@ namespace YOS.Models.Mannequin
             set
             {
                 _mannequin.Pose = value;
-                _pose = value;
+                SetProperty<Poses>(ref _pose, value);
                 UpdateItems();
                 _mannequin = new RealisticModel("noob", true, _gender, _pose);
-                SetProperty<Poses>(ref _pose, value);
             }
         }
         private void UpdateItems()
         {
-            foreach (var item in _closetItemList)
-                AddClosetItem(ClosetItemList.GetItem(item.Name));
+            for (int i = 0; i < _closetItemList.Count; i++)
+            {
+                if (_closetItemList[i] != null)
+                    AddClosetItem(ClosetItemList.GetItem(_closetItemList[i].Name));
+            }
         }
         public void AddClosetItem(string name, Type type)
         {
@@ -96,28 +97,32 @@ namespace YOS.Models.Mannequin
                     var topCreator = new TopCreator();
                     topCreator.SetParams(_pose, _gender);
                     _top = topCreator.CreateClosetItem(name);
+                    _closetItemList[0] = _top;
                     break;
                 case Type.Bottom:
                     var bottomCreator = new BottomCreator();
                     bottomCreator.SetParams(_pose, _gender);
                     _bottom = bottomCreator.CreateClosetItem(name);
+                    _closetItemList[1] = _bottom;
                     break;
                 case Type.Accessories:
                     var accCreator = new BottomCreator();
                     accCreator.SetParams(_pose);
                     _accessory = accCreator.CreateClosetItem(name);
+                    _closetItemList[2] = _accessory;
                     break;
                 case Type.Shoes:
                     var shoeCreator = new BottomCreator();
                     shoeCreator.SetParams(_pose);
                     _shoes = shoeCreator.CreateClosetItem(name);
+                    _closetItemList[3] = _shoes;
                     break;
                 case Type.Headwear:
                     var headCreator = new HeadwearCreator();
                     headCreator.SetParams(_pose);
                     _headwear = headCreator.CreateClosetItem(name);
+                    _closetItemList[4] = _headwear;
                     break;
-
             }
         }
         public void AddClosetItem(Item item)
@@ -128,30 +133,35 @@ namespace YOS.Models.Mannequin
                     var topCreator = new TopCreator();
                     topCreator.SetParams(_pose, _gender);
                     _top = topCreator.CreateClosetItem(item.Name);
+                    _closetItemList[0] = _top;
                     break;
                 case Type.Bottom:
                     var bottomCreator = new BottomCreator();
                     bottomCreator.SetParams(_pose, _gender);
                     _bottom = bottomCreator.CreateClosetItem(item.Name);
+                    _closetItemList[1] = _bottom;
                     break;
                 case Type.Accessories:
                     var accCreator = new BottomCreator();
                     accCreator.SetParams(_pose);
                     _accessory = accCreator.CreateClosetItem(item.Name);
+                    _closetItemList[2] = _accessory;
                     break;
                 case Type.Shoes:
                     var shoeCreator = new BottomCreator();
                     shoeCreator.SetParams(_pose);
                     _shoes = shoeCreator.CreateClosetItem(item.Name);
+                    _closetItemList[3] = _shoes;
                     break;
                 case Type.Headwear:
                     var headCreator = new HeadwearCreator();
                     headCreator.SetParams(_pose);
                     _headwear = headCreator.CreateClosetItem(item.Name);
+                    _closetItemList[4] = _headwear;
                     break;
             }
         }
-     
+
         public void ResetItems()
         {
             _accessory = null;

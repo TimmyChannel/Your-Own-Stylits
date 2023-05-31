@@ -25,17 +25,19 @@ using System.Windows;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Controls.Primitives;
+using System.Collections.Specialized;
+using YOS.Models.Items;
 
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : OnPropertyChangedClass
     {        
-        public ObservableElement3DCollection MannequinModel { get; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection BottomModel { get; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection TopModel { get; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection AccessoryModel { get; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection ShoesModel { get; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection HeadwearModel { get; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection MannequinModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection BottomModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection TopModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection AccessoryModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection ShoesModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection HeadwearModel { get; private set; } = new ObservableElement3DCollection();
         public Camera Camera { private set; get; }
         public Light3DCollection Light { private set; get; }
         public bool MannequinIsVisible
@@ -45,9 +47,30 @@ namespace YOS.ViewModels
             {
                 MannequinSettings.Instance.MannequinIsVisible = value;
                 OnPropertyChanged();
-                Debug.WriteLine($"MannequinIsVisible changed to {value}");
-                
+                Debug.WriteLine($"MannequinIsVisible changed to {value}");                
             }
+        }
+        public GenderTypes MannequinGender
+        {
+            get => MannequinSettings.Instance.Gender;
+            set
+            {
+                MannequinSettings.Instance.Gender = value;
+                OnPropertyChanged();
+                Debug.WriteLine($"MannequinGender changed to {value}");
+                UpdateMannequinModel();
+            }
+        }
+        private void UpdateMannequinModel()
+        {
+            MannequinModel = MannequinSettings.Instance.MannequinModel;
+            BottomModel.Clear();
+            var item = MannequinSettings.Instance.Bottom;
+            var mesh = new MeshGeometryModel3D();
+            mesh.Geometry = item.Geometry;
+            mesh.Material = item.Material;
+            BottomModel.Add(mesh);
+            OnAllPropertyChanged();
         }
         public ViewPortControlViewModel()
         {
@@ -61,6 +84,7 @@ namespace YOS.ViewModels
             };
             var man = MannequinSettings.Instance;
             MannequinModel = man.MannequinModel;
+            MannequinModel.CollectionChanged += MannequinChanged; 
             var item = man.Bottom;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
@@ -68,16 +92,31 @@ namespace YOS.ViewModels
             BottomModel.Add(mesh);
             ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
         }
+
+        private void MannequinChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            Debug.WriteLine("Model changed");
+            Debug.WriteLine(MannequinSettings.Instance.Gender);
+        }
+
         public void OnVisibilityChange()
         {
             if (MannequinIsVisible)
                 MannequinIsVisible = false;
             else
                 MannequinIsVisible = true;
-            Debug.WriteLine($"Mannequin visibility changed to {MannequinIsVisible}");
         }
         private ICommand _changeMannequinVisibilityComm;
-        public ICommand ChangeMannequinVisibilityComm => _changeMannequinVisibilityComm ??= new RelayCommand(OnVisibilityChange);
+        public ICommand ChangeMannequinVisibilityComm => _changeMannequinVisibilityComm ??= new RelayCommand(OnVisibilityChange);  
+        public void OnGenderChange()
+        {
+            if (MannequinGender==GenderTypes.Male)
+                MannequinGender = GenderTypes.Female;
+            else
+                MannequinGender = GenderTypes.Male;
+        }
+        private ICommand _changeMannequinGenderComm;
+        public ICommand ChangeMannequinGenderComm => _changeMannequinGenderComm ??= new RelayCommand(OnGenderChange);
 
     }
 }

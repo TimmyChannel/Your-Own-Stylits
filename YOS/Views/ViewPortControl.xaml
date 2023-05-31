@@ -24,7 +24,7 @@
         <hx:Viewport3DX x:Name="view1"
                         ShowViewCube="False"
                         MSAA="Maximum"
-                        ShowFrameRate="True"
+                        ShowFrameRate="False"
                         Camera="{Binding Camera}"
                         PinchZoomAtCenter="True"
                         SSAOQuality="High"
@@ -123,9 +123,9 @@
                                 BorderBrush="Black"
                                 BorderThickness="1,1,1,1">
                     <hw:ImageButton.Style>
-                        <Style TargetType="{x:Type hw:ImageButton}">                         
+                        <Style TargetType="{x:Type hw:ImageButton}">
                             <Setter Property="Visibility"
-                                    Value="Visible" />                            
+                                    Value="Visible" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding MannequinIsVisible}"
                                              Value="False">
@@ -141,20 +141,82 @@
                         </Style>
                     </hw:ImageButton.Style>
                 </hw:ImageButton>
-                <hw:ImageButton HorizontalAlignment="Right"
+                <hw:ImageButton x:Name="MaleBut"
+                                HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Width="40"
-                                Height="34"
                                 Cursor="Hand"
-                                hw:Icon.Default="{StaticResource people_simple_light}"
-                                hw:Icon.DefaultColor="#FF262626"
-                                hw:Icon.Hover="{StaticResource people_simple_solid}"
-                                hw:Icon.HoverColor="#FF464646"
                                 CornerRadius="10,10,10,10"
                                 Margin="5,5,5,5"
-                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                Command="{Binding ChangeMannequinGenderComm}"
+                                hw:Icon.Hover="{StaticResource mars_solid}"
+                                hw:Icon.Default="{StaticResource mars_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
                                 BorderBrush="Black"
-                                BorderThickness="1,1,1,1" />
+                                BorderThickness="1,1,1,1"
+                                HorizontalContentAlignment="Center"
+                                Height="34"
+                                Padding="7,2,6,2">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Female">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Male">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+                <hw:ImageButton x:Name="FemaleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinGenderComm}"
+                                hw:Icon.Hover="{StaticResource venus_solid}"
+                                hw:Icon.Default="{StaticResource venus_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                hw:Position.Bottom="40"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                Padding="9,2,9,2"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                UseLayoutRounding="False"
+                                Height="34">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Female">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Male">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+
             </StackPanel>
         </Border>
     </Grid>

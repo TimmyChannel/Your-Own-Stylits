@@ -146,8 +146,6 @@ namespace YOS.Models.Mannequin
                     DepthBias = i << 2
                 };
                 _mannequin.Add(mesh);
-
-
             }
             //ChangeDepthBias();
         }
