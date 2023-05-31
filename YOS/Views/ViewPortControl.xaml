@@ -1,120 +1,160 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:YOS" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:YOS"
              xmlns:hw="http://schemas.hpod9.com/haley/wpf"
              xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
              xmlns:ViewModels="clr-namespace:YOS.ViewModels"
-             xmlns:Models="clr-namespace:Haley.IconsPack.Models;assembly=Haley.WPF.IconsPack" x:Class="YOS.ViewPortControl"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             >
+             xmlns:Models="clr-namespace:Haley.IconsPack.Models;assembly=Haley.WPF.IconsPack"
+             x:Class="YOS.ViewPortControl"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
     <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
     <UserControl.DataContext>
-        <ViewModels:ViewPortControlViewModel/>
+        <ViewModels:ViewPortControlViewModel />
     </UserControl.DataContext>
-    <Grid x:Name="MainGrid" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <hx:Viewport3DX
-            x:Name="view1"
-            ShowViewCube="False" 
-            MSAA="Maximum" 
-            ShowFrameRate="True" 
-            Camera="{Binding Camera}" 
-            PinchZoomAtCenter="True" 
-                SSAOQuality="High" 
-                EnableSSAO="True" 
-                EnableDeferredRendering="True" 
-                EnableRenderFrustum="False"
-                EnableRenderOrder="True" FXAALevel="Ultra" 
-                OITRenderMode="None" SSAOSamplingRadius="0.1"
-            BackgroundColor="LightBlue"
-                >
+    <Grid x:Name="MainGrid"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Top">
+        <hx:Viewport3DX x:Name="view1"
+                        ShowViewCube="False"
+                        MSAA="Maximum"
+                        ShowFrameRate="True"
+                        Camera="{Binding Camera}"
+                        PinchZoomAtCenter="True"
+                        SSAOQuality="High"
+                        EnableSSAO="True"
+                        EnableDeferredRendering="True"
+                        EnableRenderFrustum="False"
+                        EnableRenderOrder="True"
+                        FXAALevel="Ultra"
+                        OITRenderMode="None"
+                        SSAOSamplingRadius="0.1"
+                        BackgroundColor="LightBlue">
 
             <hx:Viewport3DX.EffectsManager>
-                <hx:DefaultEffectsManager/>
+                <hx:DefaultEffectsManager />
             </hx:Viewport3DX.EffectsManager>
             <hx:Viewport3DX.InputBindings>
-                <MouseBinding Command="hx:ViewportCommands.Rotate" Gesture="RightClick" />
-                <MouseBinding Command="hx:ViewportCommands.Pan" Gesture="MiddleClick" />
+                <MouseBinding Command="hx:ViewportCommands.Rotate"
+                              Gesture="RightClick" />
+                <MouseBinding Command="hx:ViewportCommands.Pan"
+                              Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
-            <hx:Element3DPresenter Content="{Binding Light}"/>
+            <hx:Element3DPresenter Content="{Binding Light}" />
 
-            <hx:GroupModel3D
-                x:Name="Mannequin"
-                ItemsSource="{Binding MannequinModel}"/>
-            <hx:GroupModel3D
-                x:Name="Bottom"
-                ItemsSource="{Binding BottomModel}"/>
-            <hx:GroupModel3D
-                x:Name="Top"
-                ItemsSource="{Binding TopModel}"/>
-            <hx:GroupModel3D
-                x:Name="Accessory"
-                ItemsSource="{Binding AccessoryModel}"/>
-            <hx:GroupModel3D
-                x:Name="Shoes"
-                ItemsSource="{Binding ShoesModel}"/>
-            <hx:GroupModel3D
-                x:Name="Headwear"
-                ItemsSource="{Binding HeadwearModel}"/>
+            <hx:GroupModel3D x:Name="Mannequin"
+                             ItemsSource="{Binding MannequinModel}" />
+            <hx:GroupModel3D x:Name="Bottom"
+                             ItemsSource="{Binding BottomModel}" />
+            <hx:GroupModel3D x:Name="Top"
+                             ItemsSource="{Binding TopModel}" />
+            <hx:GroupModel3D x:Name="Accessory"
+                             ItemsSource="{Binding AccessoryModel}" />
+            <hx:GroupModel3D x:Name="Shoes"
+                             ItemsSource="{Binding ShoesModel}" />
+            <hx:GroupModel3D x:Name="Headwear"
+                             ItemsSource="{Binding HeadwearModel}" />
 
 
         </hx:Viewport3DX>
-        <Border
-            Background="#7DFFFFFF" CornerRadius="10,10,10,10" HorizontalAlignment="Right" 
-            VerticalAlignment="Top" BorderBrush="#FF262626" BorderThickness="2,2,2,2" 
-            UseLayoutRounding="True" Padding="5,10,5,10" MinWidth="64" 
-            >
+        <Border Background="#7DFFFFFF"
+                CornerRadius="10,10,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                BorderBrush="#FF262626"
+                BorderThickness="2,2,2,2"
+                UseLayoutRounding="True"
+                Padding="5,10,5,10"
+                MinWidth="64">
             <StackPanel>
                 <hw:ImageButton x:Name="VisibleBut"
-                    HorizontalAlignment="Right"
-                        VerticalAlignment="Top" Width="40" Height="34" Cursor="Hand"                      
-                        CornerRadius="10,10,10,10" Margin="5,5,5,5"    
-                        Command="{Binding ChangeMannequinVisibilityComm}" BorderBrush="Black" BorderThickness="1,1,1,1"
-                               >
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Height="34"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                hw:Icon.Hover="{StaticResource eye_solid}"
+                                hw:Icon.Default="{StaticResource eye_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1">
                     <hw:ImageButton.Style>
                         <Style TargetType="{x:Type hw:ImageButton}">
-                            <Setter Property="hw:Icon.Default" Value="{StaticResource eye_light}"/>
-                            <Setter Property="hw:Icon.DefaultColor" Value="#ff262626"/>
-                            <Setter Property="hw:Icon.Hover" Value="{StaticResource eye_solid}"/>
-                            <Setter Property="hw:Icon.HoverColor" Value="#FF464646"/>
-                            <Setter Property="Tag" Value="boba" />
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding MannequinIsVisible}" Value="False">
-                                    <Setter Property="hw:Icon.Hover" Value="{StaticResource eye_slash_solid}"/>
-                                    <Setter Property="hw:Icon.Default" Value="{StaticResource glasses_round_light}"/>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
                                 </DataTrigger>
-                                <!--<DataTrigger Binding="{Binding MannequinIsVisible}" Value="True">
-                                    <Setter Property="hw:Icon.Hover" Value="{StaticResource eye_solid}"/>
-                                    <Setter Property="hw:Icon.Default" Value="{StaticResource eye_light}"/>
-                                </DataTrigger>-->
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </hw:ImageButton.Style>
                 </hw:ImageButton>
-                <hw:ImageButton  Width="40" Height="40">
-                    <hw:ImageButton.Resources>
-                        <Models:CommonDictionary/>
-                    </hw:ImageButton.Resources>
-                    <hw:Icon.Default>
-                        <StaticResource ResourceKey="eye_slash_solid"/>
-                    </hw:Icon.Default>
-                    <hw:Icon.Hover>
-                        <StaticResource ResourceKey="eye_slash_light"/>
-                    </hw:Icon.Hover>
+                <hw:ImageButton x:Name="UnVisibleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Height="34"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                hw:Icon.Hover="{StaticResource eye_slash_solid}"
+                                hw:Icon.Default="{StaticResource eye_slash_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">                         
+                            <Setter Property="Visibility"
+                                    Value="Visible" />                            
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
                 </hw:ImageButton>
                 <hw:ImageButton HorizontalAlignment="Right"
-                        VerticalAlignment="Top" Width="40" Height="34" Cursor="Hand"
-                        hw:Icon.Default="{StaticResource people_simple_light}"
-                        hw:Icon.DefaultColor="#FF262626"
-                        hw:Icon.Hover="{StaticResource people_simple_solid}"
-                        hw:Icon.HoverColor="#FF464646"  CornerRadius="10,10,10,10" Margin="5,5,5,5"    
-                        Command="{Binding ChangeMannequinVisibilityComm}" BorderBrush="Black" BorderThickness="1,1,1,1"/>
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Height="34"
+                                Cursor="Hand"
+                                hw:Icon.Default="{StaticResource people_simple_light}"
+                                hw:Icon.DefaultColor="#FF262626"
+                                hw:Icon.Hover="{StaticResource people_simple_solid}"
+                                hw:Icon.HoverColor="#FF464646"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1" />
             </StackPanel>
         </Border>
     </Grid>
