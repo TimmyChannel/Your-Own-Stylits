@@ -147,16 +147,8 @@ namespace YOS.Models.Mannequin
                 };
                 _mannequin.Add(mesh);
             }
-            //ChangeDepthBias();
         }
-        private void ChangeDepthBias()
-        {
-            for (int i = 0; i < _mannequin.Count; i++)
-            {
-                var cur = (MeshGeometryModel3D)_mannequin[i];
-                cur.DepthBias = i;
-            }
-        }
+
 
     }
 }

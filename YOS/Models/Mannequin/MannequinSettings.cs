@@ -47,7 +47,7 @@ namespace YOS.Models.Mannequin
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
         {
-            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Idle);
+            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Running);
             _pose = _mannequin.Pose;
             _gender = _mannequin.Gender;
             _closetItemList = new ObservableCollection<IClosetItemModel>()
