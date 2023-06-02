@@ -9,8 +9,8 @@
              xmlns:local="clr-namespace:YOS.Views"
              xmlns:ViewModels="clr-namespace:YOS.ViewModels"
              mc:Ignorable="d"
-             Width="382"
-             Height="613">
+             d:Width="300"
+             d:Height="674">
     <UserControl.DataContext>
         <ViewModels:ModelColorControlViewModel />
     </UserControl.DataContext>
@@ -22,21 +22,18 @@
                 Background="#FF404040">
 
             <StackPanel>
-
-                <Border Height="244"
-                        Margin="5"
+                <Border Margin="5"
                         Background="#FF262626"
                         CornerRadius="5"
-                        BorderThickness="0">
+                        BorderThickness="0"
+                        MinHeight="251">
                     <Border Margin="5"
                             Background="#FF464646"
                             BorderThickness="0">
-                        <hx:Viewport3DX>
-                            <hx:Viewport3DX.Camera>
-                                <hx:PerspectiveCamera />
-                            </hx:Viewport3DX.Camera>
+                        <hx:Viewport3DX Camera="{Binding Camera}"
+                                        ShowViewCube="False">
                             <hx:Viewport3DX.EffectsManager>
-                            <hx:DefaultEffectsManager />
+                                <hx:DefaultEffectsManager />
                             </hx:Viewport3DX.EffectsManager>
                             <hx:Viewport3DX.InputBindings>
                                 <MouseBinding Command="hx:ViewportCommands.Rotate"
@@ -44,41 +41,42 @@
                                 <MouseBinding Command="hx:ViewportCommands.Pan"
                                               Gesture="MiddleClick" />
                             </hx:Viewport3DX.InputBindings>
-                            <hx:DirectionalLight3D Direction="0,-1,0"
-                                                 Color="White" />
-                            <hx:MeshGeometryModel3D 
-                                Geometry="{Binding CurrentModelMesh}"
-                                Material="{Binding CurrentModelMaterial}"/>
-                            
+                            <hx:DirectionalLight3D Direction="1,0,0.6"
+                                                   Color="LightGray" />
+                            <hx:DirectionalLight3D Direction="-1,-0.9,-0.6"
+                                                   Color="White" />
+                            <hx:MeshGeometryModel3D Geometry="{Binding CurrentModelMesh}"
+                                                    Material="{Binding CurrentModelMaterial}" />
+
                         </hx:Viewport3DX>
                     </Border>
                 </Border>
-
-                <Grid Height="Auto">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <ComboBox x:Name="CB_chooseModel"
-                              Margin="5"></ComboBox>
+                <UniformGrid Margin="5,0,5,0"
+                             Columns="2">
                     <ComboBox x:Name="CB_chooseMaterial"
-                              Grid.Column="1"
-                              Margin="5"></ComboBox>
+                              Margin="5,5,5,5"
+                              Padding="0,0,0,0"
+                              HorizontalAlignment="Stretch"
+                              VerticalContentAlignment="Stretch" />
+                    <hw:ColorPickerButton x:Name="ColourPicker"
+                                          CornerRadius="5,5,5,5"
+                                          Mode="Full"
+                                          Content="Выбрать цвет материала"
+                                          Foreground="Black"
+                                          Margin="5,5,5,5"
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch"
+                                          SelectedColor="{Binding ColorOfModel}" 
+                                          SelectedBrush="{Binding ColorBrush}"/>
+                </UniformGrid>
+                <TextBlock Text="{Binding SelectedColor, Source=ColourPicker}" />
+                <Button x:Name="BTN_applyMaterial"
+                        Margin="10,5,10,5"
+                        Content="Применить"
+                        FontFamily="ubuntu"
+                        VerticalAlignment="Bottom" 
+                        Command="{Binding ApplyMaterial}"/>
 
-                </Grid>
-
-                <Separator Background="#262626" />
-                <hw:ColorPickerButton CornerRadius="0,0,0,0"
-                                      Mode="Full"
-                                      Content="Выбрать цвет материала"
-                                      Foreground="Black" />
-                <Grid Height="Auto">
-                    <Button x:Name="BTN_applyMaterial"
-                            Height="23"
-                            Margin="5"
-                            Content="Применить"
-                            FontFamily="ubuntu" />
-                </Grid>
             </StackPanel>
 
         </Border>

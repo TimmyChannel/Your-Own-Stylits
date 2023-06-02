@@ -19,19 +19,19 @@ namespace YOS.Models
         #region Методы вызова события PropertyChanged
         /// <summary>Метод для вызова события извещения об изменении свойства</summary>
         /// <param name="propertyName">Изменившееся свойство</param>
-        public void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         /// <summary>Метод для вызова события извещения об изменении списка свойств</summary>
         /// <param name="propList">Список имён свойств</param>
-        public void OnPropertyChanged(IEnumerable<string> propList)
+        protected void OnPropertyChanged(IEnumerable<string> propList)
         {
             foreach (string propertyName in propList.Where(name => !string.IsNullOrWhiteSpace(name)))
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         /// <summary>Метод для вызова события извещения об изменении перечня свойств</summary>
         /// <param name="propList">Список имён свойств</param>
-        public void OnPropertyChanged(params string[] propList)
+        protected void OnPropertyChanged(params string[] propList)
         {
             foreach (string propertyName in propList.Where(name => !string.IsNullOrWhiteSpace(name)))
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -39,7 +39,7 @@ namespace YOS.Models
 
         /// <summary>Метод для вызова события извещения об изменении всех свойств</summary>
         /// <param name="propList">Список свойств</param>
-        public void OnAllPropertyChanged()
+        protected void OnAllPropertyChanged()
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
 
         #endregion

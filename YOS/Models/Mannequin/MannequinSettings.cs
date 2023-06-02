@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using HelixToolkit.Wpf.SharpDX;
+using HelixToolkit.Wpf.SharpDX.Model;
 
 namespace YOS.Models.Mannequin
 {
@@ -185,7 +186,35 @@ namespace YOS.Models.Mannequin
                     break;
             }
         }
-
+        public void SetMaterialToSelectedItem(PBRMaterial material)
+        {
+            SelectedItem.Material = material;
+            switch (SelectedItem.Type)
+            {
+                case Type.Top:
+                    Top.Material = material;
+                    OnPropertyChanged("Top");
+                    break;
+                case Type.Bottom:
+                    Bottom.Material = material;
+                    OnPropertyChanged("Bottom");
+                    break;
+                case Type.Accessories:
+                    Accessory.Material = material;
+                    OnPropertyChanged("Accessory");
+                    break;
+                case Type.Shoes:
+                    Shoes.Material = material;
+                    OnPropertyChanged("Shoes");
+                    break;
+                case Type.Headwear:
+                    Headwear.Material = material;
+                    OnPropertyChanged("Headwear");
+                    break;
+                default:
+                    break;
+            }
+        }
         public void ResetItems()
         {
             _accessory = null;

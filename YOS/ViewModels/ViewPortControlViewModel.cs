@@ -86,13 +86,32 @@ namespace YOS.ViewModels
             var man = MannequinSettings.Instance;
             MannequinModel = man.MannequinModel;
             MannequinModel.CollectionChanged += MannequinChanged;
-            var item = man.Bottom;
+            BottomItem item = (BottomItem)man.Bottom;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
             mesh.Material = item.Material;
             BottomModel.Add(mesh);
+            item.PropertyChanged += Item_PropertyChanged;
+            BottomModel[0].Mouse3DDown += ViewPortControlViewModel_Mouse3DDown;
             ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
         }
+
+        private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            BottomModel.Clear();
+            var item = MannequinSettings.Instance.Bottom;
+            var mesh = new MeshGeometryModel3D();
+            mesh.Geometry = item.Geometry;
+            mesh.Material = item.Material;
+            BottomModel.Add(mesh);
+            OnPropertyChanged(nameof(BottomModel));
+        }
+
+        private void ViewPortControlViewModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        {
+            Debug.WriteLine("Disney");
+        }
+
         public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)
         {
             if (e.HitTestResult?.ModelHit is MeshGeometryModel3D m)
@@ -143,7 +162,6 @@ namespace YOS.ViewModels
                     return;
                 }
             }
-
         }
         private void MannequinChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {

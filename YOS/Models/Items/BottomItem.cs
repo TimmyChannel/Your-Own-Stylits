@@ -11,7 +11,7 @@ using YOS.Models.EnumParams;
 
 namespace YOS.Models.Items
 {
-    public class BottomItem : IClosetItemModel
+    public class BottomItem : OnPropertyChangedClass, IClosetItemModel
     {
         private string _mainPath;
         private string _texPath;
@@ -61,7 +61,7 @@ namespace YOS.Models.Items
             _geometry = m;
             _material = new PBRMaterial
             {
-                AlbedoColor = new Color(255,128,0),
+                AlbedoColor = new Color(255, 128, 0),
                 RenderShadowMap = true,
                 RenderEnvironmentMap = true,
                 RenderAlbedoMap = true,
@@ -80,7 +80,7 @@ namespace YOS.Models.Items
             string metallicRoughnessFileName = "metallicroughness";
             string ambientOcculsionFileName = "ambientocculsion";
             string displacementFileName = "displacement";
-            _texPath += "\\"+_materials[0].ToString();
+            _texPath += "\\" + _materials[0].ToString();
             string[] diffuseFiles = Directory.GetFiles(_texPath, "*" + diffuseFileName + "*.*");
             string[] normalFiles = Directory.GetFiles(_texPath, "*" + normalFileName + "*.*");
             string[] metallicRoughnessFiles = Directory.GetFiles(_texPath, "*" + metallicRoughnessFileName + "*.*");
@@ -112,7 +112,14 @@ namespace YOS.Models.Items
                 _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
             }
         }
-
+        public object Clone()
+        {
+            var clone = new BottomItem(Name, Gender, Pose, Style, Weather);
+            clone._material = (PBRMaterial)_material.Clone();
+            clone._geometry = _geometry;
+            clone._type = _type;
+            return clone;
+        }
         private string _name;
         private Styles _style;
         private Weather _weather;
@@ -125,7 +132,15 @@ namespace YOS.Models.Items
         public Styles Style { get => _style; private set => _style = value; }
         public Weather Weather { get => _weather; private set => _weather = value; }
         public Poses Pose { get => _pose; private set => _pose = value; }
-        public PBRMaterial Material { get => _material; private set => _material = value; }
+        public PBRMaterial Material 
+        { 
+            get => _material; 
+            set 
+            {
+                _material = value; 
+                OnPropertyChanged(); 
+            } 
+        }
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }
