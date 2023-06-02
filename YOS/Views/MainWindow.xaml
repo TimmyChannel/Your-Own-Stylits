@@ -40,7 +40,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Background="#FF202020" MinWidth="30">
-                <local:ModelColorControl />
+                <local:ModelColorControl Width="316" />
             </Grid>
 
             <GridSplitter Grid.Column="1" 
