@@ -82,6 +82,7 @@ namespace YOS.Models.Mannequin
                 default:
                     break;
             }
+            OnPropertyChanged("SelectedItem");
         }
         public GenderTypes Gender
         {
