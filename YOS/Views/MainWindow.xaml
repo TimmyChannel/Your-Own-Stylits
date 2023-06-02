@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YOS"
+        xmlns:local="clr-namespace:YOS.Views"
         xmlns:hw="http://schemas.hpod9.com/haley/wpf"
         xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
         mc:Ignorable="d"
@@ -40,35 +40,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Background="#FF202020" MinWidth="30">
-
-                <Border Margin="5" CornerRadius="10, 10, 10, 10" BorderBrush="red" BorderThickness="0" Background="#FF404040">
-
-                    <StackPanel>
-
-                        <Border Height="244" Margin="5" Background="#FF262626" CornerRadius="5" BorderThickness="0">
-                            <Border Margin="5" Background="#FF464646" BorderThickness="0">
-                                <Grid x:Name="MaterialPictureBox"/>
-                            </Border>
-                        </Border>
-
-                        <Grid Height="Auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <ComboBox x:Name="CB_chooseModel" Margin="5"></ComboBox>
-                            <ComboBox x:Name="CB_chooseMaterial" Grid.Column="1" Margin="5"></ComboBox>
-
-                        </Grid>
-
-                        <Separator Background="#262626"/>
-                        <hw:ColorPickerButton CornerRadius="0,0,0,0" Mode="Full" Content="Выбрать цвет материала" Foreground="Black"/>
-                        <Grid Height="Auto">
-                            <Button x:Name="BTN_applyMaterial"  Height="23" Margin="5" Content="Применить" FontFamily="ubuntu"/>
-                        </Grid>
-                    </StackPanel>
-
-                </Border>
+                <local:ModelColorControl />
             </Grid>
 
             <GridSplitter Grid.Column="1" 
@@ -187,11 +159,8 @@
             </Grid>
 
             <Grid Grid.Column="2" Background="AntiqueWhite">
-                <local:ViewPortControl>
-
-                </local:ViewPortControl>
+            <local:ViewPortControl />
             </Grid>
-
         </Grid>
 
     </Grid>

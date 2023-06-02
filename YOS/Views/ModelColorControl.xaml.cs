@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace YOS.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ViewPortControl.xaml
+    /// Логика взаимодействия для ModelColorControl.xaml
     /// </summary>
-    public partial class ViewPortControl : UserControl
+    public partial class ModelColorControl : UserControl
     {
-        public ViewPortControl()
+        public ModelColorControl()
         {
             InitializeComponent();
         }

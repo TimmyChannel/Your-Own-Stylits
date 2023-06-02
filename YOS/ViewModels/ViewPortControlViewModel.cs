@@ -31,7 +31,8 @@ using YOS.Models.Items;
 namespace YOS.ViewModels
 {
     public class ViewPortControlViewModel : OnPropertyChangedClass
-    {        
+    {
+        public MeshGeometryModel3D Target { set; get; }
         public ObservableElement3DCollection MannequinModel { get; private set; } = new ObservableElement3DCollection();
         public ObservableElement3DCollection BottomModel { get; private set; } = new ObservableElement3DCollection();
         public ObservableElement3DCollection TopModel { get; private set; } = new ObservableElement3DCollection();
@@ -47,7 +48,7 @@ namespace YOS.ViewModels
             {
                 MannequinSettings.Instance.MannequinIsVisible = value;
                 OnPropertyChanged();
-                Debug.WriteLine($"MannequinIsVisible changed to {value}");                
+                Debug.WriteLine($"MannequinIsVisible changed to {value}");
             }
         }
         public GenderTypes MannequinGender
@@ -78,13 +79,13 @@ namespace YOS.ViewModels
             Light = vps.LightPresetList[0];
             Camera = new PerspectiveCamera
             {
-                LookDirection = new Media3D.Vector3D(0, 0, -320),
+                LookDirection = new Media3D.Vector3D(34, -9, -303),
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
-                Position = new Media3D.Point3D(0, 0, 320)
+                Position = new Media3D.Point3D(-35, 109, 304)
             };
             var man = MannequinSettings.Instance;
             MannequinModel = man.MannequinModel;
-            MannequinModel.CollectionChanged += MannequinChanged; 
+            MannequinModel.CollectionChanged += MannequinChanged;
             var item = man.Bottom;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
@@ -92,7 +93,58 @@ namespace YOS.ViewModels
             BottomModel.Add(mesh);
             ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
         }
+        public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)
+        {
+            if (e.HitTestResult?.ModelHit is MeshGeometryModel3D m)
+            {
+                if (BottomModel.Any() && m.Geometry == ((MeshGeometryModel3D)BottomModel.First()).Geometry)
+                {
+                    //Target = null;
+                    //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
+                    Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
+                    MannequinSettings.Instance.SelectItemByType(Models.Type.Bottom);
+                    Debug.WriteLine($"Hit to BottomModel");
+                    return;
+                }
+                if (TopModel.Any() && m.Geometry == ((MeshGeometryModel3D)TopModel.First()).Geometry)
+                {
+                    //Target = null;
+                    //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
+                    Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
+                    MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
+                    Debug.WriteLine($"Hit to TopModel");
+                    return;
+                }
+                if (ShoesModel.Any() && m.Geometry == ((MeshGeometryModel3D)ShoesModel.First()).Geometry)
+                {
+                    //Target = null;
+                    //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
+                    Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
+                    MannequinSettings.Instance.SelectItemByType(Models.Type.Shoes);
+                    Debug.WriteLine($"Hit to ShoesModel");
+                    return;
+                }
+                if (HeadwearModel.Any() && m.Geometry == ((MeshGeometryModel3D)HeadwearModel.First()).Geometry)
+                {
+                    //Target = null;
+                    //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
+                    Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
+                    MannequinSettings.Instance.SelectItemByType(Models.Type.Headwear);
+                    Debug.WriteLine($"Hit to HeadwearModel");
+                    return;
+                }
+                if (AccessoryModel.Any() && m.Geometry == ((MeshGeometryModel3D)AccessoryModel.First()).Geometry)
+                {
+                    //Target = null;
+                    //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
+                    Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
+                    MannequinSettings.Instance.SelectItemByType(Models.Type.Accessories);
+                    Debug.WriteLine($"Hit to HeadwearModel");
+                    return;
+                }
+            }
 
+        }
         private void MannequinChanged(object? sender, NotifyCollectionChangedEventArgs e)
         {
             Debug.WriteLine("Model changed");
@@ -107,10 +159,10 @@ namespace YOS.ViewModels
                 MannequinIsVisible = true;
         }
         private ICommand _changeMannequinVisibilityComm;
-        public ICommand ChangeMannequinVisibilityComm => _changeMannequinVisibilityComm ??= new RelayCommand(OnVisibilityChange);  
+        public ICommand ChangeMannequinVisibilityComm => _changeMannequinVisibilityComm ??= new RelayCommand(OnVisibilityChange);
         public void OnGenderChange()
         {
-            if (MannequinGender==GenderTypes.Male)
+            if (MannequinGender == GenderTypes.Male)
                 MannequinGender = GenderTypes.Female;
             else
                 MannequinGender = GenderTypes.Male;
