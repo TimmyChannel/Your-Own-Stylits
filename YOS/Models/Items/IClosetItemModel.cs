@@ -8,11 +8,11 @@ using HelixToolkit.Wpf.SharpDX;
 
 namespace YOS.Models.Items
 {
-    public interface IClosetItemModel
+    public interface IClosetItemModel : ICloneable
     {
         string Name { get; }
         Poses Pose { get; }
-        PBRMaterial Material { get; }
+        PBRMaterial Material { get; set; }
         Geometry3D Geometry { get; }
         GenderTypes Gender { get; }
         Type Type { get; }
