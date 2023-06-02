@@ -16,7 +16,6 @@ namespace YOS.Models.Mannequin
 {
     public class MannequinSettings : OnPropertyChangedClass
     {
-
         IMannequinModel _mannequin;
         GenderTypes _gender;
         Poses _pose;
@@ -25,6 +24,8 @@ namespace YOS.Models.Mannequin
         IClosetItemModel? _shoes;
         IClosetItemModel? _top;
         IClosetItemModel? _bottom;
+        IClosetItemModel _selectedItem;
+        public IClosetItemModel SelectedItem => _selectedItem;
         public IClosetItemModel Bottom => _bottom;
         public IClosetItemModel Top => _top;
         public IClosetItemModel Headwear => _headwear;
@@ -59,7 +60,29 @@ namespace YOS.Models.Mannequin
                 _headwear,
             };
         }
-
+        public void SelectItemByType(Type type)
+        {
+            switch (type)
+            {
+                case Type.Top:
+                    _selectedItem = _top;
+                    break;
+                case Type.Bottom:
+                    _selectedItem = _bottom;
+                    break;
+                case Type.Accessories:
+                    _selectedItem = _accessory;
+                    break;
+                case Type.Shoes:
+                    _selectedItem = _shoes;
+                    break;
+                case Type.Headwear:
+                    _selectedItem = _headwear;
+                    break;
+                default:
+                    break;
+            }
+        }
         public GenderTypes Gender
         {
             get => _gender;
