@@ -208,6 +208,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Expression.Interaction" Version="3.0.40218" />
     <PackageReference Include="Haley.MVVM" Version="6.3.4" />
     <PackageReference Include="Haley.WPF" Version="5.3.3" />
     <PackageReference Include="Haley.WPF.IconsPack" Version="1.0.7" />

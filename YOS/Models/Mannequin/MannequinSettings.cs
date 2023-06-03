@@ -11,12 +11,12 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using HelixToolkit.Wpf.SharpDX;
+using HelixToolkit.Wpf.SharpDX.Model;
 
 namespace YOS.Models.Mannequin
 {
     public class MannequinSettings : OnPropertyChangedClass
     {
-
         IMannequinModel _mannequin;
         GenderTypes _gender;
         Poses _pose;
@@ -25,6 +25,8 @@ namespace YOS.Models.Mannequin
         IClosetItemModel? _shoes;
         IClosetItemModel? _top;
         IClosetItemModel? _bottom;
+        IClosetItemModel _selectedItem;
+        public IClosetItemModel SelectedItem => _selectedItem;
         public IClosetItemModel Bottom => _bottom;
         public IClosetItemModel Top => _top;
         public IClosetItemModel Headwear => _headwear;
@@ -59,7 +61,30 @@ namespace YOS.Models.Mannequin
                 _headwear,
             };
         }
-
+        public void SelectItemByType(Type type)
+        {
+            switch (type)
+            {
+                case Type.Top:
+                    _selectedItem = _top;
+                    break;
+                case Type.Bottom:
+                    _selectedItem = _bottom;
+                    break;
+                case Type.Accessories:
+                    _selectedItem = _accessory;
+                    break;
+                case Type.Shoes:
+                    _selectedItem = _shoes;
+                    break;
+                case Type.Headwear:
+                    _selectedItem = _headwear;
+                    break;
+                default:
+                    break;
+            }
+            OnPropertyChanged("SelectedItem");
+        }
         public GenderTypes Gender
         {
             get => _gender;
@@ -91,77 +116,135 @@ namespace YOS.Models.Mannequin
         }
         public void AddClosetItem(string name, Type type)
         {
-            switch (type)
+            try
             {
-                case Type.Top:
-                    var topCreator = new TopCreator();
-                    topCreator.SetParams(_pose, _gender);
-                    _top = topCreator.CreateClosetItem(name);
-                    _closetItemList[0] = _top;
-                    break;
-                case Type.Bottom:
-                    var bottomCreator = new BottomCreator();
-                    bottomCreator.SetParams(_pose, _gender);
-                    _bottom = bottomCreator.CreateClosetItem(name);
-                    _closetItemList[1] = _bottom;
-                    break;
-                case Type.Accessories:
-                    var accCreator = new BottomCreator();
-                    accCreator.SetParams(_pose);
-                    _accessory = accCreator.CreateClosetItem(name);
-                    _closetItemList[2] = _accessory;
-                    break;
-                case Type.Shoes:
-                    var shoeCreator = new BottomCreator();
-                    shoeCreator.SetParams(_pose);
-                    _shoes = shoeCreator.CreateClosetItem(name);
-                    _closetItemList[3] = _shoes;
-                    break;
-                case Type.Headwear:
-                    var headCreator = new HeadwearCreator();
-                    headCreator.SetParams(_pose);
-                    _headwear = headCreator.CreateClosetItem(name);
-                    _closetItemList[4] = _headwear;
-                    break;
+                switch (type)
+                {
+                    case Type.Top:
+                        var topCreator = new TopCreator();
+                        topCreator.SetParams(_pose, _gender);
+                        _top = null;
+                        _top = topCreator.CreateClosetItem(name);
+                        _closetItemList[0] = _top;
+                        break;
+                    case Type.Bottom:
+                        var bottomCreator = new BottomCreator();
+                        bottomCreator.SetParams(_pose, _gender);
+                        _bottom = null;
+                        _bottom = bottomCreator.CreateClosetItem(name);
+                        _closetItemList[1] = _bottom;
+                        break;
+                    case Type.Accessories:
+                        var accCreator = new BottomCreator();
+                        accCreator.SetParams(_pose);
+                        _accessory = null;
+                        _accessory = accCreator.CreateClosetItem(name);
+                        _closetItemList[2] = _accessory;
+                        break;
+                    case Type.Shoes:
+                        var shoeCreator = new BottomCreator();
+                        shoeCreator.SetParams(_pose);
+                        _shoes = null;
+                        _shoes = shoeCreator.CreateClosetItem(name);
+                        _closetItemList[3] = _shoes;
+                        break;
+                    case Type.Headwear:
+                        var headCreator = new HeadwearCreator();
+                        headCreator.SetParams(_pose);
+                        _headwear = null;
+                        _headwear = headCreator.CreateClosetItem(name);
+                        _closetItemList[4] = _headwear;
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
         public void AddClosetItem(Item item)
         {
-            switch (item.Type)
+            try
+            {
+                switch (item.Type)
+                {
+                    case Type.Top:
+                        var topCreator = new TopCreator();
+                        topCreator.SetParams(_pose, _gender);
+                        _top = null;
+                        _top = topCreator.CreateClosetItem(item.Name);
+                        _closetItemList[0] = _top;
+                        break;
+                    case Type.Bottom:
+                        var bottomCreator = new BottomCreator();
+                        bottomCreator.SetParams(_pose, _gender);
+                        _bottom = null;
+                        _bottom = bottomCreator.CreateClosetItem(item.Name);
+                        _closetItemList[1] = _bottom;
+                        break;
+                    case Type.Accessories:
+                        var accCreator = new BottomCreator();
+                        accCreator.SetParams(_pose);
+                        _accessory = null;
+                        _accessory = accCreator.CreateClosetItem(item.Name);
+                        _closetItemList[2] = _accessory;
+                        break;
+                    case Type.Shoes:
+                        var shoeCreator = new BottomCreator();
+                        shoeCreator.SetParams(_pose);
+                        _shoes = null;
+                        _shoes = shoeCreator.CreateClosetItem(item.Name);
+                        _closetItemList[3] = _shoes;
+                        break;
+                    case Type.Headwear:
+                        var headCreator = new HeadwearCreator();
+                        headCreator.SetParams(_pose);
+                        _headwear = null;
+                        _headwear = headCreator.CreateClosetItem(item.Name);
+                        _closetItemList[4] = _headwear;
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+        public void SetMaterialToSelectedItem(PBRMaterial material)
+        {
+            SelectedItem.Material = material;
+            switch (SelectedItem.Type)
             {
                 case Type.Top:
-                    var topCreator = new TopCreator();
-                    topCreator.SetParams(_pose, _gender);
-                    _top = topCreator.CreateClosetItem(item.Name);
-                    _closetItemList[0] = _top;
+                    if (Top == null) return;
+                    Top.Material = material;
+                    OnPropertyChanged("Top");
                     break;
                 case Type.Bottom:
-                    var bottomCreator = new BottomCreator();
-                    bottomCreator.SetParams(_pose, _gender);
-                    _bottom = bottomCreator.CreateClosetItem(item.Name);
-                    _closetItemList[1] = _bottom;
+                    if (Bottom == null) return;
+                    Bottom.Material = material;
+                    OnPropertyChanged("Bottom");
                     break;
                 case Type.Accessories:
-                    var accCreator = new BottomCreator();
-                    accCreator.SetParams(_pose);
-                    _accessory = accCreator.CreateClosetItem(item.Name);
-                    _closetItemList[2] = _accessory;
+                    if (Accessory == null) return;
+                    Accessory.Material = material;
+                    OnPropertyChanged("Accessory");
                     break;
                 case Type.Shoes:
-                    var shoeCreator = new BottomCreator();
-                    shoeCreator.SetParams(_pose);
-                    _shoes = shoeCreator.CreateClosetItem(item.Name);
-                    _closetItemList[3] = _shoes;
+                    if (Shoes == null) return;
+                    Shoes.Material = material;
+                    OnPropertyChanged("Shoes");
                     break;
                 case Type.Headwear:
-                    var headCreator = new HeadwearCreator();
-                    headCreator.SetParams(_pose);
-                    _headwear = headCreator.CreateClosetItem(item.Name);
-                    _closetItemList[4] = _headwear;
+                    if (Headwear == null) return;
+                    Headwear.Material = material;
+                    OnPropertyChanged("Headwear");
+                    break;
+                default:
                     break;
             }
         }
-
         public void ResetItems()
         {
             _accessory = null;

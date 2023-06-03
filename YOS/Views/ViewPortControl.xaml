@@ -1,14 +1,16 @@
-﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="YOS.Views.ViewPortControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:YOS"
+             xmlns:local="clr-namespace:YOS.Views"
+             xmlns:hx="http://helix-toolkit.org/wpf/SharpDX"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ie="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:hw="http://schemas.hpod9.com/haley/wpf"
              xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
              xmlns:ViewModels="clr-namespace:YOS.ViewModels"
              xmlns:Models="clr-namespace:Haley.IconsPack.Models;assembly=Haley.WPF.IconsPack"
-             x:Class="YOS.ViewPortControl"
              mc:Ignorable="d"
              d:DesignHeight="450"
              d:DesignWidth="800">
@@ -20,7 +22,8 @@
     </UserControl.DataContext>
     <Grid x:Name="MainGrid"
           HorizontalAlignment="Left"
-          VerticalAlignment="Top">
+          VerticalAlignment="Top"
+          >
         <hx:Viewport3DX x:Name="view1"
                         ShowViewCube="False"
                         MSAA="Maximum"
@@ -35,7 +38,15 @@
                         FXAALevel="Ultra"
                         OITRenderMode="None"
                         SSAOSamplingRadius="0.1"
-                        BackgroundColor="LightBlue">
+                        BackgroundColor="LightBlue"
+                        EnableCursorPosition="True"
+                        MouseMove="Move">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDown3D">
+                    <ie:CallMethodAction MethodName="OnMouseDown3DHandler"
+                                         TargetObject="{Binding}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
 
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager />
@@ -61,7 +72,7 @@
             <hx:GroupModel3D x:Name="Headwear"
                              ItemsSource="{Binding HeadwearModel}" />
 
-
+            
         </hx:Viewport3DX>
         <Border Background="#7DFFFFFF"
                 CornerRadius="10,10,10,10"
@@ -221,3 +232,5 @@
         </Border>
     </Grid>
 </UserControl>
+
+

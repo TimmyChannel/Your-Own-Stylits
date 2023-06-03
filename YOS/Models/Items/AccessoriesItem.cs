@@ -10,7 +10,7 @@ using SharpDX;
 
 namespace YOS.Models.Items
 {
-    public class AccessoriesItem : IClosetItemModel
+    public class AccessoriesItem : OnPropertyChangedClass, IClosetItemModel
     {
         private string _mainPath;
         private string _texPath;
@@ -31,7 +31,7 @@ namespace YOS.Models.Items
             _pose = pose;
            _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
             if (!Directory.Exists(_mainPath))
-                return;
+                throw new ArgumentException("This item has no such gender");
             _texPath = $"{_mainPath}\\Textures";
             _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
             InitAvaliableMaterials();
@@ -112,6 +112,15 @@ namespace YOS.Models.Items
             }
         }
 
+        public object Clone()
+        {
+            var clone = new AccessoriesItem(Name, Gender, Pose, Style, Weather);
+            clone._material = (PBRMaterial)_material.Clone();
+            _geometry.AssignTo(clone._geometry);
+            clone._type = _type;
+            return clone;
+        }
+
         private string _name;
         private Styles _style;
         private Weather _weather;
@@ -124,10 +133,12 @@ namespace YOS.Models.Items
         public Styles Style { get => _style; private set => _style = value; }
         public Weather Weather { get => _weather; private set => _weather = value; }
         public Poses Pose { get => _pose; private set => _pose = value; }
-        public PBRMaterial Material { get => _material; private set => _material = value; }
+       public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }
+        public List<Materials> AvaliableMaterials => _materials;
+
     }
 
 }
