@@ -143,6 +143,8 @@ namespace YOS.Models.Items
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }
+        public List<Materials> AvaliableMaterials => _materials;
+
     }
 
 }

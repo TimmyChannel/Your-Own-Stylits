@@ -114,7 +114,7 @@ namespace YOS.Models.Items
         public object Clone()
         {
             var clone = new ShoesItem(Name, Gender, Pose, Style, Weather);
-                  clone._material = (PBRMaterial)_material.Clone();
+            clone._material = (PBRMaterial)_material.Clone();
             clone._geometry = _geometry;
             clone._type = _type;
             return clone;
@@ -131,10 +131,12 @@ namespace YOS.Models.Items
         public Styles Style { get => _style; private set => _style = value; }
         public Weather Weather { get => _weather; private set => _weather = value; }
         public Poses Pose { get => _pose; private set => _pose = value; }
-       public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
+        public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }
+        public List<Materials> AvaliableMaterials => _materials;
+
     }
 
 }
