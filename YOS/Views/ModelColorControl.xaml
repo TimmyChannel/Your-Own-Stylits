@@ -57,7 +57,8 @@
                               Margin="5,5,5,5"
                               Padding="0,0,0,0"
                               HorizontalAlignment="Stretch"
-                              VerticalContentAlignment="Stretch" />
+                              VerticalContentAlignment="Stretch"
+                              ItemsSource="{Binding Materials, Mode=OneWay}" />
                     <hw:ColorPickerButton x:Name="ColourPicker"
                                           CornerRadius="5,5,5,5"
                                           Mode="Full"
@@ -66,8 +67,9 @@
                                           Margin="5,5,5,5"
                                           HorizontalContentAlignment="Stretch"
                                           VerticalContentAlignment="Stretch"
-                                          SelectedColor="{Binding ColorOfModel}" 
-                                          SelectedBrush="{Binding ColorBrush}"/>
+                                          SelectedColor="{Binding SelectedColor}" 
+                                          SelectedBrush="{Binding ColorBrush}"
+                                          OldBrush="{Binding OldColorBrush}"/>
                 </UniformGrid>
                 <TextBlock Text="{Binding SelectedColor, Source=ColourPicker}" />
                 <Button x:Name="BTN_applyMaterial"

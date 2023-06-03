@@ -16,5 +16,6 @@ namespace YOS.Models.Items
         Geometry3D Geometry { get; }
         GenderTypes Gender { get; }
         Type Type { get; }
+        List<Materials> AvaliableMaterials { get; }
     }
 }
