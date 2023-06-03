@@ -108,17 +108,105 @@
                             <!--Временная метка-->
                             <StackPanel>
 
-                                <RadioButton Content="Муж" GroupName="Sexxo"/>
-                                <RadioButton Content="Жен" GroupName="Sexxo"/>
-                                <RadioButton Content="Уни" GroupName="Sexxo"/>
-                                <Separator/>
-                                <RadioButton Content="Хикка" GroupName="Weather"/>
-                                <RadioButton Content="Дождик" GroupName="Weather"/>
-                                <RadioButton Content="Солнышко" GroupName="Weather"/>
-                                <Separator/>
-                                <RadioButton Content="Кэжьюал" GroupName="Style"/>
-                                <RadioButton Content="На лето" GroupName="Style"/>
-                                <RadioButton Content="Как в школу" GroupName="Style"/>
+                                <GroupBox Header="Пол" 
+                                          HorizontalAlignment="Stretch" 
+                                          Margin="0,10,0,0" 
+                                          Name="Gender" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="White" 
+                                          Foreground="White" 
+                                          BorderThickness="1">
+                                        <GroupBox.Effect>
+                                        <DropShadowEffect BlurRadius="15" 
+                                                          ShadowDepth="0" 
+                                                          Opacity="1" 
+                                                          Color="WhiteSmoke"/>
+                                        </GroupBox.Effect>
+                                    <Grid>
+                                        <StackPanel>
+                                            
+                                            <RadioButton Content="Муж" 
+                                                         GroupName="Sexxo" 
+                                                         Foreground ="White"/>
+                                            <RadioButton Content="Жен" 
+                                                         GroupName="Sexxo" 
+                                                         Foreground ="White"/>
+                                            <RadioButton Content="Уни" 
+                                                         GroupName="Sexxo" 
+                                                         Foreground ="White"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </GroupBox>
+                                
+                                <GroupBox Header="Погода"  
+                                          HorizontalAlignment="Stretch" 
+                                          Margin="0,10,0,0" 
+                                          Name="Weather" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="White" 
+                                          Foreground="White" 
+                                          BorderThickness="1">
+                                    <GroupBox.Effect>
+                                        <DropShadowEffect BlurRadius="15" 
+                                                          ShadowDepth="0" 
+                                                          Opacity="1" 
+                                                          Color="WhiteSmoke"/>
+                                    </GroupBox.Effect>
+                                    <Grid>
+                                        <StackPanel>
+
+                                            <RadioButton Content="Хикка" 
+                                                         GroupName="Weather"
+                                                         Foreground="White"/>
+                                            <RadioButton Content="Дождик" 
+                                                         GroupName="Weather"
+                                                         Foreground="White"/>
+                                            <RadioButton Content="Солнышко" 
+                                                         GroupName="Weather"
+                                                         Foreground="White"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Header="Стиль"  
+                                          HorizontalAlignment="Stretch" 
+                                          Margin="0,10,0,0" 
+                                          Name="Style" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="White" 
+                                          Foreground="White" 
+                                          BorderThickness="1">
+                                    <GroupBox.Effect>
+                                        <DropShadowEffect BlurRadius="15" 
+                                                          ShadowDepth="0" 
+                                                          Opacity="1" 
+                                                          Color="WhiteSmoke"/>
+                                    </GroupBox.Effect>
+                                    <Grid>
+                                        <StackPanel>
+
+                                            <RadioButton Content="Кэжьюал" 
+                                                         GroupName="Stryle"
+                                                         Foreground="White"/>
+                                            <RadioButton Content="На лето" 
+                                                         GroupName="Stryle"
+                                                         Foreground="White"/>
+                                            <RadioButton Content="Как в школу" 
+                                                         GroupName="Stryle"
+                                                         Foreground="White"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </GroupBox>
+
+                                <Border Margin="0,10,0,0"
+                                        CornerRadius="10"
+                                        Background="White">
+                                    <Button Content="Применить"
+                                            Background="Transparent"/>
+                                </Border>
 
                             </StackPanel>
 
