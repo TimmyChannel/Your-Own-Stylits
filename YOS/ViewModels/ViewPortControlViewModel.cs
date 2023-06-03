@@ -65,12 +65,7 @@ namespace YOS.ViewModels
         private void UpdateMannequinModel()
         {
             MannequinModel = MannequinSettings.Instance.MannequinModel;
-            BottomModel.Clear();
-            var item = MannequinSettings.Instance.Bottom;
-            var mesh = new MeshGeometryModel3D();
-            mesh.Geometry = item.Geometry;
-            mesh.Material = item.Material;
-            BottomModel.Add(mesh);
+            UpdateBottom();
             OnAllPropertyChanged();
         }
         public ViewPortControlViewModel()
@@ -98,15 +93,19 @@ namespace YOS.ViewModels
 
         private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
+            UpdateBottom();
+        }
+        private void UpdateBottom()
+        {
             BottomModel.Clear();
             var item = MannequinSettings.Instance.Bottom;
+            if (item == null) return;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
             mesh.Material = item.Material;
             BottomModel.Add(mesh);
             OnPropertyChanged(nameof(BottomModel));
         }
-
         private void ViewPortControlViewModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             Debug.WriteLine("Disney");
@@ -167,6 +166,7 @@ namespace YOS.ViewModels
         {
             Debug.WriteLine("Model changed");
             Debug.WriteLine(MannequinSettings.Instance.Gender);
+            UpdateBottom();
         }
 
         public void OnVisibilityChange()

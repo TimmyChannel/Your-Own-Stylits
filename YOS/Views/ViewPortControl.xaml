@@ -22,7 +22,8 @@
     </UserControl.DataContext>
     <Grid x:Name="MainGrid"
           HorizontalAlignment="Left"
-          VerticalAlignment="Top">
+          VerticalAlignment="Top"
+          >
         <hx:Viewport3DX x:Name="view1"
                         ShowViewCube="False"
                         MSAA="Maximum"
@@ -37,8 +38,9 @@
                         FXAALevel="Ultra"
                         OITRenderMode="None"
                         SSAOSamplingRadius="0.1"
-                        ShowCameraInfo="True"
-                        BackgroundColor="LightBlue">
+                        BackgroundColor="LightBlue"
+                        EnableCursorPosition="True"
+                        MouseMove="Move">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown3D">
                     <ie:CallMethodAction MethodName="OnMouseDown3DHandler"
@@ -70,7 +72,7 @@
             <hx:GroupModel3D x:Name="Headwear"
                              ItemsSource="{Binding HeadwearModel}" />
 
-
+            
         </hx:Viewport3DX>
         <Border Background="#7DFFFFFF"
                 CornerRadius="10,10,10,10"

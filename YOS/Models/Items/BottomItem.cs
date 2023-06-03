@@ -32,7 +32,7 @@ namespace YOS.Models.Items
             _pose = pose;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
             if (!Directory.Exists(_mainPath))
-                return;
+                throw new ArgumentException("This item has no such gender");
             _texPath = $"{_mainPath}\\Textures";
             _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
             InitAvaliableMaterials();
