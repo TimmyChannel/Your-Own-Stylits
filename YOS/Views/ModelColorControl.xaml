@@ -26,7 +26,7 @@
                         Background="#FF262626"
                         CornerRadius="5"
                         BorderThickness="0"
-                        MinHeight="251">
+                        MinHeight="251" Width="280" Height="251">
                     <Border Margin="5"
                             Background="#FF464646"
                             BorderThickness="0">
@@ -53,13 +53,21 @@
                 </Border>
                 <UniformGrid Margin="5,0,5,0"
                              Columns="2">
-                    <ComboBox x:Name="CB_chooseMaterial"
+                    <Border Background="#FFF8F8F8"
                               Margin="5,5,5,5"
-                              Padding="0,0,0,0"
+                            CornerRadius="5">
+
+                        <ComboBox x:Name="CB_chooseMaterial"
+                              Background="{x:Null}"
+                              
+                              Padding="5,5,5,5"
                               HorizontalAlignment="Stretch"
                               VerticalContentAlignment="Stretch"
-                              ItemsSource="{Binding Materials, Mode=OneWay}" />
-                    <hw:ColorPickerButton x:Name="ColourPicker"
+                              ItemsSource="{Binding Materials, Mode=OneWay}" 
+                              BorderBrush="{x:Null}">
+                        </ComboBox>
+                    </Border>
+                        <hw:ColorPickerButton x:Name="ColourPicker"
                                           CornerRadius="5,5,5,5"
                                           Mode="Full"
                                           Content="Выбрать цвет материала"
@@ -72,13 +80,19 @@
                                           OldBrush="{Binding OldColorBrush}"/>
                 </UniformGrid>
                 <TextBlock Text="{Binding SelectedColor, Source=ColourPicker}" />
-                <Button x:Name="BTN_applyMaterial"
-                        Margin="10,5,10,5"
+
+                <Border Margin="10,5,10,5"
+                        CornerRadius="5"
+                        Background="#FFF8F8F8">
+                    <Button x:Name="BTN_applyMaterial"
+                        Padding="3"
                         Content="Применить"
                         FontFamily="ubuntu"
-                        VerticalAlignment="Bottom" 
+                        VerticalAlignment="Bottom"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
                         Command="{Binding ApplyMaterial}"/>
-
+                </Border>
             </StackPanel>
 
         </Border>
