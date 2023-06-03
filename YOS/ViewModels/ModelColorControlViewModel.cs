@@ -40,7 +40,7 @@ namespace YOS.ViewModels
                 var color = value.Color.ToColor4();
                 CurrentModelMaterial.AlbedoColor = color;
                 OnPropertyChanged();
-                OnPropertyChanged("CurrentModelMaterial");
+                OnPropertyChanged(nameof(CurrentModelMaterial));
             }
         }
 
@@ -63,9 +63,11 @@ namespace YOS.ViewModels
         }
         private void _mannequinSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (e.PropertyName != nameof(MannequinSettings.Instance.SelectedItem)) return;
             _closetItemModel = (IClosetItemModel)MannequinSettings.Instance.SelectedItem.Clone();
             _currentModelMesh = (MeshGeometry3D)_closetItemModel.Geometry;
             _currentModelMaterial = _closetItemModel.Material;
+            _currentModelMaterial.EmissiveColor = new Color4(0);
             _colorBrush.Color = _currentModelMaterial.AlbedoColor.ToColor();
             OnAllPropertyChanged();
         }
