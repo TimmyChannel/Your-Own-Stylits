@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\HDRIs\Cloudy.dds" />
+    <None Remove="Resources\HDRIs\indoorStudio.dds" />
+    <None Remove="Resources\HDRIs\Midday.dds" />
     <None Remove="Resources\horse.FBX" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png" />
@@ -52,6 +55,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\HDRIs\Cloudy.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HDRIs\indoorStudio.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\HDRIs\Midday.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\Textures\Linen\Linen_diffuse_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -242,7 +254,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\HDRIs\" />
     <Folder Include="Resources\Items\Top\" />
     <Folder Include="Resources\Items\Accessories\" />
     <Folder Include="Resources\Items\Headwear\" />

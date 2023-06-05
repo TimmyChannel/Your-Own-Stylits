@@ -15,9 +15,11 @@ namespace YOS.Models.Settings
     public class ViewPortSettings
     {
         private byte _indexOfCurrentLightPreset;
+        private byte _indexOfCurrentEnvironmentMap;
         private MannequinSettings _mannequinSettings;
         private bool _groundIsVisible;
         private List<Light3DCollection> _lightPresets;
+        private List<TextureModel> _enviromentMaps;
         public byte IndexOfCurrentLightPreset
         {
             get => _indexOfCurrentLightPreset;
@@ -28,16 +30,26 @@ namespace YOS.Models.Settings
                 _indexOfCurrentLightPreset = value;
             }
         }
+        public byte IndexOfCurrentEnvironmentMap
+        {
+            get => _indexOfCurrentEnvironmentMap;
+            set
+            {
+                if (_indexOfCurrentEnvironmentMap >= _enviromentMaps.Count)
+                    return;
+                _indexOfCurrentEnvironmentMap = value;
+            }
+        }
         public Light3DCollection CurrentLightPreset
         {
             get => _lightPresets[_indexOfCurrentLightPreset];
         }
-        public List<Light3DCollection> LightPresetList
+        public TextureModel CurrentEnvironmentMap
         {
-            get => _lightPresets;
+            get => _enviromentMaps[_indexOfCurrentEnvironmentMap];
         }
+
         public Viewport3DX Viewport { get; private set; }
-        public EnvironmentMap3D Environment { get; init; }
         public bool GroundIsVisible
         {
             get => _groundIsVisible;
@@ -51,6 +63,7 @@ namespace YOS.Models.Settings
             _mannequinSettings.AddClosetItem("Shorts", Type.Bottom);
             InitLightPresets();
             InitViewport();
+            InitEnviromentMaps();
         }
         private void InitViewport()
         {
@@ -77,23 +90,25 @@ namespace YOS.Models.Settings
         }
         private void InitLightPresets()
         {
-
-            var light1 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
-            var light2 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.LightGray, Name = "Directional2" };
-            var light3 = new AmbientLight3D { Color = Color.FromArgb(100, 200, 200, 200), Name = "Ambient" };
+            // Дневной пресет
+            var dirLight1 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
+            var dirLight2 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.LightGray, Name = "Directional2" };
+            var pointLight1 = new PointLight3D { Position = new Media3D.Point3D(0, 200, 0), Color = Colors.White, Name = "Point1" };
             var DayLightPreset = new Light3DCollection();
-            DayLightPreset.Children.Add(light1);
-            DayLightPreset.Children.Add(light2);
-            DayLightPreset.Children.Add(light3);
+            DayLightPreset.Children.Add(dirLight1);
+            DayLightPreset.Children.Add(dirLight2);
+            DayLightPreset.Children.Add(pointLight1);
             DayLightPreset.Tag = "preset_daylight";
 
-            var light4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.DarkBlue, Name = "Directional1" };
-            var light5 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.DarkSlateBlue, Name = "Directional2" };
-            //var light6 = new AmbientLight3D { Color = Colors.White, Name = "Ambient" };
+            // Ночной пресет
+            var dirLight3 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Color.FromRgb(0, 0, 30), Name = "Directional1" };
+            var dirLight4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Color.FromRgb(30, 30, 50), Name = "Directional2" };
+            var spotLight1 = new SpotLight3D { Position = new Media3D.Point3D(-500, 1000, 0), Direction = new Media3D.Vector3D(0, 1, 0), 
+                InnerAngle = 30, OuterAngle = 45, Color = Colors.White, Name = "Spot1", Range = 2000 };
             var NightLightPreset = new Light3DCollection();
-            NightLightPreset.Children.Add(light4);
-            NightLightPreset.Children.Add(light5);
-            //NightLightPreset.Children.Add(light6);
+            NightLightPreset.Children.Add(dirLight3);
+            NightLightPreset.Children.Add(dirLight4);
+            NightLightPreset.Children.Add(spotLight1);
             NightLightPreset.Tag = "preset_nightlight";
 
             var light7 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
@@ -110,6 +125,19 @@ namespace YOS.Models.Settings
                 DayLightPreset,
                 NightLightPreset,
                 collection
+            };
+        }
+        private void InitEnviromentMaps()
+        {
+            var pathOfMaps = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\HDRIs\\";
+            var indoorStudio = TextureModel.Create($"{pathOfMaps}indoorStudio.dds");
+            var Cloudy = TextureModel.Create($"{pathOfMaps}Cloudy.dds");
+            var Midday = TextureModel.Create($"{pathOfMaps}Midday.dds");
+            _enviromentMaps = new List<TextureModel>
+            {
+                indoorStudio,
+                Midday,
+                Cloudy,
             };
         }
     }
