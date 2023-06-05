@@ -100,7 +100,6 @@ namespace YOS.Models.Mannequin
             get => _pose;
             set
             {
-                _mannequin.Pose = value;
                 SetProperty<Poses>(ref _pose, value);
                 UpdateItems();
                 _mannequin = new RealisticModel("noob", true, _gender, _pose);
