@@ -18,6 +18,16 @@ namespace YOS.Models.Settings
         private MannequinSettings _mannequinSettings;
         private bool _groundIsVisible;
         private List<Light3DCollection> _lightPresets;
+        public byte IndexOfCurrentLightPreset
+        {
+            get => _indexOfCurrentLightPreset;
+            set
+            {
+                if (_indexOfCurrentLightPreset >= _lightPresets.Count) 
+                    return;
+                _indexOfCurrentLightPreset = value;
+            }
+        }
         public Light3DCollection CurrentLightPreset
         {
             get => _lightPresets[_indexOfCurrentLightPreset];
@@ -33,7 +43,9 @@ namespace YOS.Models.Settings
             get => _groundIsVisible;
             set => _groundIsVisible = value;
         }
-        public ViewPortSettings()
+        private static readonly Lazy<ViewPortSettings> lazy = new(() => new ViewPortSettings());
+        public static ViewPortSettings Instance { get { return lazy.Value; } }
+        private ViewPortSettings()
         {
             _mannequinSettings = MannequinSettings.Instance;
             _mannequinSettings.AddClosetItem("Shorts", Type.Bottom);
@@ -95,9 +107,9 @@ namespace YOS.Models.Settings
 
             _lightPresets = new List<Light3DCollection>
             {
-                collection,
                 DayLightPreset,
-                NightLightPreset
+                NightLightPreset,
+                collection
             };
         }
     }

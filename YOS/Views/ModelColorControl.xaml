@@ -26,7 +26,7 @@
                         Background="#FF262626"
                         CornerRadius="5"
                         BorderThickness="0"
-                        MinHeight="251" Width="280" Height="251">
+                        MinHeight="251">
                     <Border Margin="5"
                             Background="#FF464646"
                             BorderThickness="0">
@@ -77,7 +77,7 @@
                                           VerticalContentAlignment="Stretch"
                                           SelectedColor="{Binding SelectedColor}" 
                                           SelectedBrush="{Binding ColorBrush}"
-                                          OldBrush="{Binding OldColorBrush}"/>
+                                          OldBrush="{Binding OldColorBrush}" Cursor="Hand"/>
                 </UniformGrid>
                 <TextBlock Text="{Binding SelectedColor, Source=ColourPicker}" />
 

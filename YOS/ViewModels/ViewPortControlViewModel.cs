@@ -62,6 +62,12 @@ namespace YOS.ViewModels
                 UpdateMannequinModel();
             }
         }
+        private void UpdateLight()
+        {
+            Light = ViewPortSettings.Instance.CurrentLightPreset;
+            Debug.WriteLine($"Light has changed to {Light.Tag}");
+            OnAllPropertyChanged();
+        }
         private void UpdateMannequinModel()
         {
             MannequinModel = MannequinSettings.Instance.MannequinModel;
@@ -70,8 +76,7 @@ namespace YOS.ViewModels
         }
         public ViewPortControlViewModel()
         {
-            var vps = new ViewPortSettings();
-            Light = vps.LightPresetList[0];
+            Light = ViewPortSettings.Instance.CurrentLightPreset;
             Camera = new PerspectiveCamera
             {
                 LookDirection = new Media3D.Vector3D(34, -9, -303),
@@ -80,7 +85,6 @@ namespace YOS.ViewModels
             };
             var man = MannequinSettings.Instance;
             MannequinModel = man.MannequinModel;
-            MannequinModel.CollectionChanged += MannequinChanged;
             BottomItem item = (BottomItem)man.Bottom;
             var mesh = new MeshGeometryModel3D();
             mesh.Geometry = item.Geometry;
@@ -166,8 +170,9 @@ namespace YOS.ViewModels
         {
             Debug.WriteLine("Model changed");
             Debug.WriteLine(MannequinSettings.Instance.Gender);
-            UpdateBottom();
+            UpdateMannequinModel();
         }
+        #region MannequinSimpleParams
 
         public void OnVisibilityChange()
         {
@@ -187,6 +192,145 @@ namespace YOS.ViewModels
         }
         private ICommand _changeMannequinGenderComm;
         public ICommand ChangeMannequinGenderComm => _changeMannequinGenderComm ??= new RelayCommand(OnGenderChange);
+        #endregion
+        #region PosePanelParams
+
+        private bool _poseStackPanelIsVisible;
+        public bool PoseStackPanelIsVisible
+        {
+            get => _poseStackPanelIsVisible;
+            set => _poseStackPanelIsVisible = value;
+        }
+
+        public void OnOpenPosesPanel()
+        {
+            if (PoseStackPanelIsVisible)
+                SetProperty(ref _poseStackPanelIsVisible, false, nameof(PoseStackPanelIsVisible));
+            else
+            {
+                SetProperty(ref _lightStackPanelIsVisible, false, nameof(LightStackPanelIsVisible));
+                SetProperty(ref _poseStackPanelIsVisible, true, nameof(PoseStackPanelIsVisible));
+            }
+
+        }
+        private ICommand _openPosesPanelComm;
+        public ICommand OpenPosesPanelComm => _openPosesPanelComm ??= new RelayCommand(OnOpenPosesPanel);
+
+        public void OnPoseAChange()
+        {
+            if (MannequinSettings.Instance.Pose == Poses.A)
+                return;
+            else
+            {
+                MannequinSettings.Instance.Pose = Poses.A;
+                UpdateMannequinModel();
+            }
+        }
+        private ICommand _changeMannequinPoseToAComm;
+        public ICommand ChangeMannequinPoseToAComm => _changeMannequinPoseToAComm ??= new RelayCommand(OnPoseAChange);
+        public void OnPoseIdleChange()
+        {
+            if (MannequinSettings.Instance.Pose == Poses.Idle)
+                return;
+            else
+            {
+                MannequinSettings.Instance.Pose = Poses.Idle;
+                UpdateMannequinModel();
+            }
+        }
+        private ICommand _changeMannequinPoseToIdleComm;
+        public ICommand ChangeMannequinPoseToIdleComm => _changeMannequinPoseToIdleComm ??= new RelayCommand(OnPoseIdleChange);
+        public void OnPoseRunningChange()
+        {
+            if (MannequinSettings.Instance.Pose == Poses.Running)
+                return;
+            else
+            {
+                MannequinSettings.Instance.Pose = Poses.Running;
+                UpdateMannequinModel();
+            }
+        }
+        private ICommand _changeMannequinPoseToRunningComm;
+        public ICommand ChangeMannequinPoseToRunningComm => _changeMannequinPoseToRunningComm ??= new RelayCommand(OnPoseRunningChange);
+        #endregion
+        #region LightPanelParams
+
+        private bool _lightStackPanelIsVisible;
+        public bool LightStackPanelIsVisible
+        {
+            get => _lightStackPanelIsVisible;
+            set => _lightStackPanelIsVisible = value;
+        }
+
+        public void OnOpenLightsPanel()
+        {
+            if (LightStackPanelIsVisible)
+                SetProperty(ref _lightStackPanelIsVisible, false, nameof(LightStackPanelIsVisible));
+            else
+            {
+                SetProperty(ref _poseStackPanelIsVisible, false, nameof(PoseStackPanelIsVisible));
+                SetProperty(ref _lightStackPanelIsVisible, true, nameof(LightStackPanelIsVisible));
+            }
+
+        }
+        private ICommand _openLightsPanelComm;
+        public ICommand OpenLightsPanelComm => _openLightsPanelComm ??= new RelayCommand(OnOpenLightsPanel);
+
+        public void OnLightDayChange()
+        {
+            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 0)
+            {
+
+                UpdateLight();
+                return;
+            }
+            else
+            {
+                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
+                OnPropertyChanged(nameof(Light));
+                UpdateLight();
+            }
+        }
+        private ICommand _changeviewPortLightToDayComm;
+        public ICommand ChangeviewPortLightToDayComm => _changeviewPortLightToDayComm ??= new RelayCommand(OnLightDayChange);
+        public void OnLightNightChange()
+        {
+            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 1)
+            {
+
+                UpdateLight();
+                return;
+
+            }
+            else
+            {
+                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 1;
+                OnPropertyChanged(nameof(Light));
+                UpdateLight();
+            }
+        }
+        private ICommand _changeviewPortLightToNightComm;
+        public ICommand ChangeviewPortLightToNightComm => _changeviewPortLightToNightComm ??= new RelayCommand(OnLightNightChange);
+        public void OnLight3PointChange()
+        {
+            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 2)
+            {
+
+                UpdateLight();
+                return;
+
+            }
+            else
+            {
+                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 2;
+                OnPropertyChanged(nameof(Light));
+                UpdateLight();
+            }
+        }
+        private ICommand _changeviewPortLightTo3PointComm;
+        public ICommand ChangeviewPortLightTo3PointComm => _changeviewPortLightTo3PointComm ??= new RelayCommand(OnLight3PointChange);
+        #endregion
+
 
     }
 }

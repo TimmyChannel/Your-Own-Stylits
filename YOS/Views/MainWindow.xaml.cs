@@ -24,5 +24,10 @@ namespace YOS
         {
             InitializeComponent();
         }
+
+        private void LookConrtol_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

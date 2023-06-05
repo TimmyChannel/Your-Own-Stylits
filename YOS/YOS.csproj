@@ -215,6 +215,7 @@
     <PackageReference Include="HelixToolkit" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.SharpDX.Core" Version="2.24.0" />
     <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.24.0" />
+    <PackageReference Include="SciChart.Wpf.UI.Transitionz" Version="3.1.251" />
     <PackageReference Include="SharpDX" Version="4.2.0" />
     <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
   </ItemGroup>
