@@ -47,7 +47,6 @@
                                          TargetObject="{Binding}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
-
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager />
             </hx:Viewport3DX.EffectsManager>
@@ -58,7 +57,8 @@
                               Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
             <hx:Element3DPresenter Content="{Binding Light}" />
-
+            <hx:EnvironmentMap3D  Texture="{Binding EnviromentMap}"/>
+            <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
             <hx:GroupModel3D x:Name="Mannequin"
                              ItemsSource="{Binding MannequinModel}" />
             <hx:GroupModel3D x:Name="Bottom"
@@ -71,7 +71,6 @@
                              ItemsSource="{Binding ShoesModel}" />
             <hx:GroupModel3D x:Name="Headwear"
                              ItemsSource="{Binding HeadwearModel}" />
-
 
         </hx:Viewport3DX>
         <Border Background="#7DFFFFFF"

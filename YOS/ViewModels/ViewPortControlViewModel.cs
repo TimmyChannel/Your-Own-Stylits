@@ -41,6 +41,7 @@ namespace YOS.ViewModels
         public ObservableElement3DCollection HeadwearModel { get; private set; } = new ObservableElement3DCollection();
         public Camera Camera { private set; get; }
         public Light3DCollection Light { private set; get; }
+        public TextureModel EnviromentMap { private set; get; }
         public bool MannequinIsVisible
         {
             get => MannequinSettings.Instance.MannequinIsVisible;
@@ -93,6 +94,8 @@ namespace YOS.ViewModels
             item.PropertyChanged += Item_PropertyChanged;
             BottomModel[0].Mouse3DDown += ViewPortControlViewModel_Mouse3DDown;
             ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
+            ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 1;
+            EnviromentMap = ViewPortSettings.Instance.CurrentEnvironmentMap;
         }
 
         private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
