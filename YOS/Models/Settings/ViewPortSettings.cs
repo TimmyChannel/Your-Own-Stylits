@@ -23,7 +23,7 @@ namespace YOS.Models.Settings
             get => _indexOfCurrentLightPreset;
             set
             {
-                if (_indexOfCurrentLightPreset >= _lightPresets.Count) 
+                if (_indexOfCurrentLightPreset >= _lightPresets.Count)
                     return;
                 _indexOfCurrentLightPreset = value;
             }
@@ -80,7 +80,7 @@ namespace YOS.Models.Settings
 
             var light1 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
             var light2 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.LightGray, Name = "Directional2" };
-            var light3 = new AmbientLight3D { Color = Colors.White, Name = "Ambient" };
+            var light3 = new AmbientLight3D { Color = Color.FromArgb(100, 200, 200, 200), Name = "Ambient" };
             var DayLightPreset = new Light3DCollection();
             DayLightPreset.Children.Add(light1);
             DayLightPreset.Children.Add(light2);
@@ -89,11 +89,11 @@ namespace YOS.Models.Settings
 
             var light4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.DarkBlue, Name = "Directional1" };
             var light5 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.DarkSlateBlue, Name = "Directional2" };
-            var light6 = new AmbientLight3D { Color = Colors.White, Name = "Ambient" };
+            //var light6 = new AmbientLight3D { Color = Colors.White, Name = "Ambient" };
             var NightLightPreset = new Light3DCollection();
             NightLightPreset.Children.Add(light4);
             NightLightPreset.Children.Add(light5);
-            NightLightPreset.Children.Add(light6);
+            //NightLightPreset.Children.Add(light6);
             NightLightPreset.Tag = "preset_nightlight";
 
             var light7 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
