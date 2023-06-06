@@ -17,6 +17,10 @@
     <None Remove="Resources\Environment\Midday.dds" />
     <None Remove="Resources\Environment\night.dds" />
     <None Remove="Resources\horse.FBX" />
+    <None Remove="Resources\Icons\Unvisible_Plane_Light.png" />
+    <None Remove="Resources\Icons\Unvisible_Plane_Solid.png" />
+    <None Remove="Resources\Icons\Visible_Plane_Light.png" />
+    <None Remove="Resources\Icons\Visible_Plane_Solid.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx" />
@@ -274,6 +278,21 @@
     <Folder Include="Resources\Items\Accessories\" />
     <Folder Include="Resources\Items\Headwear\" />
     <Folder Include="Resources\Items\Shoes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Unvisible_Plane_Light.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Unvisible_Plane_Solid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Visible_Plane_Light.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Visible_Plane_Solid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

@@ -27,6 +27,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows.Controls.Primitives;
 using System.Collections.Specialized;
 using YOS.Models.Items;
+using Haley.Models;
 
 namespace YOS.ViewModels
 {
@@ -44,7 +45,7 @@ namespace YOS.ViewModels
         public Camera Camera { init; get; }
         public Light3DCollection Light => ViewPortSettings.Instance.CurrentLightPreset;
         public TextureModel EnvironmentMap => ViewPortSettings.Instance.CurrentEnvironmentMap;
-        public MeshGeometry3D Point { get; init; }
+        public bool GroundIsVisible => ViewPortSettings.Instance.GroundIsVisible;
         public bool MannequinIsVisible
         {
             get => MannequinSettings.Instance.MannequinIsVisible;
@@ -97,10 +98,6 @@ namespace YOS.ViewModels
             Floor = b2.ToMeshGeometry3D();
             FloorMaterial.UVTransform = new UVTransform()
             { Scaling = new Vector2(10, 10) };
-            var b1 = new MeshBuilder(true, true, true);
-            //var light = ((SpotLight3D)ViewPortSettings.Instance.CurrentLightPreset.Children[2]);
-            //b1.AddCone(light.Direction.ToVector3(), light.Position.ToVector3(), 10, true, (int)light.InnerAngle);
-            //Point = b1.ToMeshGeometry3D();
         }
 
         private void MannequinSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -115,14 +112,19 @@ namespace YOS.ViewModels
         private void UpdateBottom()
         {
             BottomModel.Clear();
-            var item = MannequinSettings.Instance.Bottom;
-            if (item == null) return;
-            var mesh = new MeshGeometryModel3D
+            BottomItem item = (BottomItem)MannequinSettings.Instance.Bottom;
+            if (item != null)
             {
-                Geometry = item.Geometry,
-                Material = item.Material
-            };
-            BottomModel.Add(mesh);
+                var mesh = new MeshGeometryModel3D
+                {
+                    Geometry = item.Geometry,
+                    Material = item.Material,
+                    IsThrowingShadow = true
+                };
+                BottomModel.Add(mesh);
+                item.PropertyChanged += Item_PropertyChanged;
+                BottomModel[0].Mouse3DDown += ViewPortControlViewModel_Mouse3DDown;
+            }
             OnPropertyChanged(nameof(BottomModel));
         }
         private void ViewPortControlViewModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
@@ -342,7 +344,17 @@ namespace YOS.ViewModels
         private ICommand _changeviewPortLightTo3PointComm;
         public ICommand ChangeviewPortLightTo3PointComm => _changeviewPortLightTo3PointComm ??= new RelayCommand(OnLight3PointChange);
         #endregion
+        public void OnChangeGroundVisibility()
+        {
+            if (ViewPortSettings.Instance.GroundIsVisible)
+                ViewPortSettings.Instance.GroundIsVisible = false;
+            else
+                ViewPortSettings.Instance.GroundIsVisible = true;
+            OnPropertyChanged(nameof(GroundIsVisible));
 
+        }
+        private ICommand _changeGroundVisibilityComm;
+        public ICommand ChangeGroundVisibilityComm => _changeGroundVisibilityComm ??= new RelayCommand(OnChangeGroundVisibility);
 
     }
 }
