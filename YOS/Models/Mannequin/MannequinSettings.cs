@@ -91,8 +91,8 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<GenderTypes>(ref _gender, value);
+                SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
                 UpdateItems();
-                _mannequin = new RealisticModel("noob", true, _gender, _pose);
             }
         }
         public Poses Pose
@@ -101,8 +101,8 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<Poses>(ref _pose, value);
+                SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
                 UpdateItems();
-                _mannequin = new RealisticModel("noob", true, _gender, _pose);
             }
         }
         private void UpdateItems()
@@ -218,27 +218,27 @@ namespace YOS.Models.Mannequin
                 case Type.Top:
                     if (Top == null) return;
                     Top.Material = material;
-                    OnPropertyChanged("Top");
+                    OnPropertyChanged(nameof(Top));
                     break;
                 case Type.Bottom:
                     if (Bottom == null) return;
                     Bottom.Material = material;
-                    OnPropertyChanged("Bottom");
+                    OnPropertyChanged(nameof(Bottom));
                     break;
                 case Type.Accessories:
                     if (Accessory == null) return;
                     Accessory.Material = material;
-                    OnPropertyChanged("Accessory");
+                    OnPropertyChanged(nameof(Accessory));
                     break;
                 case Type.Shoes:
                     if (Shoes == null) return;
                     Shoes.Material = material;
-                    OnPropertyChanged("Shoes");
+                    OnPropertyChanged(nameof(Shoes));
                     break;
                 case Type.Headwear:
                     if (Headwear == null) return;
                     Headwear.Material = material;
-                    OnPropertyChanged("Headwear");
+                    OnPropertyChanged(nameof(Headwear));
                     break;
                 default:
                     break;
