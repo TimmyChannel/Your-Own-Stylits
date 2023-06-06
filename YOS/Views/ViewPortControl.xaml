@@ -29,6 +29,7 @@
                         MSAA="Maximum"
                         ShowFrameRate="False"
                         Camera="{Binding Camera}"
+                        ShowCameraInfo="False"
                         PinchZoomAtCenter="True"
                         SSAOQuality="High"
                         EnableSSAO="True"
@@ -40,13 +41,16 @@
                         SSAOSamplingRadius="0.1"
                         BackgroundColor="LightBlue"
                         EnableCursorPosition="True"
-                        MouseMove="Move">
-            <i:Interaction.Triggers>
+                        MouseMove="Move"
+                        ZoomDistanceLimitFar="5000"
+                        ZoomDistanceLimitNear="10"
+                        >
+            <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown3D">
                     <ie:CallMethodAction MethodName="OnMouseDown3DHandler"
                                          TargetObject="{Binding}" />
                 </i:EventTrigger>
-            </i:Interaction.Triggers>
+            </i:Interaction.Triggers>-->
             <hx:Viewport3DX.EffectsManager>
                 <hx:DefaultEffectsManager />
             </hx:Viewport3DX.EffectsManager>
@@ -56,8 +60,9 @@
                 <MouseBinding Command="hx:ViewportCommands.Pan"
                               Gesture="MiddleClick" />
             </hx:Viewport3DX.InputBindings>
+            <hx:ShadowMap3D />
             <hx:Element3DPresenter Content="{Binding Light}" />
-            <hx:EnvironmentMap3D  Texture="{Binding EnviromentMap}"/>
+            <hx:EnvironmentMap3D  Texture="{Binding EnvironmentMap}"/>
             <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
             <hx:GroupModel3D x:Name="Mannequin"
                              ItemsSource="{Binding MannequinModel}" />
@@ -71,6 +76,18 @@
                              ItemsSource="{Binding ShoesModel}" />
             <hx:GroupModel3D x:Name="Headwear"
                              ItemsSource="{Binding HeadwearModel}" />
+            <hx:MeshGeometryModel3D x:Name="floor"
+                                    CullMode="Back"
+                                    Geometry="{Binding Floor}"
+                                    Material="{Binding FloorMaterial}"
+                                    DepthBias="15" 
+                                    /> 
+            <hx:MeshGeometryModel3D x:Name="point"
+                                    CullMode="Back"
+                                    Geometry="{Binding Point}"
+                                    Material="{Binding FloorMaterial}"
+                                    DepthBias="15" 
+                                    />
 
         </hx:Viewport3DX>
         <Border Background="#7DFFFFFF"

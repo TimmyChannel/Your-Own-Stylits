@@ -12,14 +12,16 @@ using System.Windows.Input;
 
 namespace YOS.Models.Settings
 {
-    public class ViewPortSettings
+    public class ViewPortSettings : OnPropertyChangedClass
     {
         private byte _indexOfCurrentLightPreset;
         private byte _indexOfCurrentEnvironmentMap;
+        private byte _indexOfCurrentFloorTexture;
         private MannequinSettings _mannequinSettings;
         private bool _groundIsVisible;
         private List<Light3DCollection> _lightPresets;
-        private List<TextureModel> _enviromentMaps;
+        private List<TextureModel> _environmentMaps;
+        private List<PBRMaterial> _floorTextures;
         public byte IndexOfCurrentLightPreset
         {
             get => _indexOfCurrentLightPreset;
@@ -35,9 +37,19 @@ namespace YOS.Models.Settings
             get => _indexOfCurrentEnvironmentMap;
             set
             {
-                if (_indexOfCurrentEnvironmentMap >= _enviromentMaps.Count)
+                if (_indexOfCurrentEnvironmentMap >= _environmentMaps.Count)
                     return;
                 _indexOfCurrentEnvironmentMap = value;
+            }
+        }
+        public byte IndexOfCurrentFloorTexture
+        {
+            get => _indexOfCurrentFloorTexture;
+            set
+            {
+                if (_indexOfCurrentFloorTexture >= _floorTextures.Count)
+                    return;
+                _indexOfCurrentFloorTexture = value;
             }
         }
         public Light3DCollection CurrentLightPreset
@@ -46,7 +58,11 @@ namespace YOS.Models.Settings
         }
         public TextureModel CurrentEnvironmentMap
         {
-            get => _enviromentMaps[_indexOfCurrentEnvironmentMap];
+            get => _environmentMaps[_indexOfCurrentEnvironmentMap];
+        }
+        public PBRMaterial CurrentFloorTexture
+        {
+            get => _floorTextures[_indexOfCurrentFloorTexture];
         }
 
         public Viewport3DX Viewport { get; private set; }
@@ -63,7 +79,7 @@ namespace YOS.Models.Settings
             _mannequinSettings.AddClosetItem("Shorts", Type.Bottom);
             InitLightPresets();
             InitViewport();
-            InitEnviromentMaps();
+            InitEnvironmentMapsAndFloorTextures();
         }
         private void InitViewport()
         {
@@ -91,9 +107,9 @@ namespace YOS.Models.Settings
         private void InitLightPresets()
         {
             // Дневной пресет
-            var dirLight1 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
-            var dirLight2 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Colors.LightGray, Name = "Directional2" };
-            var pointLight1 = new PointLight3D { Position = new Media3D.Point3D(0, 200, 0), Color = Colors.White, Name = "Point1" };
+            var dirLight1 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Color.FromRgb(255, 244, 214), Name = "Directional1" };
+            var dirLight2 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Color.FromRgb(255, 244, 214), Name = "Directional2" };
+            var pointLight1 = new PointLight3D { Position = new Media3D.Point3D(0, 200, 0), Color = Color.FromRgb(255, 244, 214), Name = "Point1", Attenuation = new Media3D.Vector3D(1, 0.02, 0.002) };
             var DayLightPreset = new Light3DCollection();
             DayLightPreset.Children.Add(dirLight1);
             DayLightPreset.Children.Add(dirLight2);
@@ -101,14 +117,14 @@ namespace YOS.Models.Settings
             DayLightPreset.Tag = "preset_daylight";
 
             // Ночной пресет
-            var dirLight3 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Color.FromRgb(0, 0, 30), Name = "Directional1" };
-            var dirLight4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Color.FromRgb(30, 30, 50), Name = "Directional2" };
-            var spotLight1 = new SpotLight3D { Position = new Media3D.Point3D(-500, 1000, 0), Direction = new Media3D.Vector3D(0, 1, 0), 
-                InnerAngle = 30, OuterAngle = 45, Color = Colors.White, Name = "Spot1", Range = 2000 };
+            var dirLight3 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Color.FromRgb(180, 180, 180), Name = "Directional1" };
+            var dirLight4 = new DirectionalLight3D { Direction = new Media3D.Vector3D(1, 1, 1), Color = Color.FromRgb(150, 150, 150), Name = "Directional2" };
+            var pointLight2 = new PointLight3D { Position = new Media3D.Point3D(0, 200, 0), Color = Color.FromRgb(200, 200, 200), Name = "Point1", 
+                Attenuation = new Media3D.Vector3D(1, 0.02, 0.002), Range = 500 };
             var NightLightPreset = new Light3DCollection();
             NightLightPreset.Children.Add(dirLight3);
             NightLightPreset.Children.Add(dirLight4);
-            NightLightPreset.Children.Add(spotLight1);
+            NightLightPreset.Children.Add(pointLight2);
             NightLightPreset.Tag = "preset_nightlight";
 
             var light7 = new DirectionalLight3D { Direction = new Media3D.Vector3D(-1, -1, -1), Color = Colors.White, Name = "Directional1" };
@@ -127,17 +143,56 @@ namespace YOS.Models.Settings
                 collection
             };
         }
-        private void InitEnviromentMaps()
+        private void InitEnvironmentMapsAndFloorTextures()
         {
-            var pathOfMaps = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\HDRIs\\";
-            var indoorStudio = TextureModel.Create($"{pathOfMaps}indoorStudio.dds");
-            var Cloudy = TextureModel.Create($"{pathOfMaps}Cloudy.dds");
+            var pathOfMaps = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Environment\\";
+            var indoorStudio = TextureModel.Create($"{pathOfMaps}IndoorStudio.dds");
+            var Night = TextureModel.Create($"{pathOfMaps}Night.dds");
             var Midday = TextureModel.Create($"{pathOfMaps}Midday.dds");
-            _enviromentMaps = new List<TextureModel>
+            _environmentMaps = new List<TextureModel>
             {
-                indoorStudio,
                 Midday,
-                Cloudy,
+                Night,
+                indoorStudio,
+            };
+
+            var flIndoor = new PBRMaterial()
+            {
+                AlbedoMap = TextureModel.Create($"{pathOfMaps}\\Floor\\indoor_ny.png"),
+                RenderAlbedoMap = true,
+                RenderShadowMap = true,
+                AlbedoColor = new SharpDX.Color4(1, 1, 1, 1),
+                RenderEnvironmentMap = true,
+                EnableAutoTangent = true,
+                EmissiveColor = new SharpDX.Color4(0.5f, 0.5f, 0.5f, 1),
+            };
+            var flDay = new PBRMaterial()
+            {
+                AlbedoMap = TextureModel.Create($"{pathOfMaps}\\Floor\\day_ny.png"),
+                RenderAlbedoMap = true,
+                RenderShadowMap = true,
+                AlbedoColor= new SharpDX.Color4(1,1,1,1),
+                RenderEnvironmentMap = true,
+                EnableAutoTangent = true,
+                EmissiveColor = new SharpDX.Color4(0.5f, 0.5f, 0.5f, 1),
+
+            };
+            var flNight = new PBRMaterial()
+            {
+                AlbedoMap = TextureModel.Create($"{pathOfMaps}\\Floor\\night_ny.png"),
+                RenderAlbedoMap = true,
+                RenderShadowMap = true,
+                AlbedoColor = new SharpDX.Color4(1, 1, 1, 1),
+                RenderEnvironmentMap = true,
+                EnableAutoTangent = true,
+                EnableFlatShading = true,
+                EmissiveColor = new SharpDX.Color4(0.1f, 0.1f, 0.1f, 0.9f),
+            };
+            _floorTextures = new List<PBRMaterial>
+            {
+                flDay,
+                flNight,
+                flIndoor,
             };
         }
     }
