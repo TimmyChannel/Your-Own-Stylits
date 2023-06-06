@@ -17,6 +17,42 @@
              d:DesignWidth="800">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <BitmapImage x:Key="Unvisible_Plane_Light"
+                     UriSource="pack://application:,,,/Resources/Icons/Unvisible_Plane_Light.png" />
+        <BitmapImage x:Key="Unvisible_Plane_Solid"
+                     UriSource="pack://application:,,,/Resources/Icons/Unvisible_Plane_Solid.png" />
+        <BitmapImage x:Key="Visible_Plane_Light"
+                     UriSource="pack://application:,,,/Resources/Icons/Visible_Plane_Light.png" />
+        <BitmapImage x:Key="Visible_Plane_Solid"
+                     UriSource="pack://application:,,,/Resources/Icons/Visible_Plane_Solid.png" />
+        <Style x:Key="ImageButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="BorderBrush"
+                    Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <Image x:Name="ButtonImage"
+                                   Source="{StaticResource Visible_Plane_Light}"
+                                   Stretch="UniformToFill" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="ButtonImage"
+                                        Property="Source"
+                                        Value="{StaticResource Visible_Plane_Solid}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
         <ViewModels:ViewPortControlViewModel />
@@ -42,9 +78,8 @@
                         BackgroundColor="LightBlue"
                         EnableCursorPosition="True"
                         MouseMove="Move"
-                        ZoomDistanceLimitFar="5000"
-                        ZoomDistanceLimitNear="10"
-                        >
+                        ZoomDistanceLimitFar="500"
+                        ZoomDistanceLimitNear="10">
             <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDown3D">
                     <ie:CallMethodAction MethodName="OnMouseDown3DHandler"
@@ -62,7 +97,7 @@
             </hx:Viewport3DX.InputBindings>
             <hx:ShadowMap3D />
             <hx:Element3DPresenter Content="{Binding Light}" />
-            <hx:EnvironmentMap3D  Texture="{Binding EnvironmentMap}"/>
+            <hx:EnvironmentMap3D  Texture="{Binding EnvironmentMap}" />
             <hx:PostEffectMeshBorderHighlight EffectName="highlight" />
             <hx:GroupModel3D x:Name="Mannequin"
                              ItemsSource="{Binding MannequinModel}" />
@@ -80,173 +115,12 @@
                                     CullMode="Back"
                                     Geometry="{Binding Floor}"
                                     Material="{Binding FloorMaterial}"
-                                    DepthBias="15" 
-                                    /> 
-            <hx:MeshGeometryModel3D x:Name="point"
-                                    CullMode="Back"
-                                    Geometry="{Binding Point}"
-                                    Material="{Binding FloorMaterial}"
-                                    DepthBias="15" 
-                                    />
+                                    IsRendering="{Binding GroundIsVisible}"
+                                    DepthBias="15" />
+
 
         </hx:Viewport3DX>
-        <Border Background="#7DFFFFFF"
-                CornerRadius="10,10,10,10"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                BorderBrush="#FF262626"
-                BorderThickness="2,2,2,2"
-                UseLayoutRounding="True"
-                Padding="5,10,5,10"
-                MinWidth="64">
-            <StackPanel>
-                <hw:ImageButton x:Name="VisibleBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Height="34"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding ChangeMannequinVisibilityComm}"
-                                hw:Icon.Hover="{StaticResource eye_solid}"
-                                hw:Icon.Default="{StaticResource eye_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1">
-                    <hw:ImageButton.Style>
-                        <Style TargetType="{x:Type hw:ImageButton}">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding MannequinIsVisible}"
-                                             Value="False">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MannequinIsVisible}"
-                                             Value="True">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </hw:ImageButton.Style>
-                </hw:ImageButton>
-                <hw:ImageButton x:Name="UnVisibleBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Height="34"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding ChangeMannequinVisibilityComm}"
-                                hw:Icon.Hover="{StaticResource eye_slash_solid}"
-                                hw:Icon.Default="{StaticResource eye_slash_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1">
-                    <hw:ImageButton.Style>
-                        <Style TargetType="{x:Type hw:ImageButton}">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding MannequinIsVisible}"
-                                             Value="False">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MannequinIsVisible}"
-                                             Value="True">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </hw:ImageButton.Style>
-                </hw:ImageButton>
-                <hw:ImageButton x:Name="MaleBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding ChangeMannequinGenderComm}"
-                                hw:Icon.Hover="{StaticResource mars_solid}"
-                                hw:Icon.Default="{StaticResource mars_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1"
-                                HorizontalContentAlignment="Center"
-                                Height="34"
-                                Padding="7,2,6,2">
-                    <hw:ImageButton.Style>
-                        <Style TargetType="{x:Type hw:ImageButton}">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding MannequinGender}"
-                                             Value="Female">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MannequinGender}"
-                                             Value="Male">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </hw:ImageButton.Style>
-                </hw:ImageButton>
-                <hw:ImageButton x:Name="FemaleBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding ChangeMannequinGenderComm}"
-                                hw:Icon.Hover="{StaticResource venus_solid}"
-                                hw:Icon.Default="{StaticResource venus_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                hw:Position.Bottom="40"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1"
-                                Padding="9,2,9,2"
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                UseLayoutRounding="False"
-                                Height="34">
-                    <hw:ImageButton.Style>
-                        <Style TargetType="{x:Type hw:ImageButton}">
-                            <Setter Property="Visibility"
-                                    Value="Visible" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding MannequinGender}"
-                                             Value="Female">
-                                    <Setter Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MannequinGender}"
-                                             Value="Male">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </hw:ImageButton.Style>
-                </hw:ImageButton>
-
-            </StackPanel>
-        </Border>
-        <Border x:Name="border"
+        <Border x:Name="LightPanel"
                 Background="#7DFFFFFF"
                 CornerRadius="10,10,10,10"
                 HorizontalAlignment="Center"
@@ -255,66 +129,11 @@
                 BorderThickness="2,2,2,2"
                 UseLayoutRounding="True"
                 Padding="5,10,5,10"
-                MinWidth="64">
-            <StackPanel Orientation="Horizontal">
-                <hw:ImageButton x:Name="PoseBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding OpenPosesPanelComm}"
-                                hw:Icon.Hover="{StaticResource people_arrows_left_right_solid}"
-                                hw:Icon.Default="{StaticResource people_arrows_left_right_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                hw:Position.Bottom="40"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1"
-                                Padding="2,2,2,2"
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                UseLayoutRounding="False"
-                                Height="34"
-                                ToolTip="Сменить позу" />
-                <hw:ImageButton x:Name="LightingBut"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Width="40"
-                                Cursor="Hand"
-                                CornerRadius="10,10,10,10"
-                                Margin="5,5,5,5"
-                                Command="{Binding OpenLightsPanelComm}"
-                                hw:Icon.Hover="{StaticResource lightbulb_solid}"
-                                hw:Icon.Default="{StaticResource lightbulb_light}"
-                                hw:Icon.DefaultColor="#ff262626"
-                                hw:Icon.HoverColor="#FF464646"
-                                hw:Position.Bottom="40"
-                                BorderBrush="Black"
-                                BorderThickness="1,1,1,1"
-                                Padding="9,2,9,2"
-                                VerticalContentAlignment="Center"
-                                HorizontalContentAlignment="Center"
-                                UseLayoutRounding="False"
-                                Height="34"
-                                ToolTip="Сменить освещение" />
-
-            </StackPanel>
-        </Border>
-        <Border Background="#7DFFFFFF"
-                CornerRadius="10,10,10,10"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                BorderBrush="#FF262626"
-                BorderThickness="2,2,2,2"
-                UseLayoutRounding="True"
-                Padding="5,10,5,10"
                 MinWidth="64"
-                Margin="{Binding ActualHeight, ElementName=border, Mode=OneWay}"
+                Margin="{Binding ActualHeight, ElementName=BottomPanelMain, Mode=OneWay}"
                 Visibility="Collapsed"
-                tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=300, TransitionOn=Visibility}"
-                tz:Transitionz.Translate="{tz:TranslateParams From='0,10', To='0,-10', Duration=300, TransitionOn=Visibility}"
+                tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=300,BeginTime=300, TransitionOn=Visibility}"
+                tz:Transitionz.Translate="{tz:TranslateParams From='0,10', To='0,-10',BeginTime=300, Duration=300, TransitionOn=Visibility}"
                 tz:Transitionz.Visibility="{Binding LightStackPanelIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <hw:ImageButton x:Name="DayBut"
@@ -382,19 +201,20 @@
                                 ToolTip="3-х точечное освещение" />
             </StackPanel>
         </Border>
-        <Border Background="#7DFFFFFF"
+        <Border x:Name="PosePanel"
+                Background="#7DFFFFFF"
                 CornerRadius="10,10,10,10"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
                 BorderBrush="#FF262626"
                 BorderThickness="2,2,2,2"
                 UseLayoutRounding="True"
                 Padding="5,10,5,10"
                 MinWidth="64"
-                Margin="{Binding ActualHeight, ElementName=border, Mode=OneWay}"
+                Margin="{Binding ActualHeight, ElementName=MannequinPanel, Mode=OneWay}"
                 Visibility="Collapsed"
-                tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=300, TransitionOn=Visibility}"
-                tz:Transitionz.Translate="{tz:TranslateParams From='0,10', To='0,-10', Duration=300, TransitionOn=Visibility}"
+                tz:Transitionz.Opacity="{tz:OpacityParams From=0, To=1, Duration=300, BeginTime=300, TransitionOn=Visibility}"
+                tz:Transitionz.Translate="{tz:TranslateParams From='95,-70', To='75,-70', Duration=300,BeginTime=300,TransitionOn=Visibility}"
                 tz:Transitionz.Visibility="{Binding PoseStackPanelIsVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
             <StackPanel Orientation="Horizontal">
                 <hw:ImageButton x:Name="ABut"
@@ -460,6 +280,338 @@
                                 UseLayoutRounding="False"
                                 Height="34"
                                 ToolTip="Бег" />
+            </StackPanel>
+        </Border>
+        <Border x:Name="MannequinPanel"
+                Background="#7DFFFFFF"
+                CornerRadius="10,10,10,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                BorderBrush="#FF262626"
+                BorderThickness="2,2,2,2"
+                UseLayoutRounding="True"
+                Padding="5,10,5,10"
+                MinWidth="64">
+            <StackPanel>
+                <hw:ImageButton x:Name="VisibleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Height="34"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                hw:Icon.Hover="{StaticResource eye_solid}"
+                                hw:Icon.Default="{StaticResource eye_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                ToolTip="Показать манекен">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+                <hw:ImageButton x:Name="UnVisibleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Height="34"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinVisibilityComm}"
+                                hw:Icon.Hover="{StaticResource eye_slash_solid}"
+                                hw:Icon.Default="{StaticResource eye_slash_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                ToolTip="Скрыть манекен">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+                <hw:ImageButton x:Name="MaleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinGenderComm}"
+                                hw:Icon.Hover="{StaticResource mars_solid}"
+                                hw:Icon.Default="{StaticResource mars_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                HorizontalContentAlignment="Center"
+                                Height="34"
+                                Padding="7,2,6,2"
+                                ToolTip="Сменить манекена на человека">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Female">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Male">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+                <hw:ImageButton x:Name="FemaleBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding ChangeMannequinGenderComm}"
+                                hw:Icon.Hover="{StaticResource venus_solid}"
+                                hw:Icon.Default="{StaticResource venus_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                hw:Position.Bottom="40"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                Padding="9,2,9,2"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                UseLayoutRounding="False"
+                                Height="34"
+                                ToolTip="Сменить манекена на женщину">
+                    <hw:ImageButton.Style>
+                        <Style TargetType="{x:Type hw:ImageButton}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Female">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding MannequinGender}"
+                                             Value="Male">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </hw:ImageButton.Style>
+                </hw:ImageButton>
+                <hw:ImageButton x:Name="PoseBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding OpenPosesPanelComm}"
+                                hw:Icon.Hover="{StaticResource people_arrows_left_right_solid}"
+                                hw:Icon.Default="{StaticResource people_arrows_left_right_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                hw:Position.Bottom="40"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                Padding="2,2,2,2"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                UseLayoutRounding="False"
+                                Height="34"
+                                ToolTip="Сменить позу" />
+
+            </StackPanel>
+        </Border>
+        <Border x:Name="BottomPanelMain"
+                Background="#7DFFFFFF"
+                CornerRadius="10,10,10,10"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                BorderBrush="#FF262626"
+                BorderThickness="2,2,2,2"
+                UseLayoutRounding="True"
+                Padding="5,10,5,10"
+                MinWidth="64">
+            <StackPanel Orientation="Horizontal">
+                <hw:ImageButton x:Name="LightingBut"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Width="40"
+                                Cursor="Hand"
+                                CornerRadius="10,10,10,10"
+                                Margin="5,5,5,5"
+                                Command="{Binding OpenLightsPanelComm}"
+                                hw:Icon.Hover="{StaticResource lightbulb_solid}"
+                                hw:Icon.Default="{StaticResource lightbulb_light}"
+                                hw:Icon.DefaultColor="#ff262626"
+                                hw:Icon.HoverColor="#FF464646"
+                                hw:Position.Bottom="40"
+                                BorderBrush="Black"
+                                BorderThickness="1,1,1,1"
+                                Padding="9,2,9,2"
+                                VerticalContentAlignment="Center"
+                                HorizontalContentAlignment="Center"
+                                UseLayoutRounding="False"
+                                Height="34"
+                                ToolTip="Сменить освещение" />
+                <Border BorderBrush="#ff262626"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Width="{Binding ActualWidth, ElementName=LightingBut, Mode=OneWay}"
+                        Height="{Binding ActualHeight, ElementName=LightingBut, Mode=OneWay}"
+                        Margin="5,5,5,5">
+                    <Button x:Name="GroundButVis"
+                            Margin="5,3,5,-1"
+                            Command="{Binding ChangeGroundVisibilityComm}"
+                            ToolTip="Показать поверхность">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                                <Setter Property="Background"
+                                        Value="Transparent" />
+                                <Setter Property="BorderBrush"
+                                        Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Image x:Name="ButtonImage"
+                                                   Source="{StaticResource Visible_Plane_Light}"
+                                                   Stretch="UniformToFill" />
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver"
+                                                         Value="True">
+                                                    <Setter TargetName="ButtonImage"
+                                                            Property="Source"
+                                                            Value="{StaticResource Visible_Plane_Solid}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GroundIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding GroundIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border BorderBrush="#ff262626"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Width="{Binding ActualWidth, ElementName=LightingBut, Mode=OneWay}"
+                        Height="{Binding ActualHeight, ElementName=LightingBut, Mode=OneWay}"
+                        Margin="5,5,5,5">
+                    <Button x:Name="GroundButHide"
+                            Margin="5,3,5,-1"
+                            Command="{Binding ChangeGroundVisibilityComm}"
+                            ToolTip="Скрыть поверхность">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                                <Setter Property="Background"
+                                        Value="Transparent" />
+                                <Setter Property="BorderBrush"
+                                        Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Image x:Name="ButtonImage"
+                                                   Source="{StaticResource Unvisible_Plane_Light}"
+                                                   Stretch="UniformToFill" />
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver"
+                                                         Value="True">
+                                                    <Setter TargetName="ButtonImage"
+                                                            Property="Source"
+                                                            Value="{StaticResource Unvisible_Plane_Solid}" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding GroundIsVisible}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding GroundIsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+
             </StackPanel>
         </Border>
     </Grid>
