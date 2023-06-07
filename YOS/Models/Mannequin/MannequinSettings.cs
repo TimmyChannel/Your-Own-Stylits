@@ -135,14 +135,14 @@ namespace YOS.Models.Mannequin
                         _closetItemList[1] = _bottom;
                         break;
                     case Type.Accessories:
-                        var accCreator = new BottomCreator();
+                        var accCreator = new AccessoriesCreator();
                         accCreator.SetParams(_pose);
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(name);
                         _closetItemList[2] = _accessory;
                         break;
                     case Type.Shoes:
-                        var shoeCreator = new BottomCreator();
+                        var shoeCreator = new ShoesCreator();
                         shoeCreator.SetParams(_pose);
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(name);
@@ -184,14 +184,14 @@ namespace YOS.Models.Mannequin
                         _closetItemList[1] = _bottom;
                         break;
                     case Type.Accessories:
-                        var accCreator = new BottomCreator();
+                        var accCreator = new AccessoriesCreator();
                         accCreator.SetParams(_pose);
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(item.Name);
                         _closetItemList[2] = _accessory;
                         break;
                     case Type.Shoes:
-                        var shoeCreator = new BottomCreator();
+                        var shoeCreator = new ShoesCreator();
                         shoeCreator.SetParams(_pose);
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(item.Name);

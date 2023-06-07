@@ -29,7 +29,7 @@ namespace YOS.Models.Items
             _style = style;
             _weather = weather;
             _pose = pose;
-           _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
+            _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
             if (!Directory.Exists(_mainPath))
                 throw new ArgumentException("This item has no such gender");
             _texPath = $"{_mainPath}\\Textures";
@@ -47,6 +47,7 @@ namespace YOS.Models.Items
         public void SetColor(Color4 color) => _material.AlbedoColor = color;
         public void SetMaterial(Materials material)
         {
+            _texPath = $"{_mainPath}\\Textures\\{material}";
             SetMaterialMaps();
         }
         private void InitGeometryAndMaterials()
@@ -71,10 +72,10 @@ namespace YOS.Models.Items
                 RenderDisplacementMap = true,
                 RenderNormalMap = true,
                 RenderAmbientOcclusionMap = true,
-                EnableTessellation = false
+                EnableTessellation = false,
+
             };
             _texPath += "\\" + _materials[0].ToString();
-
             SetMaterialMaps();
             GC.Collect();
         }
@@ -115,18 +116,15 @@ namespace YOS.Models.Items
             {
                 _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
             }
-            _material.RenderEnvironmentMap = true;
         }
-
         public object Clone()
         {
             var clone = new AccessoriesItem(Name, Gender, Pose, Style, Weather);
             clone._material = (PBRMaterial)_material.Clone();
-            _geometry.AssignTo(clone._geometry);
+            clone._geometry = _geometry;
             clone._type = _type;
             return clone;
         }
-
         private string _name;
         private Styles _style;
         private Weather _weather;
@@ -139,7 +137,7 @@ namespace YOS.Models.Items
         public Styles Style { get => _style; private set => _style = value; }
         public Weather Weather { get => _weather; private set => _weather = value; }
         public Poses Pose { get => _pose; private set => _pose = value; }
-       public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
+        public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
         public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
         public GenderTypes Gender { get => _gender; private set => _gender = value; }
         public Type Type { get => _type; private set => _type = value; }

@@ -21,6 +21,20 @@
     <None Remove="Resources\Icons\Unvisible_Plane_Solid.png" />
     <None Remove="Resources\Icons\Visible_Plane_Light.png" />
     <None Remove="Resources\Icons\Visible_Plane_Solid.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\A\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Idle\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Running\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_diffuse_1001.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_diffuse_1011.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_normal_1001.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_normal_1011.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\A\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Idle\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Running\RoundGlasses.obj" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_diffuse_1001.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_diffuse_1011.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_normal_1001.png" />
+    <None Remove="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_normal_1011.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.obj" />
@@ -119,6 +133,48 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Environment\Night.dds">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\A\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Idle\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Running\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_diffuse_1011.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Female\Textures\Plastic\RoundGlasses_normal_1011.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\A\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Idle\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Running\RoundGlasses.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_diffuse_1011.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Accessories\RoundGlasses\Male\Textures\Plastic\RoundGlasses_normal_1011.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\Textures\Linen\Linen_diffuse_1001.png">
@@ -419,7 +475,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Items\Accessories\" />
     <Folder Include="Resources\Items\Headwear\" />
     <Folder Include="Resources\Items\Shoes\" />
   </ItemGroup>
