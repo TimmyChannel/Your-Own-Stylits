@@ -90,7 +90,11 @@ namespace YOS.ViewModels
         private void OnApplyMaterial()
         {
             if (_currentModelMaterial != null)
-                _mannequinSettings.SetMaterialToSelectedItem((PBRMaterial)_currentModelMaterial.Clone());
+            {
+                _mannequinSettings.SetMaterialToSelectedItem(_closetItemModel.AvaliableMaterials[0], CurrentModelMaterial.AlbedoColor);
+                Debug.WriteLine("Material was applied");
+            }
+
         }
         private void _mannequinSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {

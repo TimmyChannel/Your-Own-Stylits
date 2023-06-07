@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using YOS.Models.EnumParams;
 using HelixToolkit.Wpf.SharpDX;
+using SharpDX;
 
 namespace YOS.Models.Items
 {
@@ -17,5 +18,8 @@ namespace YOS.Models.Items
         GenderTypes Gender { get; }
         Type Type { get; }
         List<Materials> AvaliableMaterials { get; }
+        public void SetColor(Color4 color);
+        public void SetMaterial(Materials material);
+        
     }
 }

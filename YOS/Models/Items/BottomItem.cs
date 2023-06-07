@@ -45,7 +45,11 @@ namespace YOS.Models.Items
                 if (Directory.Exists($"{_texPath}\\{mat}"))
                     _materials.Add(mat);
         }
-        public void SetColor(Color color) => _material.AlbedoColor = color;
+        public void SetColor(Color4 color) => _material.AlbedoColor = color;
+        public void SetMaterial(Materials material)
+        {
+            SetMaterialMaps();
+        }
         private void InitGeometryAndMaterials()
         {
             var reader = new ObjReader();
@@ -70,6 +74,8 @@ namespace YOS.Models.Items
                 RenderAmbientOcclusionMap = true,
                 EnableTessellation = false
             };
+            _texPath += "\\" + _materials[0].ToString();
+
             SetMaterialMaps();
             GC.Collect();
         }
@@ -80,7 +86,6 @@ namespace YOS.Models.Items
             string metallicRoughnessFileName = "metallicroughness";
             string ambientOcculsionFileName = "ambientocculsion";
             string displacementFileName = "displacement";
-            _texPath += "\\" + _materials[0].ToString();
             string[] diffuseFiles = Directory.GetFiles(_texPath, "*" + diffuseFileName + "*.*");
             string[] normalFiles = Directory.GetFiles(_texPath, "*" + normalFileName + "*.*");
             string[] metallicRoughnessFiles = Directory.GetFiles(_texPath, "*" + metallicRoughnessFileName + "*.*");
@@ -111,7 +116,6 @@ namespace YOS.Models.Items
             {
                 _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
             }
-            _material.RenderEnvironmentMap = true;
         }
         public object Clone()
         {

@@ -64,6 +64,7 @@ namespace YOS.ViewModels
                 MannequinSettings.Instance.Gender = value;
                 OnAllPropertyChanged();
                 UpdateBottom();
+                UpdateTop();
                 Debug.WriteLine($"MannequinGender changed to {value}");
             }
         }
@@ -77,18 +78,10 @@ namespace YOS.ViewModels
                 Position = new Media3D.Point3D(-35, 109, 304)
             };
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Shorts"));
+            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
-            BottomItem item = (BottomItem)MannequinSettings.Instance.Bottom;
-            var mesh = new MeshGeometryModel3D
-            {
-                Geometry = item.Geometry,
-                Material = item.Material,
-                IsThrowingShadow = true
-            };
-            BottomModel.Add(mesh);
-            item.PropertyChanged += Item_PropertyChanged;
-            BottomModel[0].Mouse3DDown += ViewPortControlViewModel_Mouse3DDown;
-            ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
+            UpdateBottom();
+            UpdateTop();
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
             ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 0;
             ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
@@ -104,10 +97,15 @@ namespace YOS.ViewModels
         {
             OnPropertyChanged(e.PropertyName);
         }
-
-        private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private void UpdateAllItems()
         {
             UpdateBottom();
+            UpdateTop();
+
+        }
+        private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            UpdateAllItems();
         }
         private void UpdateBottom()
         {
@@ -123,14 +121,39 @@ namespace YOS.ViewModels
                 };
                 BottomModel.Add(mesh);
                 item.PropertyChanged += Item_PropertyChanged;
-                BottomModel[0].Mouse3DDown += ViewPortControlViewModel_Mouse3DDown;
+                BottomModel[0].Mouse3DDown += BottomModel_Mouse3DDown;
+                ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
             }
             OnPropertyChanged(nameof(BottomModel));
+        } 
+        private void UpdateTop()
+        {
+            TopModel.Clear();
+            TopItem item = (TopItem)MannequinSettings.Instance.Top;
+            if (item != null)
+            {
+                var mesh = new MeshGeometryModel3D
+                {
+                    Geometry = item.Geometry,
+                    Material = item.Material,
+                    IsThrowingShadow = true
+                };
+                TopModel.Add(mesh);
+                item.PropertyChanged += Item_PropertyChanged;
+                TopModel[0].Mouse3DDown += TopModel_Mouse3DDown;
+                ((MeshGeometryModel3D)TopModel[0]).DepthBias = -2;
+            }
+            OnPropertyChanged(nameof(TopModel));
         }
-        private void ViewPortControlViewModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        private void BottomModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Bottom);
             Debug.WriteLine($"Hit to BottomModel");
+        }
+        private void TopModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        {
+            MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
+            Debug.WriteLine($"Hit to TopModel");
         }
 
         //public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)
