@@ -47,6 +47,7 @@ namespace YOS.Models.Items
         public void SetColor(Color4 color) => _material.AlbedoColor = color;
         public void SetMaterial(Materials material)
         {
+            _texPath = $"{_mainPath}\\Textures\\{material}";
             SetMaterialMaps();
         }
         private void InitGeometryAndMaterials()
@@ -71,10 +72,10 @@ namespace YOS.Models.Items
                 RenderDisplacementMap = true,
                 RenderNormalMap = true,
                 RenderAmbientOcclusionMap = true,
-                EnableTessellation = false
+                EnableTessellation = false,
+
             };
             _texPath += "\\" + _materials[0].ToString();
-
             SetMaterialMaps();
             GC.Collect();
         }
@@ -115,7 +116,6 @@ namespace YOS.Models.Items
             {
                 _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
             }
-            _material.RenderEnvironmentMap = true;
         }
         public object Clone()
         {

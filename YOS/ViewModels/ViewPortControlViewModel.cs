@@ -78,9 +78,9 @@ namespace YOS.ViewModels
             };
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
+            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
             UpdateAllItems();
-
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
             ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 0;
             ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
@@ -102,6 +102,7 @@ namespace YOS.ViewModels
         {
             UpdateBottom();
             UpdateTop();
+            UpdateAccessory();
         }
         private void Bottom_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
@@ -129,6 +130,29 @@ namespace YOS.ViewModels
                 ((MeshGeometryModel3D)Bottom[0]).DepthBias = -1;
             }
             OnPropertyChanged(nameof(Bottom));
+        }    
+        private void Accessory_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            UpdateAccessory();
+        }
+        private void UpdateAccessory()
+        {
+            Accessory.Clear();
+            AccessoriesItem item = (AccessoriesItem)MannequinSettings.Instance.Accessory;
+            if (item != null)
+            {
+                var mesh = new MeshGeometryModel3D
+                {
+                    Geometry = item.Geometry,
+                    Material = item.Material,
+                    IsThrowingShadow = true
+                };
+                Accessory.Add(mesh);
+                item.PropertyChanged += Accessory_PropertyChanged;
+                Accessory[0].Mouse3DDown += Accessory_Mouse3DDown;
+                ((MeshGeometryModel3D)Accessory[0]).DepthBias = -1;
+            }
+            OnPropertyChanged(nameof(Accessory));
         }
         private void UpdateTop()
         {
@@ -157,6 +181,11 @@ namespace YOS.ViewModels
         private void Top_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
+            Debug.WriteLine($"Hit to Top");
+        }    
+        private void Accessory_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        {
+            MannequinSettings.Instance.SelectItemByType(Models.Type.Accessories);
             Debug.WriteLine($"Hit to Top");
         }
 
