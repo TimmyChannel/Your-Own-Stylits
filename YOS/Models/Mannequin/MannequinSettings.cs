@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Collections.ObjectModel;
 using HelixToolkit.Wpf.SharpDX;
 using HelixToolkit.Wpf.SharpDX.Model;
+using SharpDX;
 
 namespace YOS.Models.Mannequin
 {
@@ -49,7 +50,7 @@ namespace YOS.Models.Mannequin
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
         {
-            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Running);
+            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Idle);
             _pose = _mannequin.Pose;
             _gender = _mannequin.Gender;
             _closetItemList = new ObservableCollection<IClosetItemModel>()
@@ -217,27 +218,67 @@ namespace YOS.Models.Mannequin
             {
                 case Type.Top:
                     if (Top == null) return;
-                    Top.Material = material;
+                    Top.Material = SelectedItem.Material;
                     OnPropertyChanged(nameof(Top));
                     break;
                 case Type.Bottom:
                     if (Bottom == null) return;
-                    Bottom.Material = material;
+                    Bottom.Material = SelectedItem.Material;
                     OnPropertyChanged(nameof(Bottom));
                     break;
                 case Type.Accessories:
                     if (Accessory == null) return;
-                    Accessory.Material = material;
+                    Accessory.Material = SelectedItem.Material;
                     OnPropertyChanged(nameof(Accessory));
                     break;
                 case Type.Shoes:
                     if (Shoes == null) return;
-                    Shoes.Material = material;
+                    Shoes.Material = SelectedItem.Material;
                     OnPropertyChanged(nameof(Shoes));
                     break;
                 case Type.Headwear:
                     if (Headwear == null) return;
-                    Headwear.Material = material;
+                    Headwear.Material = SelectedItem.Material;
+                    OnPropertyChanged(nameof(Headwear));
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void SetMaterialToSelectedItem(Materials material, Color4 color)
+        {
+            SelectedItem.SetColor(color);
+            SelectedItem.SetMaterial(material);
+            switch (SelectedItem.Type)
+            {
+                case Type.Top:
+                    if (Top == null) return;
+                    Top.SetColor(color);
+                    Top.SetMaterial(material);
+                    OnPropertyChanged(nameof(Top));
+                    break;
+                case Type.Bottom:
+                    if (Bottom == null) return;
+                    Bottom.SetColor(color);
+                    Bottom.SetMaterial(material); 
+                    OnPropertyChanged(nameof(Bottom));
+                    break;
+                case Type.Accessories:
+                    if (Accessory == null) return;
+                    Accessory.SetColor(color);
+                    Accessory.SetMaterial(material);
+                    OnPropertyChanged(nameof(Accessory));
+                    break;
+                case Type.Shoes:
+                    if (Shoes == null) return;
+                    Shoes.SetColor(color);
+                    Shoes.SetMaterial(material); 
+                    OnPropertyChanged(nameof(Shoes));
+                    break;
+                case Type.Headwear:
+                    if (Headwear == null) return;
+                    Headwear.SetColor(color);
+                    Headwear.SetMaterial(material);
                     OnPropertyChanged(nameof(Headwear));
                     break;
                 default:
