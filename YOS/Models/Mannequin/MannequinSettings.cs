@@ -50,7 +50,7 @@ namespace YOS.Models.Mannequin
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
         {
-            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.Idle);
+            _mannequin = new RealisticModel("Joe", true, GenderTypes.Male, Poses.A);
             _pose = _mannequin.Pose;
             _gender = _mannequin.Gender;
             _closetItemList = new ObservableCollection<IClosetItemModel>()
@@ -84,7 +84,7 @@ namespace YOS.Models.Mannequin
                 default:
                     break;
             }
-            OnPropertyChanged("SelectedItem");
+            OnPropertyChanged(nameof(SelectedItem));
         }
         public GenderTypes Gender
         {
@@ -209,40 +209,6 @@ namespace YOS.Models.Mannequin
             catch (Exception)
             {
                 return;
-            }
-        }
-        public void SetMaterialToSelectedItem(PBRMaterial material)
-        {
-            SelectedItem.Material = material;
-            switch (SelectedItem.Type)
-            {
-                case Type.Top:
-                    if (Top == null) return;
-                    Top.Material = SelectedItem.Material;
-                    OnPropertyChanged(nameof(Top));
-                    break;
-                case Type.Bottom:
-                    if (Bottom == null) return;
-                    Bottom.Material = SelectedItem.Material;
-                    OnPropertyChanged(nameof(Bottom));
-                    break;
-                case Type.Accessories:
-                    if (Accessory == null) return;
-                    Accessory.Material = SelectedItem.Material;
-                    OnPropertyChanged(nameof(Accessory));
-                    break;
-                case Type.Shoes:
-                    if (Shoes == null) return;
-                    Shoes.Material = SelectedItem.Material;
-                    OnPropertyChanged(nameof(Shoes));
-                    break;
-                case Type.Headwear:
-                    if (Headwear == null) return;
-                    Headwear.Material = SelectedItem.Material;
-                    OnPropertyChanged(nameof(Headwear));
-                    break;
-                default:
-                    break;
             }
         }
         public void SetMaterialToSelectedItem(Materials material, Color4 color)

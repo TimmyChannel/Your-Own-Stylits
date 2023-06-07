@@ -47,6 +47,7 @@ namespace YOS.Models.Items
         public void SetColor(Color4 color) => _material.AlbedoColor = color;
         public void SetMaterial(Materials material)
         {
+            _texPath = $"{_mainPath}\\Textures\\{material}";
             SetMaterialMaps();
         }
         private void InitGeometryAndMaterials()
