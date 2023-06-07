@@ -35,11 +35,11 @@ namespace YOS.ViewModels
     {
         public MeshGeometryModel3D Target { set; get; }
         public ObservableElement3DCollection MannequinModel => MannequinSettings.Instance.MannequinModel;
-        public ObservableElement3DCollection BottomModel { get; private set; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection TopModel { get; private set; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection AccessoryModel { get; private set; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection ShoesModel { get; private set; } = new ObservableElement3DCollection();
-        public ObservableElement3DCollection HeadwearModel { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection Bottom { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection Top { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection Accessory { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection Shoes { get; private set; } = new ObservableElement3DCollection();
+        public ObservableElement3DCollection Headwear { get; private set; } = new ObservableElement3DCollection();
         public MeshGeometry3D Floor { get; private set; }
         public PBRMaterial FloorMaterial => ViewPortSettings.Instance.CurrentFloorTexture;
         public Camera Camera { init; get; }
@@ -63,8 +63,7 @@ namespace YOS.ViewModels
             {
                 MannequinSettings.Instance.Gender = value;
                 OnAllPropertyChanged();
-                UpdateBottom();
-                UpdateTop();
+                UpdateAllItems();
                 Debug.WriteLine($"MannequinGender changed to {value}");
             }
         }
@@ -77,11 +76,11 @@ namespace YOS.ViewModels
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
                 Position = new Media3D.Point3D(-35, 109, 304)
             };
-            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Shorts"));
+            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
-            UpdateBottom();
-            UpdateTop();
+            UpdateAllItems();
+
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
             ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 0;
             ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
@@ -96,20 +95,25 @@ namespace YOS.ViewModels
         private void MannequinSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             OnPropertyChanged(e.PropertyName);
+            Debug.WriteLine("Property " + e.PropertyName + " changed");
+            UpdateAllItems();
         }
         private void UpdateAllItems()
         {
             UpdateBottom();
             UpdateTop();
-
         }
-        private void Item_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        private void Bottom_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            UpdateAllItems();
+            UpdateBottom();
+        }
+        private void Top_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            UpdateTop();
         }
         private void UpdateBottom()
         {
-            BottomModel.Clear();
+            Bottom.Clear();
             BottomItem item = (BottomItem)MannequinSettings.Instance.Bottom;
             if (item != null)
             {
@@ -119,16 +123,16 @@ namespace YOS.ViewModels
                     Material = item.Material,
                     IsThrowingShadow = true
                 };
-                BottomModel.Add(mesh);
-                item.PropertyChanged += Item_PropertyChanged;
-                BottomModel[0].Mouse3DDown += BottomModel_Mouse3DDown;
-                ((MeshGeometryModel3D)BottomModel[0]).DepthBias = -1;
+                Bottom.Add(mesh);
+                item.PropertyChanged += Bottom_PropertyChanged;
+                Bottom[0].Mouse3DDown += Bottom_Mouse3DDown;
+                ((MeshGeometryModel3D)Bottom[0]).DepthBias = -1;
             }
-            OnPropertyChanged(nameof(BottomModel));
-        } 
+            OnPropertyChanged(nameof(Bottom));
+        }
         private void UpdateTop()
         {
-            TopModel.Clear();
+            Top.Clear();
             TopItem item = (TopItem)MannequinSettings.Instance.Top;
             if (item != null)
             {
@@ -138,44 +142,44 @@ namespace YOS.ViewModels
                     Material = item.Material,
                     IsThrowingShadow = true
                 };
-                TopModel.Add(mesh);
-                item.PropertyChanged += Item_PropertyChanged;
-                TopModel[0].Mouse3DDown += TopModel_Mouse3DDown;
-                ((MeshGeometryModel3D)TopModel[0]).DepthBias = -2;
+                Top.Add(mesh);
+                item.PropertyChanged += Top_PropertyChanged;
+                Top[0].Mouse3DDown += Top_Mouse3DDown;
+                ((MeshGeometryModel3D)Top[0]).DepthBias = -2;
             }
-            OnPropertyChanged(nameof(TopModel));
+            OnPropertyChanged(nameof(Top));
         }
-        private void BottomModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        private void Bottom_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Bottom);
-            Debug.WriteLine($"Hit to BottomModel");
+            Debug.WriteLine($"Hit to Bottom");
         }
-        private void TopModel_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        private void Top_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
-            Debug.WriteLine($"Hit to TopModel");
+            Debug.WriteLine($"Hit to Top");
         }
 
         //public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)
         //{
         //    if (e.HitTestResult?.ModelHit is MeshGeometryModel3D m)
         //    {
-        //        if (BottomModel.Any() && m.Geometry == ((MeshGeometryModel3D)BottomModel.First()).Geometry)
+        //        if (Bottom.Any() && m.Geometry == ((MeshGeometryModel3D)Bottom.First()).Geometry)
         //        {
         //            //Target = null;
         //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
         //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
         //            MannequinSettings.Instance.SelectItemByType(Models.Type.Bottom);
-        //            Debug.WriteLine($"Hit to BottomModel");
+        //            Debug.WriteLine($"Hit to Bottom");
         //            return;
         //        }
-        //        if (TopModel.Any() && m.Geometry == ((MeshGeometryModel3D)TopModel.First()).Geometry)
+        //        if (Top.Any() && m.Geometry == ((MeshGeometryModel3D)Top.First()).Geometry)
         //        {
         //            //Target = null;
         //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
         //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
         //            MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
-        //            Debug.WriteLine($"Hit to TopModel");
+        //            Debug.WriteLine($"Hit to Top");
         //            return;
         //        }
         //        if (ShoesModel.Any() && m.Geometry == ((MeshGeometryModel3D)ShoesModel.First()).Geometry)
@@ -259,7 +263,7 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.A;
-                UpdateBottom();
+                UpdateAllItems();
             }
         }
         private ICommand _changeMannequinPoseToAComm;
@@ -271,7 +275,7 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.Idle;
-                UpdateBottom();
+                UpdateAllItems();
             }
         }
         private ICommand _changeMannequinPoseToIdleComm;
@@ -283,7 +287,7 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.Running;
-                UpdateBottom();
+                UpdateAllItems();
             }
         }
         private ICommand _changeMannequinPoseToRunningComm;
@@ -367,6 +371,7 @@ namespace YOS.ViewModels
         private ICommand _changeviewPortLightTo3PointComm;
         public ICommand ChangeviewPortLightTo3PointComm => _changeviewPortLightTo3PointComm ??= new RelayCommand(OnLight3PointChange);
         #endregion
+        #region GroundParams
         public void OnChangeGroundVisibility()
         {
             if (ViewPortSettings.Instance.GroundIsVisible)
@@ -378,6 +383,7 @@ namespace YOS.ViewModels
         }
         private ICommand _changeGroundVisibilityComm;
         public ICommand ChangeGroundVisibilityComm => _changeGroundVisibilityComm ??= new RelayCommand(OnChangeGroundVisibility);
+        #endregion
 
     }
 }

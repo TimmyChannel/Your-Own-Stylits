@@ -25,6 +25,17 @@ namespace YOS.ViewModels
         private SolidColorBrush _oldBrush = new SolidColorBrush(Colors.White);
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.Orange);
         private System.Windows.Media.Color _selectedColor = Colors.Orange;
+        private Materials _selectedmaterial;
+        public Materials SelectedMaterial
+        {
+            get => _selectedmaterial;
+            set
+            {
+                _closetItemModel.SetMaterial(value);
+                _selectedmaterial = value;
+                OnPropertyChanged(nameof(CurrentModelMaterial));
+            }
+        }
         public List<Materials> Materials
         {
             get
@@ -50,8 +61,7 @@ namespace YOS.ViewModels
                 _colorBrush = value;
                 SelectedColor = value.Color;
                 var color = value.Color.ToColor4();
-                if (CurrentModelMaterial != null)
-                    CurrentModelMaterial.AlbedoColor = color;
+                _closetItemModel.SetColor(color);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CurrentModelMaterial));
             }
@@ -91,7 +101,7 @@ namespace YOS.ViewModels
         {
             if (_currentModelMaterial != null)
             {
-                _mannequinSettings.SetMaterialToSelectedItem(_closetItemModel.AvaliableMaterials[0], CurrentModelMaterial.AlbedoColor);
+                _mannequinSettings.SetMaterialToSelectedItem(SelectedMaterial, CurrentModelMaterial.AlbedoColor);
                 Debug.WriteLine("Material was applied");
             }
 

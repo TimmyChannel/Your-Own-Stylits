@@ -44,6 +44,7 @@ namespace YOS.Views
             if (Bottom.ItemsSource.Any() && ((MeshGeometryModel3D)Bottom.ItemsSource[0]).Geometry.Bound.Contains(pos) == ContainmentType.Contains)
             {
                 var model = ((MeshGeometryModel3D)Bottom.ItemsSource[0]);
+                ((PBRMaterial)illuminatedModel.Material).EmissiveColor = new Color4(0);
                 ((PBRMaterial)model.Material).EmissiveColor = new Color4(1, .831f, .682f, 1);
                 illuminatedModel = model;
                 Debug.WriteLine("Cursor in the Bottom model boundaries");
@@ -53,6 +54,7 @@ namespace YOS.Views
             if (Top.ItemsSource.Any() && ((MeshGeometryModel3D)Top.ItemsSource[0]).Geometry.Bound.Contains(pos) == ContainmentType.Contains)
             {
                 var model = ((MeshGeometryModel3D)Top.ItemsSource[0]);
+                ((PBRMaterial)illuminatedModel.Material).EmissiveColor = new Color4(0);
                 ((PBRMaterial)model.Material).EmissiveColor = new Color4(1, .831f, .682f, 1);
                 illuminatedModel = model;
                 Debug.WriteLine("Cursor in the Top model boundaries");
@@ -62,6 +64,7 @@ namespace YOS.Views
             if (Shoes.ItemsSource.Any() && ((MeshGeometryModel3D)Shoes.ItemsSource[0]).Geometry.Bound.Contains(pos) == ContainmentType.Contains)
             {
                 var model = ((MeshGeometryModel3D)Shoes.ItemsSource[0]);
+                ((PBRMaterial)illuminatedModel.Material).EmissiveColor = new Color4(0);
                 ((PBRMaterial)model.Material).EmissiveColor = new Color4(1, .831f, .682f, 1);
                 illuminatedModel = model;
                 Debug.WriteLine("Cursor in the Shoes model boundaries");
@@ -71,6 +74,7 @@ namespace YOS.Views
             if (Headwear.ItemsSource.Any() && ((MeshGeometryModel3D)Headwear.ItemsSource[0]).Geometry.Bound.Contains(pos) == ContainmentType.Contains)
             {
                 var model = ((MeshGeometryModel3D)Headwear.ItemsSource[0]);
+                ((PBRMaterial)illuminatedModel.Material).EmissiveColor = new Color4(0);
                 ((PBRMaterial)model.Material).EmissiveColor = new Color4(1, .831f, .682f, 1);
                 illuminatedModel = model;
                 Debug.WriteLine("Cursor in the Headwear model boundaries");
@@ -80,6 +84,7 @@ namespace YOS.Views
             if (Accessory.ItemsSource.Any() && ((MeshGeometryModel3D)Accessory.ItemsSource[0]).Geometry.Bound.Contains(pos) == ContainmentType.Contains)
             {
                 var model = ((MeshGeometryModel3D)Accessory.ItemsSource[0]);
+                ((PBRMaterial)illuminatedModel.Material).EmissiveColor = new Color4(0);
                 ((PBRMaterial)model.Material).EmissiveColor = new Color4(1, .831f, .682f, 1);
                 illuminatedModel = model;
                 Debug.WriteLine("Cursor in the Accessory model boundaries");

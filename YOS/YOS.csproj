@@ -23,25 +23,58 @@
     <None Remove="Resources\Icons\Visible_Plane_Solid.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Linen_normal_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.mtl" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts.obj" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts_diffuse_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\A\Shorts_normal_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.mtl" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.obj" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_diffuse_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_normal_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\RunningPose_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Shorts\RunningPose_normal_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts.mtl" />
     <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts.obj" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts_diffuse_1001.png" />
-    <None Remove="Resources\Items\Bottom\Shorts\Male\Running\Shorts_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\A\Trousers.obj" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Idle\Trousers.obj" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Running\Trousers.obj" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Cotton\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Cotton\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Denim\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Denim\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Linen\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Linen\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Polyester\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Polyester\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Silk\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Silk\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Wool\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Female\Textures\Wool\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\A\Trousers.obj" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Cotton\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Cotton\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Denim\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Denim\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Linen\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Linen\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Polyester\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Polyester\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Silk\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Silk\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_diffuse_1001.png" />
+    <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\A\Tshirt.obj" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Idle\Tshirt.obj" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Running\Tshirt.obj" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Cotton\Tshirt_diffuse_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Cotton\Tshirt_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Linen\sad_diffuse_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Linen\sad_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Polyester\poly_diffuse_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Female\Textures\Polyester\poly_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\A\Tshirt.obj" />
     <None Remove="Resources\Items\Top\Tshirt\Male\Idle\Tshirt.mtl" />
     <None Remove="Resources\Items\Top\Tshirt\Male\Idle\Tshirt.obj" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\Running\Tshirt.obj" />
     <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Cotton\Tshirt_diffuse_1001.png" />
     <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Cotton\Tshirt_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Linen\sad_diffuse_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Linen\sad_normal_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Polyester\poly_diffuse_1001.png" />
+    <None Remove="Resources\Items\Top\Tshirt\Male\Textures\Polyester\poly_normal_1001.png" />
     <None Remove="Resources\Mannequins\Male\APose.mtl" />
     <None Remove="Resources\Mannequins\Male\APose.obj" />
     <None Remove="Resources\Mannequins\Male\arm_39499.jpg" />
@@ -94,52 +127,151 @@
     <Content Include="Resources\Items\Bottom\Shorts\Male\Textures\Linen\Linen_normal_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.fbx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts.obj">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts_diffuse_1001.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\A\Shorts_normal_1001.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.mtl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_diffuse_1001.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Idle\Shorts_normal_1001.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts.mtl">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts_diffuse_1001.png">
+    <Content Include="Resources\Items\Bottom\Trousers\Female\A\Trousers.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Items\Bottom\Shorts\Male\Running\Shorts_normal_1001.png">
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Idle\Trousers.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Running\Trousers.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Cotton\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Cotton\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Denim\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Denim\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Linen\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Linen\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Polyester\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Polyester\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Silk\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Silk\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Wool\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Female\Textures\Wool\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\A\Trousers.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Cotton\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Cotton\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Denim\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Denim\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Linen\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Linen\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Polyester\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Polyester\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Silk\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Silk\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\A\Tshirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Idle\Tshirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Running\Tshirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Cotton\Tshirt_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Cotton\Tshirt_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Linen\sad_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Linen\sad_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Polyester\poly_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Female\Textures\Polyester\poly_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\A\Tshirt.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Top\Tshirt\Male\Idle\Tshirt.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\Running\Tshirt.obj">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Cotton\Tshirt_diffuse_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Cotton\Tshirt_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Linen\sad_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Linen\sad_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Polyester\poly_diffuse_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Top\Tshirt\Male\Textures\Polyester\poly_normal_1001.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Mannequins\Female\APose.mtl">
