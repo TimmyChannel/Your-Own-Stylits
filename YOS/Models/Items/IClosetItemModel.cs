@@ -21,6 +21,6 @@ namespace YOS.Models.Items
         public void SetColor(Color4 color);
         public void SetMaterial(Materials material);
         public Materials TextureMaterial{ get; }
-        public Color4 Color4 { get; }
+        public Color4 Color { get; }
     }
 }
