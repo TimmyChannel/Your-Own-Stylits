@@ -80,7 +80,7 @@ namespace YOS.ViewModels
             //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
             //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
             //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
-            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("HeeledShoes"));
+            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("WomenGlasses"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
             UpdateAllItems();
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
