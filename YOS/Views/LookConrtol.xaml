@@ -116,12 +116,12 @@
                                           BorderBrush="White" 
                                           Foreground="White" 
                                           BorderThickness="1">
-                                        <GroupBox.Effect>
+                                    <!--GroupBox.Effect>
                                         <DropShadowEffect BlurRadius="15" 
                                                           ShadowDepth="0" 
                                                           Opacity="1" 
                                                           Color="WhiteSmoke"/>
-                                        </GroupBox.Effect>
+                                        </GroupBox.Effect-->
                                     <Grid>
                                         <StackPanel>
                                             
@@ -147,12 +147,12 @@
                                           BorderBrush="White" 
                                           Foreground="White" 
                                           BorderThickness="1">
-                                    <GroupBox.Effect>
+                                    <!--GroupBox.Effect>
                                         <DropShadowEffect BlurRadius="15" 
                                                           ShadowDepth="0" 
                                                           Opacity="1" 
                                                           Color="WhiteSmoke"/>
-                                    </GroupBox.Effect>
+                                    </GroupBox.Effect-->
                                     <Grid>
                                         <StackPanel>
 
@@ -178,12 +178,12 @@
                                           BorderBrush="White" 
                                           Foreground="White" 
                                           BorderThickness="1">
-                                    <GroupBox.Effect>
+                                    <!--GroupBox.Effect>
                                         <DropShadowEffect BlurRadius="15" 
                                                           ShadowDepth="0" 
                                                           Opacity="1" 
                                                           Color="WhiteSmoke"/>
-                                    </GroupBox.Effect>
+                                    </GroupBox.Effect-->
                                     <Grid>
                                         <StackPanel>
 
@@ -205,7 +205,8 @@
                                         CornerRadius="10"
                                         Background="White">
                                     <Button Content="Применить"
-                                            Background="Transparent"/>
+                                            Background="Transparent"
+                                            Command="{Binding GenerateLook}"/>
                                 </Border>
 
                             </StackPanel>
