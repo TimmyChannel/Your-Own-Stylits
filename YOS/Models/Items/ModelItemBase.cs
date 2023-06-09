@@ -129,6 +129,7 @@ namespace YOS.Models.Items
             {
                 _material.DisplacementMap = TextureModel.Create(displacementFiles[0]);
             }
+            
         }
     }
 }
