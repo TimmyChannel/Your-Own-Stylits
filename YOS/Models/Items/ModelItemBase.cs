@@ -9,29 +9,29 @@ namespace YOS.Models.Items
 {
     public abstract class ModelItemBase : OnPropertyChangedClass, IClosetItemModel
     {
-        private string _mainPath;
-        private string _texPath;
-        private string _modelPath;
-        private List<Materials> _materials;
-        private string _name;
-        private Styles _style;
-        private Weather _weather;
-        private Poses _pose;
-        private GenderTypes _gender;
-        private Type _type;
-        private PBRMaterial _material;
-        private Geometry3D _geometry;
-        public string Name { get => _name; private set => _name = value; }
-        public Styles Style { get => _style; private set => _style = value; }
-        public Weather Weather { get => _weather; private set => _weather = value; }
-        public Poses Pose { get => _pose; private set => _pose = value; }
+        protected string _mainPath;
+        protected string _texPath;
+        protected string _modelPath;
+        protected List<Materials> _materials;
+        protected string _name;
+        protected Styles _style;
+        protected Weather _weather;
+        protected Poses _pose;
+        protected GenderTypes _gender;
+        protected Type _type;
+        protected PBRMaterial _material;
+        protected Geometry3D _geometry;
+        public string Name { get => _name; protected set => _name = value; }
+        public Styles Style { get => _style; protected set => _style = value; }
+        public Weather Weather { get => _weather; protected set => _weather = value; }
+        public Poses Pose { get => _pose; protected set => _pose = value; }
         public PBRMaterial Material { get => _material; set { _material = value; OnPropertyChanged(); } }
-        public Geometry3D Geometry { get => _geometry; private set => _geometry = value; }
-        public GenderTypes Gender { get => _gender; private set => _gender = value; }
-        public Type Type { get => _type; private set => _type = value; }
+        public Geometry3D Geometry { get => _geometry; protected set => _geometry = value; }
+        public GenderTypes Gender { get => _gender; protected set => _gender = value; }
+        public Type Type { get => _type; protected set => _type = value; }
         public List<Materials> AvaliableMaterials => _materials;
 
-        public Materials TextureMaterial { get; private set; }
+        public Materials TextureMaterial { get; protected set; }
 
         public Color4 Color4 => _material.AlbedoColor;
         public ModelItemBase(string name,
@@ -40,20 +40,11 @@ namespace YOS.Models.Items
           Styles style = Styles.Casual,
           Weather weather = Weather.Indoor)
         {
-            var i = ClosetItemList.GetItem(name);
-            _name = i.Name;
-            _type = i.Type;
+            _name = name;
             _gender = gender;
             _style = style;
             _weather = weather;
-            _pose = pose;
-            _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
-            if (!Directory.Exists(_mainPath))
-                throw new ArgumentException("This item has no such gender");
-            _texPath = $"{_mainPath}\\Textures";
-            _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
-            InitAvaliableMaterials();
-            InitGeometryAndMaterials();
+            _pose = pose;            
         }
         public object Clone()
         {
@@ -70,14 +61,14 @@ namespace YOS.Models.Items
             TextureMaterial = material;
             SetMaterialMaps();
         }
-        private void InitAvaliableMaterials()
+        protected void InitAvaliableMaterials()
         {
             _materials = new List<Materials>();
             foreach (var mat in (Materials[])Enum.GetValues(typeof(Materials)))
                 if (Directory.Exists($"{_texPath}\\{mat}"))
                     _materials.Add(mat);
         }
-        private void InitGeometryAndMaterials()
+        protected void InitGeometryAndMaterials()
         {
             var reader = new ObjReader();
 
@@ -107,7 +98,7 @@ namespace YOS.Models.Items
             SetMaterialMaps();
             GC.Collect();
         }
-        private void SetMaterialMaps()
+        protected void SetMaterialMaps()
         {
             string diffuseFileName = "diffuse";
             string normalFileName = "normal";
