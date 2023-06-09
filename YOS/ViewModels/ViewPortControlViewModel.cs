@@ -77,10 +77,10 @@ namespace YOS.ViewModels
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
                 Position = new Media3D.Point3D(-35, 109, 304)
             };
-            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
-            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
-            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
-            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Sneakers"));
+            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
+            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
+            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
+            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("HeeledShoes"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
             UpdateAllItems();
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;

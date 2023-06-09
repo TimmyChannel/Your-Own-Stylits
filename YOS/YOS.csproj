@@ -72,6 +72,21 @@
     <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Silk\Trousers_normal_1001.png" />
     <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_diffuse_1001.png" />
     <None Remove="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_normal_1001.png" />
+    <None Remove="Resources\Items\Shoes\HeeledShoes\Female\A\HeeledShoes.obj" />
+    <None Remove="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\diffuse.png" />
+    <None Remove="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\metallicroughness.png" />
+    <None Remove="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\normal.png" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\A\OxfordShoes.obj" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Idle\OxfordShoes.obj" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Running\OxfordShoes.obj" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\1001_normal.png" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\ambientocculsion.jpeg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\ambientocculsion.jpg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\diffuse.jpeg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\diffuse.jpg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\metallicroughness.jpeg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\metallicroughness.jpg" />
+    <None Remove="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\normal.jpg" />
     <None Remove="Resources\Items\Shoes\Sneakers\Female\A\Sneakers.obj" />
     <None Remove="Resources\Items\Shoes\Sneakers\Female\Idle\Sneakers.obj" />
     <None Remove="Resources\Items\Shoes\Sneakers\Female\Running\Sneakers.obj" />
@@ -294,6 +309,39 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Bottom\Trousers\Male\Textures\Wool\Trousers_normal_1001.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\HeeledShoes\Female\A\HeeledShoes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\diffuse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\metallicroughness.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\HeeledShoes\Female\Textures\Leather\normal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\A\OxfordShoes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Idle\OxfordShoes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Running\OxfordShoes.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\ambientocculsion.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\diffuse.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\metallicroughness.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Items\Shoes\OxfordShoes\Male\Textures\Leather\normal.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Items\Shoes\Sneakers\Female\A\Sneakers.obj">
