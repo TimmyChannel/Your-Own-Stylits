@@ -33,7 +33,7 @@ namespace YOS.Models.Items
 
         public Materials TextureMaterial { get; protected set; }
 
-        public Color4 Color4 => _material.AlbedoColor;
+        public Color4 Color => _material.AlbedoColor;
         public ModelItemBase(string name,
           GenderTypes gender = GenderTypes.Male,
           Poses pose = Poses.Idle,
@@ -46,14 +46,8 @@ namespace YOS.Models.Items
             _weather = weather;
             _pose = pose;            
         }
-        public object Clone()
-        {
-            var clone = new AccessoriesItem(Name, Gender, Pose, Style, Weather);
-            clone._material = (PBRMaterial)_material.Clone();
-            clone._geometry = _geometry;
-            clone._type = _type;
-            return clone;
-        }
+        public abstract object Clone();
+       
         public void SetColor(Color4 color) => _material.AlbedoColor = color;
         public void SetMaterial(Materials material)
         {

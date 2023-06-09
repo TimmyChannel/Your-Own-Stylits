@@ -112,7 +112,11 @@ namespace YOS.Models.Mannequin
             {
                 if (_closetItemList[i] != null)
                 {
+                    var prevColor = _closetItemList[i].Color;
+                    var prevMat = _closetItemList[i].TextureMaterial;
                     AddClosetItem(ClosetItemList.GetItem(_closetItemList[i].Name));
+                    _closetItemList[i].SetColor(prevColor);
+                    _closetItemList[i].SetMaterial(prevMat);
                 }
             }
         }
@@ -228,7 +232,7 @@ namespace YOS.Models.Mannequin
                 case Type.Bottom:
                     if (Bottom == null) return;
                     Bottom.SetColor(color);
-                    Bottom.SetMaterial(material); 
+                    Bottom.SetMaterial(material);
                     OnPropertyChanged(nameof(Bottom));
                     break;
                 case Type.Accessories:
@@ -240,7 +244,7 @@ namespace YOS.Models.Mannequin
                 case Type.Shoes:
                     if (Shoes == null) return;
                     Shoes.SetColor(color);
-                    Shoes.SetMaterial(material); 
+                    Shoes.SetMaterial(material);
                     OnPropertyChanged(nameof(Shoes));
                     break;
                 case Type.Headwear:

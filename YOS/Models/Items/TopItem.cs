@@ -27,6 +27,13 @@ namespace YOS.Models.Items
             InitAvaliableMaterials();
             InitGeometryAndMaterials();
         }
-
+        public override object Clone()
+        {
+            var clone = new TopItem(Name, Gender, Pose, Style, Weather);
+            clone._material = (PBRMaterial)_material.Clone();
+            clone._geometry = _geometry;
+            clone._type = _type;
+            return clone;
+        }
     }
 }
