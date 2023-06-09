@@ -15,47 +15,23 @@
 
     <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0"
-              Background="NavajoWhite">
-
-            <Menu Background="NavajoWhite"
-                  FontFamily="ubuntu"
-                  FontSize="14">
-                <MenuItem Header="Файл"></MenuItem>
-                <MenuItem Header="Вид"></MenuItem>
-                <MenuItem Header=" "
-                          Margin="5"
-                          IsEnabled="False"></MenuItem>
-
-            </Menu>
-            <!--Label Content="{Binding ActualWidth, ElementName=RightColumn, Mode=OneWay}" HorizontalAlignment="Center"/-->
-
-        </Grid>
-
-        <Grid Grid.Row="1">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*"
                                   MinWidth="200" />
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="0.5*" />
-            </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0"
+        <Grid Grid.Column="0"
                   Background="#FF202020"
                   MinWidth="30">
-                <local:ModelColorControl VerticalAlignment="Stretch"
+            <local:ModelColorControl VerticalAlignment="Stretch"
                                          HorizontalAlignment="Stretch" />
-            </Grid>
+        </Grid>
 
-            <GridSplitter Grid.Column="1"
+        <GridSplitter Grid.Column="1"
                           BorderThickness="0"
                           Background="#FF202020"
                           ShowsPreview="True"
@@ -63,27 +39,27 @@
                           HorizontalAlignment="Stretch"
                           VerticalAlignment="Stretch" />
 
-            <GridSplitter  Grid.Column="3"
+        <Grid Grid.Column="2"
+                  Background="AntiqueWhite">
+            <local:ViewPortControl />
+        </Grid>
+
+        <GridSplitter  Grid.Column="3"
                            BorderThickness="0"
                            Background="#FF202020"
                            ShowsPreview="True"
                            Width="5"
                            HorizontalAlignment="Stretch"
-                           VerticalAlignment="Stretch" />
+                           VerticalAlignment="Stretch" 
+                       />
 
-            <Grid Grid.Column="4"
+        <Grid Grid.Column="4"
                   Background="#FF202020"
                   MinWidth="30">
-                <local:LookConrtol VerticalAlignment="Stretch"
+            <local:LookConrtol VerticalAlignment="Stretch"
                                    HorizontalAlignment="Stretch" />
-            </Grid>
-
-            <Grid Grid.Column="2"
-                  Background="AntiqueWhite">
-                <local:ViewPortControl />
-            </Grid>
         </Grid>
-
+        
     </Grid>
 
 </Window>

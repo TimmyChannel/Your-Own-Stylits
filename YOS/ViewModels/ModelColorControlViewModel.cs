@@ -26,6 +26,9 @@ namespace YOS.ViewModels
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.Orange);
         private System.Windows.Media.Color _selectedColor = Colors.Orange;
         private Materials _selectedmaterial;
+        
+        #region Props
+
         public Materials SelectedMaterial
         {
             get => _selectedmaterial;
@@ -85,6 +88,7 @@ namespace YOS.ViewModels
             }
         }
         public Camera Camera { get; init; }
+        #endregion
         public ModelColorControlViewModel()
         {
             _mannequinSettings.PropertyChanged += _mannequinSettings_PropertyChanged;
@@ -95,6 +99,7 @@ namespace YOS.ViewModels
             };
 
         }
+
         private ICommand _applyMaterial;
         public ICommand ApplyMaterial => _applyMaterial ??= new RelayCommand(OnApplyMaterial);
         private void OnApplyMaterial()
@@ -106,7 +111,6 @@ namespace YOS.ViewModels
                 _mannequinSettings.SetMaterialToSelectedItem(SelectedMaterial, CurrentModelMaterial.AlbedoColor);
                 Debug.WriteLine("Material was applied");
             }
-
         }
         private void _mannequinSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
