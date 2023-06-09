@@ -114,6 +114,12 @@ namespace YOS.ViewModels
             _currentModelMaterial = _closetItemModel.Material;
             _currentModelMaterial.EmissiveColor = new Color4(0);
             _colorBrush.Color = _currentModelMaterial.AlbedoColor.ToColor();
+            var oldPos = Camera.Position;
+            var itemModelPoints = _closetItemModel.Geometry.Positions;
+            var max = itemModelPoints.MaxBy(x => x.Y);
+            ////var z = itemModelPoints.Max(z => z.Z) * 3;
+            var ss = new System.Windows.Media.Media3D.Point3D(max.X, max.Y, max.Z);
+            Camera.LookAt(ss, 100);
             OnAllPropertyChanged();
         }
     }
