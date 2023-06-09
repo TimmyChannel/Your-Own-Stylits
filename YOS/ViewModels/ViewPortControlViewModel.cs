@@ -79,6 +79,7 @@ namespace YOS.ViewModels
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
             MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
+            MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Sneakers"));
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
             UpdateAllItems();
             ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
@@ -103,6 +104,7 @@ namespace YOS.ViewModels
             UpdateBottom();
             UpdateTop();
             UpdateAccessory();
+            UpdateShoes();
         }
         private void Bottom_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
@@ -154,6 +156,29 @@ namespace YOS.ViewModels
             }
             OnPropertyChanged(nameof(Accessory));
         }
+        private void Shoes_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            UpdateShoes();
+        }
+        private void UpdateShoes()
+        {
+            Shoes.Clear();
+            ShoesItem item = (ShoesItem)MannequinSettings.Instance.Shoes;
+            if (item != null)
+            {
+                var mesh = new MeshGeometryModel3D
+                {
+                    Geometry = item.Geometry,
+                    Material = item.Material,
+                    IsThrowingShadow = true
+                };
+                Shoes.Add(mesh);
+                item.PropertyChanged += Shoes_PropertyChanged;
+                Shoes[0].Mouse3DDown += Shoes_Mouse3DDown;
+                ((MeshGeometryModel3D)Shoes[0]).DepthBias = 0;
+            }
+            OnPropertyChanged(nameof(Shoes));
+        }
         private void UpdateTop()
         {
             Top.Clear();
@@ -186,7 +211,12 @@ namespace YOS.ViewModels
         private void Accessory_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Accessories);
-            Debug.WriteLine($"Hit to Top");
+            Debug.WriteLine($"Hit to Accessory");
+        }
+        private void Shoes_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
+        {
+            MannequinSettings.Instance.SelectItemByType(Models.Type.Shoes);
+            Debug.WriteLine($"Hit to Shoes");
         }
 
         //public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)

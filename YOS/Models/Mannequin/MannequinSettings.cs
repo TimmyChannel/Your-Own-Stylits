@@ -111,7 +111,9 @@ namespace YOS.Models.Mannequin
             for (int i = 0; i < _closetItemList.Count; i++)
             {
                 if (_closetItemList[i] != null)
+                {
                     AddClosetItem(ClosetItemList.GetItem(_closetItemList[i].Name));
+                }
             }
         }
         public void AddClosetItem(string name, Type type)
@@ -185,21 +187,21 @@ namespace YOS.Models.Mannequin
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
-                        accCreator.SetParams(_pose);
+                        accCreator.SetParams(_pose, _gender);
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(item.Name);
                         _closetItemList[2] = _accessory;
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
-                        shoeCreator.SetParams(_pose);
+                        shoeCreator.SetParams(_pose, _gender);
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(item.Name);
                         _closetItemList[3] = _shoes;
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
-                        headCreator.SetParams(_pose);
+                        headCreator.SetParams(_pose, _gender);
                         _headwear = null;
                         _headwear = headCreator.CreateClosetItem(item.Name);
                         _closetItemList[4] = _headwear;

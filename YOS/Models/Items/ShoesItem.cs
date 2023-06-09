@@ -43,7 +43,7 @@ namespace YOS.Models.Items
             foreach (var mat in (Materials[])Enum.GetValues(typeof(Materials)))
                 if (Directory.Exists($"{_texPath}\\{mat}"))
                     _materials.Add(mat);
-        }
+        }        
         public void SetColor(Color4 color) => _material.AlbedoColor = color;
         public void SetMaterial(Materials material)
         {
