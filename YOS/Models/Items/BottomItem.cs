@@ -13,7 +13,7 @@ namespace YOS.Models.Items
 {
     public class BottomItem : ModelItemBase
     {
-	  public BottomItem(string name,
+        public BottomItem(string name,
             GenderTypes gender = GenderTypes.Male,
             Poses pose = Poses.Idle,
             Styles style = Styles.Casual,
@@ -27,6 +27,7 @@ namespace YOS.Models.Items
             _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
             InitAvaliableMaterials();
             InitGeometryAndMaterials();
+            _material.AlbedoColor = new Color4(0.267f, 0.267f, 0.267f, 1);
         }
         public override object Clone()
         {
