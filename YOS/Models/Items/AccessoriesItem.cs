@@ -26,6 +26,7 @@ namespace YOS.Models.Items
             _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
             InitAvaliableMaterials();
             InitGeometryAndMaterials();
+            _material.AlbedoColor = new Color4(0.51f, 0.286f, 0.12f, 1);
         }
 
         public override object Clone()

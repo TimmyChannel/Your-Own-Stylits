@@ -101,6 +101,8 @@ namespace YOS.ViewModels
         {
             if (_currentModelMaterial != null)
             {
+                if (!Materials.Contains(SelectedMaterial))
+                    SelectedMaterial = Materials[0];
                 _mannequinSettings.SetMaterialToSelectedItem(SelectedMaterial, CurrentModelMaterial.AlbedoColor);
                 Debug.WriteLine("Material was applied");
             }
@@ -117,9 +119,9 @@ namespace YOS.ViewModels
             var oldPos = Camera.Position;
             var itemModelPoints = _closetItemModel.Geometry.Positions;
             var max = itemModelPoints.MaxBy(x => x.Y);
-            ////var z = itemModelPoints.Max(z => z.Z) * 3;
             var ss = new System.Windows.Media.Media3D.Point3D(max.X, max.Y, max.Z);
             Camera.LookAt(ss, 100);
+            Debug.WriteLine("Model was load to preview");
             OnAllPropertyChanged();
         }
     }

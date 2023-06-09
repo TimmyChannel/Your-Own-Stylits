@@ -65,6 +65,7 @@ namespace YOS.ViewModels
                 OnAllPropertyChanged();
                 UpdateAllItems();
                 Debug.WriteLine($"MannequinGender changed to {value}");
+
             }
         }
 
