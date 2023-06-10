@@ -1,0 +1,10 @@
+# MTL Exporter v1.0 by Seungwoo Oh at CLO - Virtual Fashion Inc.
+newmtl Silk_Duchess_Satin_FRONT_18979
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.075000 0.075000 0.075000
+Ns 28.763239
+illum 2
+map_Ka D:/Ó÷¸áà/team-1131/YOS/Resources/Items/Top/Blouse/Female/Running/Blouse_diffuse_1001.png
+map_Kd D:/Ó÷¸áà/team-1131/YOS/Resources/Items/Top/Blouse/Female/Running/Blouse_diffuse_1001.png
+map_bump D:/Ó÷¸áà/team-1131/YOS/Resources/Items/Top/Blouse/Female/Running/Blouse_normal_1001.png
