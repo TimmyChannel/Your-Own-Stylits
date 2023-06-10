@@ -34,8 +34,7 @@
                             Background="#FF464646"
                             BorderThickness="0">
                         <hx:Viewport3DX Camera="{Binding Camera}"
-                                        ShowViewCube="False"
-                                        MinWidth="100">
+                                        ShowViewCube="False">
                             <hx:Viewport3DX.EffectsManager>
                                 <hx:DefaultEffectsManager />
                             </hx:Viewport3DX.EffectsManager>

@@ -274,6 +274,7 @@ namespace YOS.Models.Mannequin
             _headwear = null;
             _top = null;
             _bottom = null;
+            OnPropertyChanged();
         }
         public void ResetTop() =>_top = null;
         public void ResetBottom() =>_bottom = null;
