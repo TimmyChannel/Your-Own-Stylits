@@ -130,16 +130,16 @@
                                             
                                             <RadioButton Content="Муж" 
                                                          Name="Male"
-                                                         IsChecked="{Binding SelectedSexxo1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                         IsChecked="{Binding SelectedSexxo1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
                                             <RadioButton Content="Жен" 
-                                                            IsChecked="{Binding SelectedSexxo2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                            IsChecked="{Binding SelectedSexxo2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
                                             <RadioButton Content="Уни" 
-                                                          IsChecked="{Binding SelectedSexxo3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedSexxo3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
@@ -167,15 +167,15 @@
 
                                             <RadioButton Content="Хикка" 
                                                          GroupName="Weather"
-                                       IsChecked="{Binding SelectedW1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       IsChecked="{Binding SelectedW1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 
                                                          Foreground="White"/>
                                             <RadioButton Content="Дождик" 
                                                          GroupName="Weather"
-                                                          IsChecked="{Binding SelectedW2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedW2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
                                             <RadioButton Content="Солнышко" 
-                                                          IsChecked="{Binding SelectedW3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedW3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Weather"
                                                          Foreground="White"/>
                                         </StackPanel>
@@ -202,14 +202,14 @@
 
                                             <RadioButton Content="Кэжьюал" 
                                                          GroupName="Stryle"
-                                                          IsChecked="{Binding SelectedSty1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedSty1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
                                             <RadioButton Content="На лето" 
                                                          GroupName="Stryle"
-                                                          IsChecked="{Binding SelectedSty2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedSty2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
                                             <RadioButton Content="Как в школу" 
-                                                          IsChecked="{Binding SelectedSty3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedSty3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Stryle"
                                                          Foreground="White"/>
                                         </StackPanel>
