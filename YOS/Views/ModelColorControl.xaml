@@ -26,7 +26,10 @@
                         Background="#FF262626"
                         CornerRadius="5"
                         BorderThickness="0"
-                        MinHeight="251">
+                        MinHeight="251"
+                        MinWidth="265"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top">
                     <Border Margin="5"
                             Background="#FF464646"
                             BorderThickness="0">
