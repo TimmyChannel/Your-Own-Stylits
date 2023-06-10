@@ -18,5 +18,6 @@ namespace YOS.Models.EnumParams
         Leather = 64,
         Plastic = 128,
         Textile = 256,
+        Metal = 512,
     }
 }
