@@ -8,8 +8,8 @@ namespace YOS.Models.EnumParams
 {
     public enum GenderTypes
     {
-        Male,
-        Female,
-        Unisex
+        Male = 1,
+        Female = 2,
+        Unisex = 3
     }
 }
