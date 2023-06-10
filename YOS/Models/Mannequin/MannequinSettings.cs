@@ -132,6 +132,7 @@ namespace YOS.Models.Mannequin
                         _top = null;
                         _top = topCreator.CreateClosetItem(name);
                         _closetItemList[0] = _top;
+                        OnPropertyChanged(nameof(Top));
                         break;
                     case Type.Bottom:
                         var bottomCreator = new BottomCreator();
@@ -139,6 +140,7 @@ namespace YOS.Models.Mannequin
                         _bottom = null;
                         _bottom = bottomCreator.CreateClosetItem(name);
                         _closetItemList[1] = _bottom;
+                        OnPropertyChanged(nameof(Bottom));
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
@@ -146,6 +148,7 @@ namespace YOS.Models.Mannequin
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(name);
                         _closetItemList[2] = _accessory;
+                        OnPropertyChanged(nameof(Accessory));
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
@@ -153,6 +156,7 @@ namespace YOS.Models.Mannequin
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(name);
                         _closetItemList[3] = _shoes;
+                        OnPropertyChanged(nameof(Shoes));
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
@@ -160,6 +164,7 @@ namespace YOS.Models.Mannequin
                         _headwear = null;
                         _headwear = headCreator.CreateClosetItem(name);
                         _closetItemList[4] = _headwear;
+                        OnPropertyChanged(nameof(Headwear));
                         break;
                 }
             }
@@ -181,6 +186,7 @@ namespace YOS.Models.Mannequin
                         _top = null;
                         _top = topCreator.CreateClosetItem(item.Name);
                         _closetItemList[0] = _top;
+                        OnPropertyChanged(nameof(Top));
                         break;
                     case Type.Bottom:
                         var bottomCreator = new BottomCreator();
@@ -188,6 +194,7 @@ namespace YOS.Models.Mannequin
                         _bottom = null;
                         _bottom = bottomCreator.CreateClosetItem(item.Name);
                         _closetItemList[1] = _bottom;
+                        OnPropertyChanged(nameof(Bottom));
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
@@ -195,6 +202,7 @@ namespace YOS.Models.Mannequin
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(item.Name);
                         _closetItemList[2] = _accessory;
+                        OnPropertyChanged(nameof(Accessory));
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
@@ -202,6 +210,7 @@ namespace YOS.Models.Mannequin
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(item.Name);
                         _closetItemList[3] = _shoes;
+                        OnPropertyChanged(nameof(Shoes));
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
@@ -209,6 +218,7 @@ namespace YOS.Models.Mannequin
                         _headwear = null;
                         _headwear = headCreator.CreateClosetItem(item.Name);
                         _closetItemList[4] = _headwear;
+                        OnPropertyChanged(nameof(Headwear));
                         break;
                 }
             }
