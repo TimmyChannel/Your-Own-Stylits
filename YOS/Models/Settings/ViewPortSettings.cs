@@ -79,33 +79,16 @@ namespace YOS.Models.Settings
         private ViewPortSettings()
         {
             _mannequinSettings = MannequinSettings.Instance;
+            Camera = new PerspectiveCamera
+            {
+                LookDirection = new Media3D.Vector3D(34, -9, -303),
+                UpDirection = new Media3D.Vector3D(0, 1, 0),
+                Position = new Media3D.Point3D(-35, 109, 304)
+            };
             InitLightPresets();
-            InitViewport();
             InitEnvironmentMapsAndFloorTextures();
         }
-        private void InitViewport()
-        {
-            Viewport = new Viewport3DX()
-            {
-                Name = "Viewport",
-                ShowViewCube = false,
-                FXAALevel = FXAALevel.Ultra,
-                MSAA = HelixToolkit.Wpf.SharpDX.MSAALevel.Two,
-                ShowFrameRate = true,
-                Camera = new PerspectiveCamera
-                {
-                    LookDirection = new Media3D.Vector3D(0, 0, -320),
-                    UpDirection = new Media3D.Vector3D(0, 1, 0),
-                    Position = new Media3D.Point3D(0, 0, 320)
-                },
-                PinchZoomAtCenter = true,
-                EffectsManager = new DefaultEffectsManager()
-            };
-            Viewport.InputBindings.Clear();
-            Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Rotate, new MouseGesture(MouseAction.RightClick)));
-            Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Pan, new MouseGesture(MouseAction.MiddleClick)));
-            Viewport.Items.Add(CurrentLightPreset);
-        }
+        
         private void InitLightPresets()
         {
             // Дневной пресет
