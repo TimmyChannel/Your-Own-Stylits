@@ -67,7 +67,7 @@ namespace YOS.Models.Items
             var res = new List<Item>();
             foreach (var Itemon in items)
             {
-                if ((((int)Itemon.Value.Gender & (int)G) > 0) && (((int)Itemon.Value.Weather & (int)W) > 0) && (((int)Itemon.Value.Style & (int)S) > 0))
+                if ((((int)Itemon.Value.Gender & (int)G) > 0) | (((int)Itemon.Value.Weather & (int)W) > 0) | (((int)Itemon.Value.Style & (int)S) > 0))
                     res.Add(Itemon.Value);
             }
             return res;

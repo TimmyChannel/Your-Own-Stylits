@@ -64,7 +64,7 @@ namespace YOS.ViewModels
                 _colorBrush = value;
                 SelectedColor = value.Color;
                 var color = value.Color.ToColor4();
-                _closetItemModel.SetColor(color);
+                _closetItemModel?.SetColor(color);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CurrentModelMaterial));
             }
