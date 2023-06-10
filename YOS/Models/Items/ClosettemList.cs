@@ -62,6 +62,17 @@ namespace YOS.Models.Items
                     Weather.Cloudy) }
 };
 
+        public static List<Item> SelectItems(GenderTypes G, Weather W, Styles S)
+        {
+            var res = new List<Item>();
+            foreach (var Itemon in items)
+            {
+                if ((((int)Itemon.Value.Gender & (int)G) > 0) && (((int)Itemon.Value.Weather & (int)W) > 0) && (((int)Itemon.Value.Style & (int)S) > 0))
+                    res.Add(Itemon.Value);
+            }
+            return res;
+        }
+
         public static Item GetItem(string name)
         {
             if (items.ContainsKey(name))
