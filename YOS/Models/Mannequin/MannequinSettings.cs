@@ -274,6 +274,7 @@ namespace YOS.Models.Mannequin
             _headwear = null;
             _top = null;
             _bottom = null;
+            OnPropertyChanged();
         }
 
     }

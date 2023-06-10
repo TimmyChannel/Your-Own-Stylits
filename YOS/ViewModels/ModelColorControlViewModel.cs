@@ -37,6 +37,7 @@ namespace YOS.ViewModels
                 _closetItemModel.SetMaterial(value);
                 _selectedmaterial = value;
                 OnPropertyChanged(nameof(CurrentModelMaterial));
+                Debug.WriteLine("Model material was changed");
             }
         }
         public List<Materials> Materials
@@ -67,6 +68,7 @@ namespace YOS.ViewModels
                 _closetItemModel?.SetColor(color);
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(CurrentModelMaterial));
+                Debug.WriteLine("Model color was changed");
             }
         }
         public SolidColorBrush OldColorBrush
@@ -97,7 +99,6 @@ namespace YOS.ViewModels
                 LookDirection = new System.Windows.Media.Media3D.Vector3D(0, 0, -108),
                 Position = new System.Windows.Media.Media3D.Point3D(-1, 90, 119)
             };
-
         }
 
         private ICommand _applyMaterial;
@@ -114,7 +115,8 @@ namespace YOS.ViewModels
         }
         private void _mannequinSettings_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName != nameof(MannequinSettings.Instance.SelectedItem)) return;
+            if (e.PropertyName != nameof(MannequinSettings.Instance.SelectedItem))
+                return;
             _closetItemModel = (IClosetItemModel)MannequinSettings.Instance.SelectedItem.Clone();
             _currentModelMesh = (MeshGeometry3D)_closetItemModel.Geometry;
             _currentModelMaterial = _closetItemModel.Material;
@@ -122,9 +124,9 @@ namespace YOS.ViewModels
             _colorBrush.Color = _currentModelMaterial.AlbedoColor.ToColor();
             var oldPos = Camera.Position;
             var itemModelPoints = _closetItemModel.Geometry.Positions;
-            var max = itemModelPoints.MaxBy(x => x.Y);
-            var ss = new System.Windows.Media.Media3D.Point3D(max.X, max.Y, max.Z);
-            Camera.LookAt(ss, 100);
+            var maxPointOfCurrentModel = itemModelPoints.MaxBy(x => x.Y);
+            var camLookPoint = new System.Windows.Media.Media3D.Point3D(maxPointOfCurrentModel.X, maxPointOfCurrentModel.Y, maxPointOfCurrentModel.Z);
+            Camera.LookAt(camLookPoint, 100);
             Debug.WriteLine("Model was load to preview");
             OnAllPropertyChanged();
         }
