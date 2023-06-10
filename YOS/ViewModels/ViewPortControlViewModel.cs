@@ -42,10 +42,11 @@ namespace YOS.ViewModels
         public ObservableElement3DCollection Headwear { get; private set; } = new ObservableElement3DCollection();
         public MeshGeometry3D Floor { get; private set; }
         public PBRMaterial FloorMaterial => ViewPortSettings.Instance.CurrentFloorTexture;
-        public Camera Camera { init; get; }
         public Light3DCollection Light => ViewPortSettings.Instance.CurrentLightPreset;
         public TextureModel EnvironmentMap => ViewPortSettings.Instance.CurrentEnvironmentMap;
         public bool GroundIsVisible => ViewPortSettings.Instance.GroundIsVisible;
+
+        public Camera Camera { init; get; }
         public bool MannequinIsVisible
         {
             get => MannequinSettings.Instance.MannequinIsVisible;
@@ -68,30 +69,38 @@ namespace YOS.ViewModels
 
             }
         }
-
         public ViewPortControlViewModel()
         {
-            Camera = new PerspectiveCamera
-            {
-                LookDirection = new Media3D.Vector3D(34, -9, -303),
-                UpDirection = new Media3D.Vector3D(0, 1, 0),
-                Position = new Media3D.Point3D(-35, 109, 304)
-            };
-            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Trousers"));
-            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Tshirt"));
-            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("RoundGlasses"));
-            //MannequinSettings.Instance.AddClosetItem(ClosetItemList.GetItem("Shirt"));
+            Camera = ViewPortSettings.Instance.Camera;
             MannequinSettings.Instance.PropertyChanged += MannequinSettings_PropertyChanged;
+            ViewPortSettings.Instance.PropertyChanged += ViewPortSettings_PropertyChanged;
             UpdateAllItems();
-            ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
-            ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 0;
-            ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
-            var b2 = new MeshBuilder(true, true, true);
-            //b2.AddCylinder(new Vector3(0.0f, -100f, 0.0f), new Vector3(0.0f, 0f, 0.0f), 400);
-            b2.AddBox(new Vector3(0.0f, 0f, 0.0f), 800, 1, 800, BoxFaces.All);
-            Floor = b2.ToMeshGeometry3D();
+            var builder = new MeshBuilder(true, true, true);
+            builder.AddBox(new Vector3(0.0f, 0f, 0.0f), 800, 1, 800, BoxFaces.All);
+            Floor = builder.ToMeshGeometry3D();
             FloorMaterial.UVTransform = new UVTransform()
             { Scaling = new Vector2(10, 10) };
+        }
+
+        private void ViewPortSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(ViewPortSettings.Instance.CurrentEnvironmentMap):
+                    OnPropertyChanged(nameof(EnvironmentMap));
+                    return;
+                case nameof(ViewPortSettings.Instance.CurrentFloorTexture):
+                    OnPropertyChanged(nameof(FloorMaterial));
+                    return; 
+                case nameof(ViewPortSettings.Instance.CurrentLightPreset):
+                    OnPropertyChanged(nameof(Light));
+                    return;    
+                case nameof(ViewPortSettings.Instance.GroundIsVisible):
+                    OnPropertyChanged(nameof(GroundIsVisible));
+                    return;
+                default:
+                    break;
+            }
         }
 
         private void MannequinSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -110,10 +119,12 @@ namespace YOS.ViewModels
         private void Bottom_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UpdateBottom();
+            Debug.WriteLine("Property " + e.PropertyName + " changed");
         }
         private void Top_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UpdateTop();
+            Debug.WriteLine("Property " + e.PropertyName + " changed");
         }
         private void UpdateBottom()
         {
@@ -137,6 +148,7 @@ namespace YOS.ViewModels
         private void Accessory_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UpdateAccessory();
+            Debug.WriteLine("Property " + e.PropertyName + " changed");
         }
         private void UpdateAccessory()
         {
@@ -160,6 +172,7 @@ namespace YOS.ViewModels
         private void Shoes_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UpdateShoes();
+            Debug.WriteLine("Property " + e.PropertyName + " changed");
         }
         private void UpdateShoes()
         {
@@ -220,57 +233,6 @@ namespace YOS.ViewModels
             Debug.WriteLine($"Hit to Shoes");
         }
 
-        //public void OnMouseDown3DHandler(object sender, MouseDown3DEventArgs e)
-        //{
-        //    if (e.HitTestResult?.ModelHit is MeshGeometryModel3D m)
-        //    {
-        //        if (Bottom.Any() && m.Geometry == ((MeshGeometryModel3D)Bottom.First()).Geometry)
-        //        {
-        //            //Target = null;
-        //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
-        //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
-        //            MannequinSettings.Instance.SelectItemByType(Models.Type.Bottom);
-        //            Debug.WriteLine($"Hit to Bottom");
-        //            return;
-        //        }
-        //        if (Top.Any() && m.Geometry == ((MeshGeometryModel3D)Top.First()).Geometry)
-        //        {
-        //            //Target = null;
-        //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
-        //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
-        //            MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
-        //            Debug.WriteLine($"Hit to Top");
-        //            return;
-        //        }
-        //        if (ShoesModel.Any() && m.Geometry == ((MeshGeometryModel3D)ShoesModel.First()).Geometry)
-        //        {
-        //            //Target = null;
-        //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
-        //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
-        //            MannequinSettings.Instance.SelectItemByType(Models.Type.Shoes);
-        //            Debug.WriteLine($"Hit to ShoesModel");
-        //            return;
-        //        }
-        //        if (HeadwearModel.Any() && m.Geometry == ((MeshGeometryModel3D)HeadwearModel.First()).Geometry)
-        //        {
-        //            //Target = null;
-        //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
-        //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
-        //            MannequinSettings.Instance.SelectItemByType(Models.Type.Headwear);
-        //            Debug.WriteLine($"Hit to HeadwearModel");
-        //            return;
-        //        }
-        //        if (AccessoryModel.Any() && m.Geometry == ((MeshGeometryModel3D)AccessoryModel.First()).Geometry)
-        //        {
-        //            //Target = null;
-        //            //CenterOffset = m.Geometry.Bound.Center; // Must update this before updating target
-        //            Target = e.HitTestResult.ModelHit as MeshGeometryModel3D;
-        //            MannequinSettings.Instance.SelectItemByType(Models.Type.Accessories);
-        //            Debug.WriteLine($"Hit to HeadwearModel");
-        //            return;
-        //        }
-        //    }
-        //}
 
         #region MannequinSimpleParams
 
@@ -308,7 +270,6 @@ namespace YOS.ViewModels
                 SetProperty(ref _poseStackPanelIsVisible, false, nameof(PoseStackPanelIsVisible));
             else
             {
-                SetProperty(ref _lightStackPanelIsVisible, false, nameof(LightStackPanelIsVisible));
                 SetProperty(ref _poseStackPanelIsVisible, true, nameof(PoseStackPanelIsVisible));
             }
 
@@ -323,7 +284,7 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.A;
-                UpdateAllItems();
+                Debug.WriteLine($"Mannequin pose was changed to {MannequinSettings.Instance.Pose}");
             }
         }
         private ICommand _changeMannequinPoseToAComm;
@@ -335,7 +296,7 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.Idle;
-                UpdateAllItems();
+                Debug.WriteLine($"Mannequin pose was changed to {MannequinSettings.Instance.Pose}");
             }
         }
         private ICommand _changeMannequinPoseToIdleComm;
@@ -347,102 +308,11 @@ namespace YOS.ViewModels
             else
             {
                 MannequinSettings.Instance.Pose = Poses.Running;
-                UpdateAllItems();
+                Debug.WriteLine($"Mannequin pose was changed to {MannequinSettings.Instance.Pose}");
             }
         }
         private ICommand _changeMannequinPoseToRunningComm;
         public ICommand ChangeMannequinPoseToRunningComm => _changeMannequinPoseToRunningComm ??= new RelayCommand(OnPoseRunningChange);
-        #endregion
-        #region LightPanelParams
-
-        private bool _lightStackPanelIsVisible;
-        public bool LightStackPanelIsVisible
-        {
-            get => _lightStackPanelIsVisible;
-            set => _lightStackPanelIsVisible = value;
-        }
-
-        public void OnOpenLightsPanel()
-        {
-            if (LightStackPanelIsVisible)
-                SetProperty(ref _lightStackPanelIsVisible, false, nameof(LightStackPanelIsVisible));
-            else
-            {
-                SetProperty(ref _poseStackPanelIsVisible, false, nameof(PoseStackPanelIsVisible));
-                SetProperty(ref _lightStackPanelIsVisible, true, nameof(LightStackPanelIsVisible));
-            }
-
-        }
-        private ICommand _openLightsPanelComm;
-        public ICommand OpenLightsPanelComm => _openLightsPanelComm ??= new RelayCommand(OnOpenLightsPanel);
-
-        public void OnLightDayChange()
-        {
-            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 0)
-            {
-                return;
-            }
-            else
-            {
-                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 0;
-                ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 0;
-                ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 0;
-                OnPropertyChanged(nameof(Light));
-                OnPropertyChanged(nameof(EnvironmentMap));
-                OnPropertyChanged(nameof(FloorMaterial));
-            }
-        }
-        private ICommand _changeviewPortLightToDayComm;
-        public ICommand ChangeviewPortLightToDayComm => _changeviewPortLightToDayComm ??= new RelayCommand(OnLightDayChange);
-        public void OnLightNightChange()
-        {
-            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 1)
-            {
-                return;
-            }
-            else
-            {
-                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 1;
-                ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 1;
-                ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 1;
-                OnPropertyChanged(nameof(Light));
-                OnPropertyChanged(nameof(EnvironmentMap));
-                OnPropertyChanged(nameof(FloorMaterial));
-            }
-        }
-        private ICommand _changeviewPortLightToNightComm;
-        public ICommand ChangeviewPortLightToNightComm => _changeviewPortLightToNightComm ??= new RelayCommand(OnLightNightChange);
-        public void OnLight3PointChange()
-        {
-            if (ViewPortSettings.Instance.IndexOfCurrentLightPreset == 2)
-            {
-                return;
-            }
-            else
-            {
-                ViewPortSettings.Instance.IndexOfCurrentLightPreset = 2;
-                ViewPortSettings.Instance.IndexOfCurrentEnvironmentMap = 2;
-                ViewPortSettings.Instance.IndexOfCurrentFloorTexture = 2;
-                OnPropertyChanged(nameof(Light));
-                OnPropertyChanged(nameof(EnvironmentMap));
-                OnPropertyChanged(nameof(FloorMaterial));
-            }
-        }
-        private ICommand _changeviewPortLightTo3PointComm;
-        public ICommand ChangeviewPortLightTo3PointComm => _changeviewPortLightTo3PointComm ??= new RelayCommand(OnLight3PointChange);
-        #endregion
-        #region GroundParams
-        public void OnChangeGroundVisibility()
-        {
-            if (ViewPortSettings.Instance.GroundIsVisible)
-                ViewPortSettings.Instance.GroundIsVisible = false;
-            else
-                ViewPortSettings.Instance.GroundIsVisible = true;
-            OnPropertyChanged(nameof(GroundIsVisible));
-
-        }
-        private ICommand _changeGroundVisibilityComm;
-        public ICommand ChangeGroundVisibilityComm => _changeGroundVisibilityComm ??= new RelayCommand(OnChangeGroundVisibility);
         #endregion
 
     }
