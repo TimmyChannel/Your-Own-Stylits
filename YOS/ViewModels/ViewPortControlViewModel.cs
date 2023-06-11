@@ -91,10 +91,10 @@ namespace YOS.ViewModels
                     return;
                 case nameof(ViewPortSettings.Instance.CurrentFloorTexture):
                     OnPropertyChanged(nameof(FloorMaterial));
-                    return; 
+                    return;
                 case nameof(ViewPortSettings.Instance.CurrentLightPreset):
                     OnPropertyChanged(nameof(Light));
-                    return;    
+                    return;
                 case nameof(ViewPortSettings.Instance.GroundIsVisible):
                     OnPropertyChanged(nameof(GroundIsVisible));
                     return;
@@ -105,9 +105,24 @@ namespace YOS.ViewModels
 
         private void MannequinSettings_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
-            OnPropertyChanged(e.PropertyName);
-            Debug.WriteLine("Property " + e.PropertyName + " changed");
-            UpdateAllItems();
+            switch (e.PropertyName)
+            {
+                case nameof(MannequinSettings.Instance.Accessory):
+                    OnPropertyChanged(nameof(Accessory));
+                    return;
+                case nameof(MannequinSettings.Instance.Bottom):
+                    OnPropertyChanged(nameof(Bottom));
+                    return;
+                case nameof(MannequinSettings.Instance.Headwear):
+                    OnPropertyChanged(nameof(Headwear));
+                    return;
+                case nameof(MannequinSettings.Instance.Top):
+                    OnPropertyChanged(nameof(Top));
+                    return;
+                default:
+                    UpdateAllItems();
+                    return;
+            }
         }
         private void UpdateAllItems()
         {
@@ -144,7 +159,7 @@ namespace YOS.ViewModels
                 ((MeshGeometryModel3D)Bottom[0]).DepthBias = -1;
             }
             OnPropertyChanged(nameof(Bottom));
-        }    
+        }
         private void Accessory_PropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             UpdateAccessory();
@@ -221,7 +236,7 @@ namespace YOS.ViewModels
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Top);
             Debug.WriteLine($"Hit to Top");
-        }    
+        }
         private void Accessory_Mouse3DDown(object? sender, MouseDown3DEventArgs e)
         {
             MannequinSettings.Instance.SelectItemByType(Models.Type.Accessories);
