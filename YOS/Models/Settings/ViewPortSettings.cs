@@ -81,10 +81,11 @@ namespace YOS.Models.Settings
             _mannequinSettings = MannequinSettings.Instance;
             Camera = new PerspectiveCamera
             {
-                LookDirection = new Media3D.Vector3D(0, 0, -320),
+                LookDirection = new Media3D.Vector3D(34, -9, -303),
                 UpDirection = new Media3D.Vector3D(0, 1, 0),
-                Position = new Media3D.Point3D(0, 0, 320)
+                Position = new Media3D.Point3D(-35, 109, 304)
             };
+
             InitLightPresets();
             InitEnvironmentMapsAndFloorTextures();
         }
