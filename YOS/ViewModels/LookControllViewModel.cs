@@ -15,10 +15,11 @@ using YOS.Models.Items;
 using YOS.Models.Algorithm;
 using System.Reflection;
 using System.ComponentModel;
+using YOS.Models;
 
 namespace YOS.ViewModels
 {
-    class LookControllViewModel
+    class LookControllViewModel : OnPropertyChangedClass
     {
         GenderTypes _g = GenderTypes.Male;
         Weather _w = Weather.Sunny;
@@ -83,7 +84,7 @@ namespace YOS.ViewModels
                 _selectedItemTop = value;
                 if (value == "Нет")
                     mainMonnequen.ResetAccessory();
-                else    
+                else
                     mainMonnequen.AddClosetItem(value, Models.Type.Accessories);
             }
         }
@@ -184,7 +185,7 @@ namespace YOS.ViewModels
 
         public LookControllViewModel()
         {
-                mainMonnequen.PropertyChanged += _mannequinPropertyChanged;
+            mainMonnequen.PropertyChanged += _mannequinPropertyChanged;
         }
 
         private void _mannequinPropertyChanged(object? sender, PropertyChangedEventArgs e)
@@ -199,6 +200,7 @@ namespace YOS.ViewModels
             _selectedItemBottomlist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Bottom);
             _selectedItemShoelist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Shoes);
             _selectedItemAccesorylist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Accessories);
-    }
+            OnAllPropertyChanged();
+        }
     }
 }
