@@ -360,7 +360,6 @@
                               VerticalContentAlignment="Stretch"
                               ItemsSource="{Binding Materials, Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedMaterial}">
-                              BorderBrush="{x:Null}"
                         </ComboBox>
                     </Border>
                         <hw:ColorPickerButton x:Name="ColourPicker"
