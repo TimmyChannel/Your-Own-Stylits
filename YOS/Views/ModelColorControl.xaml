@@ -20,7 +20,7 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="Red"/>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" SnapsToDevicePixels="true" StrokeThickness="1" Stroke="Transparent"/>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -190,7 +190,7 @@
                 </Grid.ColumnDefinitions>
                 <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
                     <theme:SystemDropShadowChrome x:Name="shadow" Color="Transparent" MinWidth="{Binding ActualWidth, ElementName=templateRoot}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
-                        <Border x:Name="dropDownBorder" Background="Red" BorderThickness="1" BorderBrush="red">
+                        <Border x:Name="dropDownBorder" Background="Transparent" BorderThickness="1" BorderBrush="Transparent">
                             <ScrollViewer x:Name="DropDownScrollViewer">
                                 <Grid x:Name="grid" RenderOptions.ClearTypeHint="Enabled">
                                     <Canvas x:Name="canvas" HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0">
@@ -276,6 +276,9 @@
                     <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
                     <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
                 </Trigger>
+                <Trigger Property="IsFocused" Value="true">
+                    <Setter Property="Background" Value="Transparent" />
+                </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
@@ -292,6 +295,7 @@
             <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
             <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
             <Style.Triggers>
+
                 <Trigger Property="IsEditable" Value="true">
                     <Setter Property="IsTabStop" Value="false"/>
                     <Setter Property="Padding" Value="2"/>
@@ -305,7 +309,7 @@
     <Grid>
         <Border Margin="5"
                 CornerRadius="10, 10, 10, 10"
-                BorderBrush="red"
+                BorderBrush="Transparent"
                 BorderThickness="0"
                 Background="#FF404040">
 
