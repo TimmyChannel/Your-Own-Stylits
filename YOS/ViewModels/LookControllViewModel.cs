@@ -82,7 +82,7 @@ namespace YOS.ViewModels
             {
                 _selectedItemTop = value;
                 if (value == "Нет")
-                    mainMonnequen.ResetAccessor();
+                    mainMonnequen.ResetAccessory();
                 else    
                     mainMonnequen.AddClosetItem(value, Models.Type.Accessories);
             }
