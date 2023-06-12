@@ -26,7 +26,7 @@ namespace YOS.ViewModels
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.Orange);
         private System.Windows.Media.Color _selectedColor = Colors.Orange;
         private Materials _selectedmaterial;
-        
+
         #region Props
 
         public Materials SelectedMaterial
