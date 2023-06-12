@@ -24,5 +24,6 @@ namespace YOS.Views
         {
             InitializeComponent();
         }
+
     }
 }
