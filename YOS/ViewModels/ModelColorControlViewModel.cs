@@ -26,7 +26,7 @@ namespace YOS.ViewModels
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.Orange);
         private System.Windows.Media.Color _selectedColor = Colors.Orange;
         private Materials _selectedmaterial;
-        
+
         #region Props
 
         public Materials SelectedMaterial
@@ -40,12 +40,16 @@ namespace YOS.ViewModels
                 Debug.WriteLine("Model material was changed");
             }
         }
+        private List<Materials> _materials;
         public List<Materials> Materials
         {
             get
             {
-                if (_closetItemModel == null) return null;
-                return _closetItemModel.AvaliableMaterials;
+                return _materials;
+            }
+            private set
+            {
+                SetProperty(ref _materials, value);
             }
         }
         public MeshGeometry3D CurrentModelMesh
@@ -93,6 +97,7 @@ namespace YOS.ViewModels
         #endregion
         public ModelColorControlViewModel()
         {
+            _materials = new List<Materials>();
             _mannequinSettings.PropertyChanged += _mannequinSettings_PropertyChanged;
             Camera = new PerspectiveCamera()
             {
@@ -118,6 +123,7 @@ namespace YOS.ViewModels
             if (e.PropertyName != nameof(MannequinSettings.Instance.SelectedItem))
                 return;
             _closetItemModel = (IClosetItemModel)MannequinSettings.Instance.SelectedItem.Clone();
+            Materials = _closetItemModel.AvaliableMaterials;
             _currentModelMesh = (MeshGeometry3D)_closetItemModel.Geometry;
             _currentModelMaterial = _closetItemModel.Material;
             _currentModelMaterial.EmissiveColor = new Color4(0);
@@ -129,6 +135,13 @@ namespace YOS.ViewModels
             Camera.LookAt(camLookPoint, 100);
             Debug.WriteLine("Model was load to preview");
             OnAllPropertyChanged();
+            //OnPropertyChanged(nameof(CurrentModelMesh));
+            //OnPropertyChanged(nameof(CurrentModelMaterial));
+            //OnPropertyChanged(nameof(SelectedColor));
+            //OnPropertyChanged(nameof(SelectedMaterial));
+            //OnPropertyChanged(nameof(OldColorBrush));
+            //OnPropertyChanged(nameof(Camera));
+            //OnPropertyChanged(nameof(ColorBrush));
         }
     }
 }
