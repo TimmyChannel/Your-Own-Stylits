@@ -30,6 +30,7 @@ namespace YOS.Models.Settings
                 if (_indexOfCurrentLightPreset >= _lightPresets.Count)
                     return;
                 _indexOfCurrentLightPreset = value;
+                OnPropertyChanged(nameof(CurrentLightPreset));
             }
         }
         public byte IndexOfCurrentEnvironmentMap
@@ -40,6 +41,7 @@ namespace YOS.Models.Settings
                 if (_indexOfCurrentEnvironmentMap >= _environmentMaps.Count)
                     return;
                 _indexOfCurrentEnvironmentMap = value;
+                OnPropertyChanged(nameof(CurrentEnvironmentMap));
             }
         }
         public byte IndexOfCurrentFloorTexture
@@ -50,6 +52,7 @@ namespace YOS.Models.Settings
                 if (_indexOfCurrentFloorTexture >= _floorTextures.Count)
                     return;
                 _indexOfCurrentFloorTexture = value;
+                OnPropertyChanged(nameof(CurrentFloorTexture));
             }
         }
         public Light3DCollection CurrentLightPreset
@@ -65,43 +68,26 @@ namespace YOS.Models.Settings
             get => _floorTextures[_indexOfCurrentFloorTexture];
         }
 
-        public Viewport3DX Viewport { get; private set; }
+        public Camera Camera { get; private set; }
         public bool GroundIsVisible
         {
             get => _groundIsVisible;
-            set => _groundIsVisible = value;
+            set =>  SetProperty(ref _groundIsVisible, value); 
         }
         private static readonly Lazy<ViewPortSettings> lazy = new(() => new ViewPortSettings());
         public static ViewPortSettings Instance { get { return lazy.Value; } }
         private ViewPortSettings()
         {
             _mannequinSettings = MannequinSettings.Instance;
-            InitLightPresets();
-            InitViewport();
-            InitEnvironmentMapsAndFloorTextures();
-        }
-        private void InitViewport()
-        {
-            Viewport = new Viewport3DX()
+            Camera = new PerspectiveCamera
             {
-                Name = "Viewport",
-                ShowViewCube = false,
-                FXAALevel = FXAALevel.Ultra,
-                MSAA = HelixToolkit.Wpf.SharpDX.MSAALevel.Two,
-                ShowFrameRate = true,
-                Camera = new PerspectiveCamera
-                {
-                    LookDirection = new Media3D.Vector3D(0, 0, -320),
-                    UpDirection = new Media3D.Vector3D(0, 1, 0),
-                    Position = new Media3D.Point3D(0, 0, 320)
-                },
-                PinchZoomAtCenter = true,
-                EffectsManager = new DefaultEffectsManager()
+                LookDirection = new Media3D.Vector3D(34, -9, -303),
+                UpDirection = new Media3D.Vector3D(0, 1, 0),
+                Position = new Media3D.Point3D(-35, 109, 304)
             };
-            Viewport.InputBindings.Clear();
-            Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Rotate, new MouseGesture(MouseAction.RightClick)));
-            Viewport.InputBindings.Add(new MouseBinding(ViewportCommands.Pan, new MouseGesture(MouseAction.MiddleClick)));
-            Viewport.Items.Add(CurrentLightPreset);
+
+            InitLightPresets();
+            InitEnvironmentMapsAndFloorTextures();
         }
         private void InitLightPresets()
         {
