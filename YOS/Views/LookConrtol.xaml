@@ -520,11 +520,15 @@
                                 </GroupBox>
 
                                 <Border Margin="0,10,0,0"
-                                        CornerRadius="10"
-                                        Background="White">
+                        CornerRadius="5"
+                        Background="{StaticResource ComboBox.MouseOver.Background}"
+                        BorderBrush="#707070"
+                        BorderThickness="1">
                                     <Button Content="Применить"
+                                            Command="{Binding GenerateLook}"
+                                            Foreground="AliceBlue"
                                             Background="Transparent"
-                                            Command="{Binding GenerateLook}"/>
+                                            BorderBrush="Transparent"/>
                                 </Border>
 
                             </StackPanel>

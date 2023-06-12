@@ -177,6 +177,7 @@
                                 <Setter Property="Background" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Background}"/>
                                 <Setter Property="BorderBrush" TargetName="splitBorder" Value="{StaticResource ComboBox.Disabled.Editable.Button.Border}"/>
                             </MultiDataTrigger>
+
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -232,6 +233,7 @@
                     <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
                     <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
                 </Trigger>
+
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
@@ -276,9 +278,7 @@
                     <Setter Property="Canvas.Top" TargetName="opaqueRect" Value="{Binding VerticalOffset, ElementName=DropDownScrollViewer}"/>
                     <Setter Property="Canvas.Left" TargetName="opaqueRect" Value="{Binding HorizontalOffset, ElementName=DropDownScrollViewer}"/>
                 </Trigger>
-                <Trigger Property="IsFocused" Value="true">
-                    <Setter Property="Background" Value="Transparent" />
-                </Trigger>
+
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
@@ -362,32 +362,42 @@
                                   SelectedValue="{Binding SelectedMaterial}">
                         </ComboBox>
                     </Border>
-                        <hw:ColorPickerButton x:Name="ColourPicker"
+                    <hw:ColorPickerButton x:Name="ColourPicker"
                                           CornerRadius="5,5,5,5"
                                           Mode="Full"
                                           Content="Выбрать цвет материала"
-                                          Foreground="Black"
                                           Margin="5,5,5,5"
                                           HorizontalContentAlignment="Stretch"
                                           VerticalContentAlignment="Stretch"
                                           SelectedColor="{Binding SelectedColor}" 
                                           SelectedBrush="{Binding ColorBrush}"
-                                          OldBrush="{Binding OldColorBrush}" Cursor="Hand"/>
+                                          OldBrush="{Binding OldColorBrush}" Cursor="Hand"
+                                          Foreground="AliceBlue"
+                                          Background="{StaticResource ComboBox.MouseOver.Background}">
+                        
+                    </hw:ColorPickerButton>
                 </UniformGrid>
                 <TextBlock Text="{Binding SelectedColor, Source=ColourPicker}" />
 
                 <Border Margin="10,5,10,5"
                         CornerRadius="5"
-                        Background="#FFF8F8F8">
+                        Background="{StaticResource ComboBox.MouseOver.Background}"
+                        BorderBrush="#707070"
+                        BorderThickness="1">
+
                     <Button x:Name="BTN_applyMaterial"
                         Padding="3"
                         Content="Применить"
                         FontFamily="ubuntu"
                         VerticalAlignment="Bottom"
-                        Background="Transparent"
                         BorderBrush="Transparent"
-                        Command="{Binding ApplyMaterial}"/>
+                        Command="{Binding ApplyMaterial}"
+                        Foreground="AliceBlue"
+                        Background="Transparent">
+                        
+                    </Button>
                 </Border>
+
             </StackPanel>
 
         </Border>
