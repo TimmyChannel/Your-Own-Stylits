@@ -144,7 +144,7 @@ namespace YOS.Models.Mannequin
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
-                        accCreator.SetParams(_pose);
+                        accCreator.SetParams(_pose, _gender);
                         _accessory = null;
                         _accessory = accCreator.CreateClosetItem(name);
                         _closetItemList[2] = _accessory;
@@ -152,7 +152,7 @@ namespace YOS.Models.Mannequin
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
-                        shoeCreator.SetParams(_pose);
+                        shoeCreator.SetParams(_pose, _gender);
                         _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(name);
                         _closetItemList[3] = _shoes;
@@ -160,7 +160,7 @@ namespace YOS.Models.Mannequin
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
-                        headCreator.SetParams(_pose);
+                        headCreator.SetParams(_pose, _gender);
                         _headwear = null;
                         _headwear = headCreator.CreateClosetItem(name);
                         _closetItemList[4] = _headwear;
@@ -276,9 +276,25 @@ namespace YOS.Models.Mannequin
             _bottom = null;
             OnPropertyChanged();
         }
-        public void ResetTop() =>_top = null;
-        public void ResetBottom() =>_bottom = null;
-        public void ResetShoes() =>_shoes = null;
-        public void ResetAccessor() =>_accessory = null;
+        public void ResetTop()
+        {
+            _top = null;
+            OnPropertyChanged(nameof(Top));
+        }
+        public void ResetBottom()
+        {
+            _bottom = null;
+            OnPropertyChanged(nameof(Bottom));
+        }
+        public void ResetShoes()
+        {
+            _shoes = null;
+            OnPropertyChanged(nameof(Shoes));
+        }
+        public void ResetAccessory()
+        {
+            _accessory = null;
+            OnPropertyChanged(nameof(Accessory));
+        }
     }
 }

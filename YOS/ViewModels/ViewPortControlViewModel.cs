@@ -108,15 +108,19 @@ namespace YOS.ViewModels
             switch (e.PropertyName)
             {
                 case nameof(MannequinSettings.Instance.Accessory):
+                    UpdateAccessory();
                     OnPropertyChanged(nameof(Accessory));
                     return;
                 case nameof(MannequinSettings.Instance.Bottom):
+                    UpdateBottom();
                     OnPropertyChanged(nameof(Bottom));
                     return;
-                case nameof(MannequinSettings.Instance.Headwear):
-                    OnPropertyChanged(nameof(Headwear));
+                case nameof(MannequinSettings.Instance.Shoes):
+                    UpdateShoes();
+                    OnPropertyChanged(nameof(Shoes));
                     return;
                 case nameof(MannequinSettings.Instance.Top):
+                    UpdateTop();
                     OnPropertyChanged(nameof(Top));
                     return;
                 default:
