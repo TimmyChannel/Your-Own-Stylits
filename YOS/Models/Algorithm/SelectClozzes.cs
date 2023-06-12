@@ -22,31 +22,26 @@ namespace YOS.Models.Algorithm
             List<Item> Bottom = new();
             List<Item> Shoes = new();
             List<Item> Accessory = new();
-            List<Item> HeadWear = new();
 
             _mannequinSettings.ResetItems();
 
             foreach (var itm in Wordrobe)
             {
-                if (itm.Type == Models.Type.Top)
+                if (itm.Type == Type.Top)
                 {
                     Top.Add(itm);
                 }
-                if (itm.Type == Models.Type.Accessories)
+                if (itm.Type == Type.Accessories)
                 {
                     Accessory.Add(itm);
                 }
-                if (itm.Type == Models.Type.Shoes)
+                if (itm.Type == Type.Shoes)
                 {
                     Shoes.Add(itm);
                 }
-                if (itm.Type == Models.Type.Bottom)
+                if (itm.Type == Type.Bottom)
                 {
                     Bottom.Add(itm);
-                }
-                if (itm.Type == Models.Type.Headwear)
-                {
-                    HeadWear.Add(itm);
                 }
             }
 
@@ -56,8 +51,6 @@ namespace YOS.Models.Algorithm
                 _mannequinSettings.AddClosetItem(Accessory[random.Next(Accessory.Count)]);
             if (Bottom.Count > 0)
                 _mannequinSettings.AddClosetItem(Bottom[random.Next(Bottom.Count)]);
-            if (HeadWear.Count > 0)
-                _mannequinSettings.AddClosetItem(HeadWear[random.Next(HeadWear.Count)]);
             if (Shoes.Count > 0)
                 _mannequinSettings.AddClosetItem(Shoes[random.Next(Shoes.Count)]);
 

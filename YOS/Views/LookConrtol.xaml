@@ -92,11 +92,22 @@
                         <Grid Margin="10">
 
                             <StackPanel>
-                                <ComboBox/>
-                                <ComboBox/>
-                                <ComboBox/>
-                                <ComboBox/>
-                                <ComboBox/>
+                                <ComboBox
+                                  ItemsSource="{Binding Tops, Mode=OneWay}" 
+                                  SelectedValue="{Binding SelectedTop}"
+                                    />
+                                <ComboBox
+                                  ItemsSource="{Binding Bottoms, Mode=OneWay}" 
+                                  SelectedValue="{Binding SelectedBottom}"
+                                    />
+                                <ComboBox
+                                  ItemsSource="{Binding Shues, Mode=OneWay}" 
+                                  SelectedValue="{Binding SelectedShoe}"
+                                    />
+                                <ComboBox
+                                  ItemsSource="{Binding Accessory, Mode=OneWay}" 
+                                  SelectedValue="{Binding SelectedAccesory}"
+                                    />
                             </StackPanel>
 
                         </Grid>
@@ -130,16 +141,16 @@
                                             
                                             <RadioButton Content="Муж" 
                                                          Name="Male"
-                                                         IsChecked="{Binding SelectedSexxo1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                                         IsChecked="{Binding SelectedSexxo1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
                                             <RadioButton Content="Жен" 
-                                                            IsChecked="{Binding SelectedSexxo2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                                            IsChecked="{Binding SelectedSexxo2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
                                             <RadioButton Content="Уни" 
-                                                          IsChecked="{Binding SelectedSexxo3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                                                          IsChecked="{Binding SelectedSexxo3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>

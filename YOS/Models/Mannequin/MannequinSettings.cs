@@ -275,6 +275,9 @@ namespace YOS.Models.Mannequin
             _top = null;
             _bottom = null;
         }
-
+        public void ResetTop() =>_top = null;
+        public void ResetBottom() =>_bottom = null;
+        public void ResetShoes() =>_shoes = null;
+        public void ResetAccessor() =>_accessory = null;
     }
 }
