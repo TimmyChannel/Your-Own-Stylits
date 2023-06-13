@@ -468,17 +468,17 @@
                                     <Grid>
                                         <StackPanel>
                                             
-                                            <RadioButton Content="Муж" 
+                                            <RadioButton Content="Мужчина" 
                                                          Name="Male"
                                                          IsChecked="{Binding SelectedSexxo1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
-                                            <RadioButton Content="Жен" 
+                                            <RadioButton Content="Женщина" 
                                                             IsChecked="{Binding SelectedSexxo2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
                                                          Foreground ="White"/>
-                                            <RadioButton Content="Уни" 
+                                            <RadioButton Content="Унисекс" 
                                                           IsChecked="{Binding SelectedSexxo3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
 
                                                          GroupName="Sexxo" 
@@ -505,16 +505,16 @@
                                     <Grid>
                                         <StackPanel>
 
-                                            <RadioButton Content="Хикка" 
+                                            <RadioButton Content="В помещении" 
                                                          GroupName="Weather"
                                        IsChecked="{Binding SelectedW1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
 
                                                          Foreground="White"/>
-                                            <RadioButton Content="Дождик" 
+                                            <RadioButton Content="Пасмурно" 
                                                          GroupName="Weather"
                                                           IsChecked="{Binding SelectedW2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
-                                            <RadioButton Content="Солнышко" 
+                                            <RadioButton Content="Ясно" 
                                                           IsChecked="{Binding SelectedW3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Weather"
                                                          Foreground="White"/>
@@ -540,15 +540,15 @@
                                     <Grid>
                                         <StackPanel>
 
-                                            <RadioButton Content="Кэжьюал" 
+                                            <RadioButton Content="Casual" 
                                                          GroupName="Stryle"
                                                           IsChecked="{Binding SelectedSty1, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
-                                            <RadioButton Content="На лето" 
+                                            <RadioButton Content="Летний" 
                                                          GroupName="Stryle"
                                                           IsChecked="{Binding SelectedSty2, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          Foreground="White"/>
-                                            <RadioButton Content="Как в школу" 
+                                            <RadioButton Content="Формальный" 
                                                           IsChecked="{Binding SelectedSty3, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
                                                          GroupName="Stryle"
                                                          Foreground="White"/>
