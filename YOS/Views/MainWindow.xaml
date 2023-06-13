@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:YOS.Views"
         xmlns:hw="http://schemas.hpod9.com/haley/wpf"
         xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
+        xmlns:ViewModels="clr-namespace:YOS.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow"
         Height="720"
         MinHeight="720"
         Width="1288"
         MinWidth="1280">
-
-    <Grid>
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid Cursor="{Binding CurrentCursor}"
+          ForceCursor="True">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.5*" />
