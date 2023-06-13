@@ -31,10 +31,10 @@ namespace YOS.ViewModels
 
         #region Comboboxes
 
-        private string _selectedItemTop;
-        private string _selectedItemBottom;
-        private string _selectedItemShoe;
-        private string _selectedItemAccesory;
+        private string _selectedItemTop = "Нет";
+        private string _selectedItemBottom = "Нет";
+        private string _selectedItemShoe = "Нет";
+        private string _selectedItemAccesory = "Нет";
         private List<string> _selectedItemToplist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Top);
         private List<string> _selectedItemBottomlist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Bottom);
         private List<string> _selectedItemShoelist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Shoes);
@@ -49,7 +49,7 @@ namespace YOS.ViewModels
                 if (value == "Нет")
                     mainMonnequen.ResetTop();
                 else
-                    mainMonnequen.AddClosetItem(value, Models.Type.Top);
+                    mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Top);
             }
         }
         public string SelectedBottom
@@ -61,7 +61,7 @@ namespace YOS.ViewModels
                 if (value == "Нет")
                     mainMonnequen.ResetBottom();
                 else
-                    mainMonnequen.AddClosetItem(value, Models.Type.Bottom);
+                    mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Bottom);
             }
         }
         public string SelectedShoe
@@ -73,7 +73,7 @@ namespace YOS.ViewModels
                 if (value == "Нет")
                     mainMonnequen.ResetShoes();
                 else
-                    mainMonnequen.AddClosetItem(value, Models.Type.Shoes);
+                    mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Shoes);
             }
         }
         public string SelectedAccesory
@@ -85,7 +85,7 @@ namespace YOS.ViewModels
                 if (value == "Нет")
                     mainMonnequen.ResetAccessory();
                 else
-                    mainMonnequen.AddClosetItem(value, Models.Type.Accessories);
+                    mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Accessories);
             }
         }
 
