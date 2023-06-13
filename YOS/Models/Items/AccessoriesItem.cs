@@ -20,14 +20,14 @@ namespace YOS.Models.Items
         {
             _type = Type.Accessories;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
-            if (!Directory.Exists(_mainPath))
-                throw new ArgumentException("This item has no such gender");
-            _texPath = $"{_mainPath}\\Textures";
-            _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
-            InitAvaliableMaterials();
-            InitGeometryAndMaterials();
-            //_material.AlbedoColor = new Color4(0.51f, 0.286f, 0.12f, 1);
-            _material.AlbedoColor = Color4.White;
+            if (Directory.Exists(_mainPath))
+            {
+                _texPath = $"{_mainPath}\\Textures";
+                _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
+                InitAvaliableMaterials();
+                InitGeometryAndMaterials();
+                _material.AlbedoColor = Color4.White;
+            }
         }
 
         public override object Clone()

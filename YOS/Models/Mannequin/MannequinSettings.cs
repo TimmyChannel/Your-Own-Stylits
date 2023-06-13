@@ -13,6 +13,8 @@ using System.Collections.ObjectModel;
 using HelixToolkit.Wpf.SharpDX;
 using HelixToolkit.Wpf.SharpDX.Model;
 using SharpDX;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace YOS.Models.Mannequin
 {
@@ -44,6 +46,16 @@ namespace YOS.Models.Mannequin
             {
                 _mannequin.IsVisible = value;
                 OnPropertyChanged();
+            }
+        }
+        private bool _iLoadModels;
+        public bool ILoadModels
+        {
+            get => _iLoadModels;
+            private set
+            {
+                SetProperty<bool>(ref _iLoadModels, value);
+                Debug.WriteLine($"ILoadModels {value}");
             }
         }
         private static readonly Lazy<MannequinSettings> lazy = new(() => new MannequinSettings());
@@ -92,7 +104,9 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<GenderTypes>(ref _gender, value);
+                ILoadModels = true;
                 SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
+                ILoadModels = false;
                 UpdateItems();
             }
         }
@@ -102,7 +116,9 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<Poses>(ref _pose, value);
+                ILoadModels = true;
                 SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
+                ILoadModels = false;
                 UpdateItems();
             }
         }
@@ -115,8 +131,11 @@ namespace YOS.Models.Mannequin
                     var prevColor = _closetItemList[i].Color;
                     var prevMat = _closetItemList[i].TextureMaterial;
                     AddClosetItem(ClosetItemList.GetItem(_closetItemList[i].Name));
-                    _closetItemList[i].SetColor(prevColor);
-                    _closetItemList[i].SetMaterial(prevMat);
+                    if (_closetItemList[i] != null)
+                    {
+                        _closetItemList[i].SetColor(prevColor);
+                        _closetItemList[i].SetMaterial(prevMat);
+                    }
                 }
             }
         }
@@ -124,53 +143,55 @@ namespace YOS.Models.Mannequin
         {
             try
             {
+                ILoadModels = true;
                 switch (type)
                 {
                     case Type.Top:
                         var topCreator = new TopCreator();
                         topCreator.SetParams(_pose, _gender);
-                        _top = null;
                         _top = topCreator.CreateClosetItem(name);
+                        if (_top == null || !_top.IInitialized) _top = null;
                         _closetItemList[0] = _top;
                         OnPropertyChanged(nameof(Top));
                         break;
                     case Type.Bottom:
                         var bottomCreator = new BottomCreator();
                         bottomCreator.SetParams(_pose, _gender);
-                        _bottom = null;
                         _bottom = bottomCreator.CreateClosetItem(name);
+                        if (_bottom == null || !_bottom.IInitialized) _bottom = null;
                         _closetItemList[1] = _bottom;
                         OnPropertyChanged(nameof(Bottom));
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
                         accCreator.SetParams(_pose, _gender);
-                        _accessory = null;
                         _accessory = accCreator.CreateClosetItem(name);
+                        if (_accessory == null || !_accessory.IInitialized) _accessory = null;
                         _closetItemList[2] = _accessory;
                         OnPropertyChanged(nameof(Accessory));
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
                         shoeCreator.SetParams(_pose, _gender);
-                        _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(name);
+                        if (_shoes == null || !_shoes.IInitialized) _shoes = null;
                         _closetItemList[3] = _shoes;
                         OnPropertyChanged(nameof(Shoes));
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
                         headCreator.SetParams(_pose, _gender);
-                        _headwear = null;
                         _headwear = headCreator.CreateClosetItem(name);
+                        if (_headwear == null || !_headwear.IInitialized) _headwear = null;
                         _closetItemList[4] = _headwear;
                         OnPropertyChanged(nameof(Headwear));
                         break;
                 }
+                ILoadModels = false;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
+                Debug.WriteLine(e.Message);
                 throw;
             }
         }
@@ -178,53 +199,56 @@ namespace YOS.Models.Mannequin
         {
             try
             {
+                ILoadModels = true;
                 switch (item.Type)
                 {
                     case Type.Top:
                         var topCreator = new TopCreator();
                         topCreator.SetParams(_pose, _gender);
-                        _top = null;
                         _top = topCreator.CreateClosetItem(item.Name);
+                        if (_top == null || !_top.IInitialized) _top = null;
                         _closetItemList[0] = _top;
                         OnPropertyChanged(nameof(Top));
                         break;
                     case Type.Bottom:
                         var bottomCreator = new BottomCreator();
                         bottomCreator.SetParams(_pose, _gender);
-                        _bottom = null;
                         _bottom = bottomCreator.CreateClosetItem(item.Name);
+                        if (_bottom == null || !_bottom.IInitialized) _bottom = null;
                         _closetItemList[1] = _bottom;
                         OnPropertyChanged(nameof(Bottom));
                         break;
                     case Type.Accessories:
                         var accCreator = new AccessoriesCreator();
                         accCreator.SetParams(_pose, _gender);
-                        _accessory = null;
                         _accessory = accCreator.CreateClosetItem(item.Name);
+                        if (_accessory == null || !_accessory.IInitialized) _accessory = null;
                         _closetItemList[2] = _accessory;
                         OnPropertyChanged(nameof(Accessory));
                         break;
                     case Type.Shoes:
                         var shoeCreator = new ShoesCreator();
                         shoeCreator.SetParams(_pose, _gender);
-                        _shoes = null;
                         _shoes = shoeCreator.CreateClosetItem(item.Name);
+                        if (_shoes == null || !_shoes.IInitialized) _shoes = null;
                         _closetItemList[3] = _shoes;
                         OnPropertyChanged(nameof(Shoes));
                         break;
                     case Type.Headwear:
                         var headCreator = new HeadwearCreator();
                         headCreator.SetParams(_pose, _gender);
-                        _headwear = null;
                         _headwear = headCreator.CreateClosetItem(item.Name);
+                        if (_headwear == null || !_headwear.IInitialized) _headwear = null;
                         _closetItemList[4] = _headwear;
                         OnPropertyChanged(nameof(Headwear));
                         break;
                 }
+                ILoadModels = false;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return;
+                Debug.WriteLine(e.Message);
+                throw;
             }
         }
         public void SetMaterialToSelectedItem(Materials material, Color4 color)
