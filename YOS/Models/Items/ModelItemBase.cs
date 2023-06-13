@@ -34,17 +34,22 @@ namespace YOS.Models.Items
         public Materials TextureMaterial { get; protected set; }
 
         public Color4 Color => _material.AlbedoColor;
+
+        public bool IInitialized { get; private set; }
+
         public ModelItemBase(string name,
           GenderTypes gender = GenderTypes.Male,
           Poses pose = Poses.Idle,
           Styles style = Styles.Casual,
           Weather weather = Weather.Indoor)
         {
+            IInitialized = false;
             _name = name;
             _gender = gender;
             _style = style;
             _weather = weather;
-            _pose = pose;            
+            _pose = pose;
+            _material = new PBRMaterial();
         }
         public abstract object Clone();
        
@@ -90,6 +95,7 @@ namespace YOS.Models.Items
             _texPath += "\\" + _materials[0].ToString();
             TextureMaterial = _materials[0];
             SetMaterialMaps();
+            IInitialized = true;
             GC.Collect();
         }
         protected void SetMaterialMaps()

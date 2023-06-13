@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using YOS.Models.EnumParams;
 using HelixToolkit.Wpf.SharpDX;
 using SharpDX;
+using System.ComponentModel;
 
 namespace YOS.Models.Items
 {
@@ -22,5 +23,6 @@ namespace YOS.Models.Items
         public void SetMaterial(Materials material);
         public Materials TextureMaterial{ get; }
         public Color4 Color { get; }
+        public bool IInitialized { get; }
     }
 }

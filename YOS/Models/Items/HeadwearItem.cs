@@ -20,12 +20,13 @@ namespace YOS.Models.Items
         {
             _type = Type.Headwear;
             _mainPath = $"{AppDomain.CurrentDomain.BaseDirectory}Resources\\Items\\{_type}\\{_name}\\{_gender}";
-            if (!Directory.Exists(_mainPath))
-                throw new ArgumentException("This item has no such gender");
-            _texPath = $"{_mainPath}\\Textures";
-            _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
-            InitAvaliableMaterials();
-            InitGeometryAndMaterials();
+            if (Directory.Exists(_mainPath))
+            {
+                _texPath = $"{_mainPath}\\Textures";
+                _modelPath = $"{_mainPath}\\{_pose}\\{_name}.obj";
+                InitAvaliableMaterials();
+                InitGeometryAndMaterials();
+            }
         }
         public override object Clone()
         {

@@ -10,7 +10,8 @@
              xmlns:ViewModels="clr-namespace:YOS.ViewModels" xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
              mc:Ignorable="d"
              d:Width="300"
-             d:Height="674">
+             d:Height="674"
+             FontFamily="ubuntu">
     <UserControl.DataContext>
         <ViewModels:ModelColorControlViewModel />
     </UserControl.DataContext>
