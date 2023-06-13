@@ -377,28 +377,66 @@
                         <Grid Margin="10">
 
                             <StackPanel>
-                                <ComboBox FontFamily="ubuntu" Name="focus"
+                                <GroupBox Header="Верх"  
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="#404040" 
+                                          Foreground="White" 
+                                          BorderThickness="0"
+                                          Padding="3,3,0,0">
+                                    
+                                    <ComboBox FontFamily="ubuntu" Name="focus"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Tops, Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedTop}"
                                     />
+                                </GroupBox>
+
+                                <GroupBox Header="Низ"  
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="#404040" 
+                                          Foreground="White" 
+                                          BorderThickness="0"
+                                          Padding="3,3,0,0">
+
                                 <ComboBox
-                                  Margin="0,3,0,3" FontFamily="ubuntu"
+                                  FontFamily="ubuntu"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Bottoms, Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedBottom}"
                                     />
+                                </GroupBox>
+                                
+                                <GroupBox Header="Обувь"  
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="#404040" 
+                                          Foreground="White" 
+                                          BorderThickness="0"
+                                          Padding="3,3,0,0">
+
                                 <ComboBox FontFamily="ubuntu"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Shues, Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedShoe}"
                                     />
+                                </GroupBox>
+                                
+                                <GroupBox Header="Аксессуар"  
+                                          HorizontalAlignment="Stretch" 
+                                          VerticalAlignment="Top" 
+                                          BorderBrush="#404040" 
+                                          Foreground="White" 
+                                          BorderThickness="0"
+                                          Padding="3,3,0,0">
+
                                 <ComboBox FontFamily="ubuntu"
-                                  Margin="0,3,0,3"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Accessory, Mode=OneWay}" 
                                   SelectedValue="{Binding SelectedAccesory}"
                                     />
+                                </GroupBox>
                             </StackPanel>
 
                         </Grid>
