@@ -96,6 +96,7 @@ namespace YOS.Models.Items
         }
         public static Item GetItem2(string name)
         {
+            if (name == null || name == "Нет") return null;
             foreach (var item in items)
             {
                 if (item.Value.ViewName == name) return item.Value;

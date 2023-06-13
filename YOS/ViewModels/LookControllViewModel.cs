@@ -46,8 +46,11 @@ namespace YOS.ViewModels
             set
             {
                 _selectedItemTop = value;
-                if (value == "Нет")
-                    mainMonnequen.ResetTop();
+                if (value == "Нет" || value == null)
+                {
+                    mainMonnequen.ResetBottom();
+                    _selectedItemTop = value;
+                }
                 else
                     mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Top);
             }
@@ -57,9 +60,12 @@ namespace YOS.ViewModels
             get => _selectedItemBottom;
             set
             {
-                _selectedItemTop = value;
-                if (value == "Нет")
+                _selectedItemBottom = value;
+                if (value == "Нет" || value == null) 
+                { 
                     mainMonnequen.ResetBottom();
+                    _selectedItemBottom = value; 
+                }
                 else
                     mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Bottom);
             }
@@ -70,8 +76,11 @@ namespace YOS.ViewModels
             set
             {
                 _selectedItemShoe = value;
-                if (value == "Нет")
-                    mainMonnequen.ResetShoes();
+                if (value == "Нет" || value == null)
+                {
+                    mainMonnequen.ResetBottom();
+                    _selectedItemShoe = value;
+                }
                 else
                     mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Shoes);
             }
@@ -81,9 +90,12 @@ namespace YOS.ViewModels
             get => _selectedItemAccesory;
             set
             {
-                _selectedItemTop = value;
-                if (value == "Нет")
-                    mainMonnequen.ResetAccessory();
+                _selectedItemAccesory = value;
+                if (value == "Нет" || value == null)
+                {
+                    mainMonnequen.ResetBottom();
+                    _selectedItemAccesory = value;
+                }
                 else
                     mainMonnequen.AddClosetItem(ClosetItemList.GetItem2(value).Name, Models.Type.Accessories);
             }
@@ -191,15 +203,15 @@ namespace YOS.ViewModels
         private void _mannequinPropertyChanged(object? sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName != nameof(MannequinSettings.Instance.Gender)) return;
-            _selectedItemTop = null;
-            _selectedItemBottom = null;
-            _selectedItemShoe = null;
-            _selectedItemAccesory = null;
             monnequin_G = mainMonnequen.Gender;
             _selectedItemToplist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Top);
             _selectedItemBottomlist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Bottom);
             _selectedItemShoelist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Shoes);
             _selectedItemAccesorylist = ClosetItemList.SelectItems(monnequin_G, Models.Type.Accessories);
+            if (ClosetItemList.GetItem2(_selectedItemTop)?.Gender != GenderTypes.Unisex) _selectedItemTop = "Нет";
+            if (ClosetItemList.GetItem2(_selectedItemBottom)?.Gender != GenderTypes.Unisex) _selectedItemBottom = "Нет";
+            if (ClosetItemList.GetItem2(_selectedItemShoe)?.Gender != GenderTypes.Unisex) _selectedItemShoe = "Нет";
+            if (ClosetItemList.GetItem2(_selectedItemAccesory)?.Gender != GenderTypes.Unisex) _selectedItemAccesory = "Нет";
             OnAllPropertyChanged();
         }
     }

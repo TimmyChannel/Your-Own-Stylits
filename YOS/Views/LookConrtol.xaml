@@ -388,7 +388,7 @@
                                     <ComboBox FontFamily="ubuntu" Name="focus"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Tops, Mode=OneWay}" 
-                                  SelectedValue="{Binding SelectedTop}"
+                                  SelectedValue="{Binding SelectedTop , Mode=TwoWay}"
                                     />
                                 </GroupBox>
 
@@ -404,7 +404,7 @@
                                   FontFamily="ubuntu"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Bottoms, Mode=OneWay}" 
-                                  SelectedValue="{Binding SelectedBottom}"
+                                  SelectedValue="{Binding SelectedBottom , Mode=TwoWay}"
                                     />
                                 </GroupBox>
                                 
@@ -419,7 +419,7 @@
                                 <ComboBox FontFamily="ubuntu"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Shues, Mode=OneWay}" 
-                                  SelectedValue="{Binding SelectedShoe}"
+                                  SelectedValue="{Binding SelectedShoe, Mode=TwoWay}"
                                     />
                                 </GroupBox>
                                 
@@ -434,7 +434,7 @@
                                 <ComboBox FontFamily="ubuntu"
                                   Style="{DynamicResource ComboBoxStyle1}"
                                   ItemsSource="{Binding Accessory, Mode=OneWay}" 
-                                  SelectedValue="{Binding SelectedAccesory}"
+                                  SelectedValue="{Binding SelectedAccesory , Mode=TwoWay}"
                                     />
                                 </GroupBox>
                             </StackPanel>
