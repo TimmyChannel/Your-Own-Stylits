@@ -124,6 +124,7 @@ namespace YOS.ViewModels
                     OnPropertyChanged(nameof(Top));
                     return;
                 default:
+                    OnPropertyChanged(nameof(MannequinModel));
                     UpdateAllItems();
                     return;
             }
