@@ -48,6 +48,16 @@ namespace YOS.Models.Mannequin
                 OnPropertyChanged();
             }
         }
+        private bool _iLoadModels;
+        public bool ILoadModels
+        {
+            get => _iLoadModels;
+            private set
+            {
+                SetProperty<bool>(ref _iLoadModels, value);
+                Debug.WriteLine($"ILoadModels {value}");
+            }
+        }
         private static readonly Lazy<MannequinSettings> lazy = new(() => new MannequinSettings());
         public static MannequinSettings Instance { get { return lazy.Value; } }
         private MannequinSettings()
@@ -94,7 +104,9 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<GenderTypes>(ref _gender, value);
+                ILoadModels = true;
                 SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
+                ILoadModels = false;
                 UpdateItems();
             }
         }
@@ -104,7 +116,9 @@ namespace YOS.Models.Mannequin
             set
             {
                 SetProperty<Poses>(ref _pose, value);
+                ILoadModels = true;
                 SetProperty<IMannequinModel>(ref _mannequin, new RealisticModel("noob", true, _gender, _pose), nameof(MannequinModel));
+                ILoadModels = false;
                 UpdateItems();
             }
         }
@@ -117,8 +131,11 @@ namespace YOS.Models.Mannequin
                     var prevColor = _closetItemList[i].Color;
                     var prevMat = _closetItemList[i].TextureMaterial;
                     AddClosetItem(ClosetItemList.GetItem(_closetItemList[i].Name));
-                    _closetItemList[i].SetColor(prevColor);
-                    _closetItemList[i].SetMaterial(prevMat);
+                    if (_closetItemList[i] != null)
+                    {
+                        _closetItemList[i].SetColor(prevColor);
+                        _closetItemList[i].SetMaterial(prevMat);
+                    }
                 }
             }
         }
@@ -126,6 +143,7 @@ namespace YOS.Models.Mannequin
         {
             try
             {
+                ILoadModels = true;
                 switch (type)
                 {
                     case Type.Top:
@@ -169,6 +187,7 @@ namespace YOS.Models.Mannequin
                         OnPropertyChanged(nameof(Headwear));
                         break;
                 }
+                ILoadModels = false;
             }
             catch (Exception e)
             {
@@ -180,6 +199,7 @@ namespace YOS.Models.Mannequin
         {
             try
             {
+                ILoadModels = true;
                 switch (item.Type)
                 {
                     case Type.Top:
@@ -223,6 +243,7 @@ namespace YOS.Models.Mannequin
                         OnPropertyChanged(nameof(Headwear));
                         break;
                 }
+                ILoadModels = false;
             }
             catch (Exception e)
             {
