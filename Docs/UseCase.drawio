@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-06-14T12:59:54.853Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="f4xnBqvfov1ZyJV1LdPc" version="21.2.8" type="device">
+<mxfile host="Electron" modified="2023-06-14T16:44:19.362Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="NTRe8A7LVjmNxCKm3HRj" version="21.2.8" type="device">
   <diagram id="j1aVTYXNPt-sK3KB0AaX" name="Страница 1">
-    <mxGraphModel dx="2244" dy="2037" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1974" dy="1876" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -75,7 +75,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gbgPSzIbxHU2JyrmjOY1-8" value="Подобрать стиль по указанным параметрам" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-11" vertex="1">
+        <mxCell id="gbgPSzIbxHU2JyrmjOY1-8" value="Подобрать образ по указанным параметрам" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-11" vertex="1">
           <mxGeometry x="60" y="255" width="150" height="70" as="geometry" />
         </mxCell>
         <mxCell id="jidF-8eyVOcuYZuKosaz-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="gbgPSzIbxHU2JyrmjOY1-1" target="gbgPSzIbxHU2JyrmjOY1-8" edge="1">
@@ -120,7 +120,7 @@
         <mxCell id="B7M0bKL2C-6c9N5O82LA-16" value="Применить материал к модели" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
           <mxGeometry x="8" y="311" width="162.5" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="jidF-8eyVOcuYZuKosaz-2" value="Осмотреть модель в окне предпросмотра" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
+        <mxCell id="jidF-8eyVOcuYZuKosaz-2" value="Выбрать материал из предложенного списка" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
           <mxGeometry x="40" y="60" width="162.5" height="70" as="geometry" />
         </mxCell>
         <mxCell id="jidF-8eyVOcuYZuKosaz-31" value="&lt;br&gt;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&quot;include&quot;&lt;/span&gt;&lt;br&gt;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;dashed=1;labelBackgroundColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;endSize=6;strokeColor=default;exitX=0;exitY=0;exitDx=0;exitDy=0;endFill=1;startSize=0;targetPerimeterSpacing=0;sourcePerimeterSpacing=0;" parent="B7M0bKL2C-6c9N5O82LA-14" edge="1">
@@ -135,13 +135,13 @@
         <mxCell id="jidF-8eyVOcuYZuKosaz-35" value="&#xa;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&quot;extend&quot;&lt;/span&gt;&#xa;&#xa;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;dashed=1;labelBackgroundColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;startArrow=classic;startFill=1;endArrow=none;endFill=0;endSize=12;strokeColor=default;" parent="B7M0bKL2C-6c9N5O82LA-14" source="jidF-8eyVOcuYZuKosaz-1" target="B7M0bKL2C-6c9N5O82LA-16" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jidF-8eyVOcuYZuKosaz-1" value="Выбрать материал из предложенного списка" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
+        <mxCell id="jidF-8eyVOcuYZuKosaz-1" value="Осмотреть модель в окне предпросмотра" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
           <mxGeometry x="180" y="180" width="162.5" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="4U0nzvqhfWO089EIN1hV-1" value="Применить цвет материала к модели" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="B7M0bKL2C-6c9N5O82LA-14">
+        <mxCell id="4U0nzvqhfWO089EIN1hV-1" value="Применить цвет материала к модели" style="ellipse;whiteSpace=wrap;html=1;" parent="B7M0bKL2C-6c9N5O82LA-14" vertex="1">
           <mxGeometry x="166" y="370" width="162.5" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="4U0nzvqhfWO089EIN1hV-2" value="&#xa;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&quot;extend&quot;&lt;/span&gt;&#xa;&#xa;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;labelBackgroundColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;startArrow=classic;startFill=1;endArrow=none;endFill=0;endSize=12;strokeColor=default;" edge="1" target="4U0nzvqhfWO089EIN1hV-1" parent="B7M0bKL2C-6c9N5O82LA-14" source="jidF-8eyVOcuYZuKosaz-1">
+        <mxCell id="4U0nzvqhfWO089EIN1hV-2" value="&#xa;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&quot;extend&quot;&lt;/span&gt;&#xa;&#xa;" style="edgeStyle=none;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;labelBackgroundColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;startArrow=classic;startFill=1;endArrow=none;endFill=0;endSize=12;strokeColor=default;" parent="B7M0bKL2C-6c9N5O82LA-14" source="jidF-8eyVOcuYZuKosaz-1" target="4U0nzvqhfWO089EIN1hV-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="330" y="280" as="sourcePoint" />
           </mxGeometry>
