@@ -256,7 +256,7 @@
                                 HorizontalContentAlignment="Center"
                                 Height="34"
                                 Padding="7,2,6,2"
-                                ToolTip="Сменить манекена на человека">
+                                ToolTip="Сменить пол на мужской">
                     <hw:ImageButton.Style>
                         <Style TargetType="{x:Type hw:ImageButton}">
                             <Setter Property="Visibility"
@@ -296,7 +296,7 @@
                                 HorizontalContentAlignment="Center"
                                 UseLayoutRounding="False"
                                 Height="34"
-                                ToolTip="Сменить манекена на женщину">
+                                ToolTip="Сменить пол на женский">
                     <hw:ImageButton.Style>
                         <Style TargetType="{x:Type hw:ImageButton}">
                             <Setter Property="Visibility"
