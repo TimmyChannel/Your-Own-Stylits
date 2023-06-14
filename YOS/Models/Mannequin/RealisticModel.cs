@@ -148,7 +148,5 @@ namespace YOS.Models.Mannequin
                 _mannequin.Add(mesh);
             }
         }
-
-
     }
 }

@@ -9,6 +9,53 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TestResources\MaleMannequin\arm_39499.jpg" />
+    <None Remove="TestResources\MaleMannequin\body_Covered.jpg" />
+    <None Remove="TestResources\MaleMannequin\eyelash_39523.jpg" />
+    <None Remove="TestResources\MaleMannequin\eye_39510.jpg" />
+    <None Remove="TestResources\MaleMannequin\face_39491.jpg" />
+    <None Remove="TestResources\MaleMannequin\hair.jpg" />
+    <None Remove="TestResources\MaleMannequin\IdlePose.mtl" />
+    <None Remove="TestResources\MaleMannequin\IdlePose.obj" />
+    <None Remove="TestResources\MaleMannequin\leg_39503.jpg" />
+    <None Remove="TestResources\MaleMannequin\tooth_39536.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TestResources\MaleMannequin\arm_39499.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\body_Covered.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\eyelash_39523.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\eye_39510.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\face_39491.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\hair.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\IdlePose.mtl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\IdlePose.obj">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\leg_39503.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestResources\MaleMannequin\tooth_39536.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HelixToolkit.Wpf.SharpDX" Version="2.24.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.2.8" />
     <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
@@ -17,6 +64,19 @@
 
   <ItemGroup>
     <ProjectReference Include="..\YOS\YOS.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="TestResources\MaleMannequin\arm_39499.jpg" />
+    <Resource Include="TestResources\MaleMannequin\body_Covered.jpg" />
+    <Resource Include="TestResources\MaleMannequin\eyelash_39523.jpg" />
+    <Resource Include="TestResources\MaleMannequin\eye_39510.jpg" />
+    <Resource Include="TestResources\MaleMannequin\face_39491.jpg" />
+    <Resource Include="TestResources\MaleMannequin\hair.jpg" />
+    <Resource Include="TestResources\MaleMannequin\IdlePose.mtl" />
+    <Resource Include="TestResources\MaleMannequin\IdlePose.obj" />
+    <Resource Include="TestResources\MaleMannequin\leg_39503.jpg" />
+    <Resource Include="TestResources\MaleMannequin\tooth_39536.jpg" />
   </ItemGroup>
 
 </Project>
