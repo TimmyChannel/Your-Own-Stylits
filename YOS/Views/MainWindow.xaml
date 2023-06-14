@@ -8,7 +8,7 @@
         xmlns:hm="http://schemas.hpod9.com/haley/mvvm"
         xmlns:ViewModels="clr-namespace:YOS.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="Your Own Stylist"
         Height="720"
         MinHeight="720"
         Width="1288"
