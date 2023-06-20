@@ -12,7 +12,8 @@
         Height="720"
         MinHeight="720"
         Width="1288"
-        MinWidth="1280">
+        MinWidth="1280"
+        Icon="/RedHair-Den4ik.ico">
     <Window.DataContext>
         <ViewModels:MainWindowViewModel />
     </Window.DataContext>
