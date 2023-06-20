@@ -32,13 +32,13 @@ namespace YOS.Models.Items
                     Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Очки-авиаторы") },
     { "OxfordShoes", 
                 new("OxfordShoes", GenderTypes.Male, Type.Shoes, Styles.Formal | Styles.Casual, 
-                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Оксфордские подкрадули") },
+                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Оксфорды") },
     { "Sneakers", 
                 new("Sneakers", GenderTypes.Unisex, Type.Shoes, Styles.Casual | Styles.Summer,
-                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Сникерсы, сникерсы") },
+                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Кроссовки") },
     { "HeeledShoes",
                 new("HeeledShoes", GenderTypes.Female, Type.Shoes, Styles.Formal | Styles.Summer | Styles.Casual,
-                    Weather.Sunny | Weather.Cloudy |Weather.Indoor, "Туфли с кирилом") },
+                    Weather.Sunny | Weather.Cloudy |Weather.Indoor, "Туфли") },
     { "Shorts", 
                 new("Shorts", GenderTypes.Male, Type.Bottom, Styles.Casual | Styles.Summer,
                     Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Шорты") },
@@ -50,16 +50,16 @@ namespace YOS.Models.Items
                     Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Брюки") },
     { "Beret", 
                 new("Beret", GenderTypes.Female, Type.Headwear, Styles.Casual | Styles.Formal,
-                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Кандибобер") },
+                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Берет") },
     { "Kippah", 
                 new("Kippah", GenderTypes.Male, Type.Headwear, Styles.Formal,
-                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Арабская шапка") },
+                    Weather.Sunny | Weather.Cloudy | Weather.Indoor, "Киппа") },
     { "KnitHat", 
                 new("KnitHat", GenderTypes.Unisex, Type.Headwear, Styles.Casual, 
-                    Weather.Cloudy, "Шапка")},
+                    Weather.Cloudy, "Вязаная шапка")},
     { "BeanieHat", 
                 new("BeanieHat", GenderTypes.Unisex, Type.Headwear, Styles.Casual, 
-                    Weather.Cloudy, "Шапка зайко-девочки") }
+                    Weather.Cloudy, "Шапка Бини") }
 };
 
         public static List<Item> SelectItems(GenderTypes G, Weather W, Styles S)
